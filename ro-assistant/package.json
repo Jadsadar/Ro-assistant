@@ -1,0 +1,32 @@
+{
+  "name": "ro-assistant",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "catalog:build": "tsx scripts/build-catalog.ts",
+    "predev": "npm run catalog:build",
+    "dev": "next dev",
+    "prebuild": "npm run catalog:build",
+    "build": "next build",
+    "lint": "eslint",
+    "test": "tsx --test tests/*.test.ts",
+    "typecheck": "tsc --noEmit",
+    "verify": "npm run test && npm run lint && npm run typecheck && npm run build"
+  },
+  "dependencies": {
+    "next": "16.2.2",
+    "react": "19.2.4",
+    "react-dom": "19.2.4"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.2.2",
+    "tailwindcss": "^4",
+    "tsx": "^4.22.4",
+    "typescript": "^5"
+  }
+}

@@ -1,0 +1,102 @@
+{
+  "schemaVersion": 1,
+  "catalogVersion": "37d0b11871c1f362",
+  "generatedAt": "2026-06-10T11:36:22.203Z",
+  "source": {
+    "itemCount": 6490,
+    "monsterCount": 328
+  },
+  "search": {
+    "id": "search",
+    "url": "/data/items/search.da9d7e87fbf8.json",
+    "sha256": "da9d7e87fbf8f4996307c5b76146606b056710dec30e296e0790286eef02e821",
+    "recordCount": 6490,
+    "bytes": 2044814
+  },
+  "itemOptions": {
+    "id": "item-options",
+    "url": "/data/item-options.0f59ab041289.json",
+    "sha256": "0f59ab041289374d256397fcd6d6f4d1cc60b0eea2c9387f10c47bde664d21a0",
+    "recordCount": 1122,
+    "bytes": 3540851
+  },
+  "monsters": {
+    "id": "monsters",
+    "url": "/data/monsters.e678990df428.json",
+    "sha256": "e678990df4289465bcef74ab06074ce351f73a45adf7e205b01e94cac5f10a48",
+    "recordCount": 328,
+    "bytes": 235560
+  },
+  "hpSpTable": {
+    "id": "hp-sp-table",
+    "url": "/data/hp-sp-table.f9af71eec789.json",
+    "sha256": "f9af71eec7899eab0433ca855c73499d8b7f7acde9e82033f9868d3e23d7dee5",
+    "recordCount": 62,
+    "bytes": 118202
+  },
+  "chunks": [
+    {
+      "id": "cards",
+      "url": "/data/items/cards.a08a93eb3934.json",
+      "sha256": "a08a93eb39342603eb9bc944c3e26fec296316b6686692662c983bff5c499d31",
+      "recordCount": 985,
+      "bytes": 926751
+    },
+    {
+      "id": "consumables",
+      "url": "/data/items/consumables.cb0fd61737bd.json",
+      "sha256": "cb0fd61737bd3ea7253e60e20edf79045e79a64acec25a405d0f230f9e277be7",
+      "recordCount": 69,
+      "bytes": 63807
+    },
+    {
+      "id": "enchants",
+      "url": "/data/items/enchants.0698b6049d9c.json",
+      "sha256": "0698b6049d9cb4ec2bfc59421b04addb26c30791e48a9b94891b5b07d5f1b0d0",
+      "recordCount": 2288,
+      "bytes": 2039247
+    },
+    {
+      "id": "equipment-accessory",
+      "url": "/data/items/equipment-accessory.c4a5f8fb9a68.json",
+      "sha256": "c4a5f8fb9a68650ff20df572d969e09db2cd4dfb77d32d2429e0a6515a922ca1",
+      "recordCount": 371,
+      "bytes": 831915
+    },
+    {
+      "id": "equipment-armor",
+      "url": "/data/items/equipment-armor.298849b91ee4.json",
+      "sha256": "298849b91ee47069b249fb1991f8b668f53ea5085d99899b5209170177cae01e",
+      "recordCount": 580,
+      "bytes": 1300750
+    },
+    {
+      "id": "equipment-head",
+      "url": "/data/items/equipment-head.534c3db0e105.json",
+      "sha256": "534c3db0e105fa538185c6e0c9020f7633c4dbf6b59a663108b8938647670923",
+      "recordCount": 410,
+      "bytes": 998098
+    },
+    {
+      "id": "equipment-weapon",
+      "url": "/data/items/equipment-weapon.170c5293bdb1.json",
+      "sha256": "170c5293bdb14236d1da9d37edcfa50ad3c67c36594bf8c7e427d2ac1c9a71e9",
+      "recordCount": 921,
+      "bytes": 1945809
+    },
+    {
+      "id": "misc",
+      "url": "/data/items/misc.ca26caf2d51c.json",
+      "sha256": "ca26caf2d51c9ccfac7c8dec26e964c2cf56cd4d35eed069177cbea8443a2c69",
+      "recordCount": 88,
+      "bytes": 135357
+    },
+    {
+      "id": "shadow-equipment",
+      "url": "/data/items/shadow-equipment.a871114f0437.json",
+      "sha256": "a871114f0437dac12ee5b80f11b706ffafb261e36b90951b789e9da3ecadce94",
+      "recordCount": 778,
+      "bytes": 1425382
+    }
+  ]
+}
