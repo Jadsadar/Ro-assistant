@@ -1,4 +1,8 @@
 import { normalizeTagName } from "@/lib/knowledge/normalize";
+import {
+  ATTACK_ELEMENTS,
+  DEFAULT_CHARACTER_STATS,
+} from "@/lib/calculator/metadata";
 import type {
   ItemVariant,
   KnowledgeSnapshot,
@@ -141,7 +145,89 @@ export async function loadKnowledgeSnapshot(): Promise<KnowledgeSnapshot> {
     tags,
     variantTags,
     ownedItems,
-    savedBuilds,
+    savedBuilds: (savedBuilds as unknown[]).map(normalizeSavedBuild),
+  };
+}
+
+function normalizeSavedBuild(value: unknown): SavedBuild {
+  const record =
+    typeof value === "object" && value !== null
+      ? (value as Record<string, unknown>)
+      : {};
+  const legacySkill =
+    typeof record.skillId === "string"
+      ? record.skillId
+      : typeof record.skill === "string"
+        ? record.skill
+        : "";
+  const skillLevel = Number.isInteger(record.skillLevel)
+    ? (record.skillLevel as number)
+    : 1;
+  const legacyBuffs = Array.isArray(record.buffs)
+    ? record.buffs.filter((entry): entry is string => typeof entry === "string")
+    : [];
+
+  return {
+    ...(record as unknown as SavedBuild),
+    id: typeof record.id === "string" ? record.id : crypto.randomUUID(),
+    name: typeof record.name === "string" ? record.name : "Imported Build",
+    classId: Number.isInteger(record.classId) ? (record.classId as number) : 0,
+    className:
+      typeof record.className === "string"
+        ? record.className
+        : typeof record.job === "string"
+          ? record.job
+          : undefined,
+    baseLevel: Number.isInteger(record.baseLevel)
+      ? (record.baseLevel as number)
+      : 1,
+    jobLevel: Number.isInteger(record.jobLevel)
+      ? (record.jobLevel as number)
+      : 1,
+    skillId: legacySkill,
+    skillLevel,
+    propertyAtk: ATTACK_ELEMENTS.includes(
+      record.propertyAtk as SavedBuild["propertyAtk"],
+    )
+      ? (record.propertyAtk as SavedBuild["propertyAtk"])
+      : "Neutral",
+    monsterId: Number.isInteger(record.monsterId)
+      ? (record.monsterId as number)
+      : 0,
+    server: record.server === "thor" ? "thor" : "chaos",
+    equipment:
+      typeof record.equipment === "object" && record.equipment !== null
+        ? (record.equipment as SavedBuild["equipment"])
+        : {},
+    stats: {
+      ...DEFAULT_CHARACTER_STATS,
+      ...(typeof record.stats === "object" && record.stats !== null
+        ? record.stats
+        : {}),
+    },
+    skillLevels:
+      typeof record.skillLevels === "object" && record.skillLevels !== null
+        ? (record.skillLevels as Record<string, number>)
+        : legacySkill
+          ? { [legacySkill]: skillLevel }
+          : {},
+    buffLevels:
+      typeof record.buffLevels === "object" && record.buffLevels !== null
+        ? (record.buffLevels as Record<string, number>)
+        : Object.fromEntries(legacyBuffs.map((buff) => [buff, 1])),
+    consumableIds: Array.isArray(record.consumableIds)
+      ? record.consumableIds.filter(
+          (entry): entry is number => Number.isInteger(entry),
+        )
+      : [],
+    createdAt:
+      typeof record.createdAt === "string"
+        ? record.createdAt
+        : new Date().toISOString(),
+    updatedAt:
+      typeof record.updatedAt === "string"
+        ? record.updatedAt
+        : new Date().toISOString(),
   };
 }
 
@@ -217,6 +303,20 @@ export async function saveKnowledgeEntry({
 
   await transactionToPromise(transaction);
   return { variantId: variantToSave.id, quoteId };
+}
+
+export async function saveBuild(build: SavedBuild): Promise<void> {
+  const database = await openKnowledgeDatabase();
+  const transaction = database.transaction(STORES.savedBuilds, "readwrite");
+  transaction.objectStore(STORES.savedBuilds).put(build);
+  await transactionToPromise(transaction);
+}
+
+export async function deleteBuild(buildId: string): Promise<void> {
+  const database = await openKnowledgeDatabase();
+  const transaction = database.transaction(STORES.savedBuilds, "readwrite");
+  transaction.objectStore(STORES.savedBuilds).delete(buildId);
+  await transactionToPromise(transaction);
 }
 
 export async function importKnowledgeSnapshot(
@@ -342,10 +442,12 @@ export async function importKnowledgeSnapshot(
       buildStore.get(importedBuild.id),
     )) as SavedBuild | undefined;
     const equipment = Object.fromEntries(
-      Object.entries(importedBuild.equipment).map(([slot, variantId]) => [
-        slot,
-        variantId ? variantIdMap.get(variantId) ?? variantId : null,
-      ]),
+      Object.entries(importedBuild.equipment).map(([slot, selection]) => {
+        if (typeof selection === "string") {
+          return [slot, variantIdMap.get(selection) ?? selection];
+        }
+        return [slot, selection ?? null];
+      }),
     );
     buildStore.put({
       ...importedBuild,

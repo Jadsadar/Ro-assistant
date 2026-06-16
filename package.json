@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "catalog:build": "tsx scripts/build-catalog.ts",
+    "catalog:build": "tsx scripts/build-catalog.ts && node scripts/build-skill-catalog.cjs",
     "predev": "npm run catalog:build",
     "dev": "next dev",
     "prebuild": "npm run catalog:build",

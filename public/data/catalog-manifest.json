@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "catalogVersion": "37d0b11871c1f362",
   "generatedAt": "2026-06-10T11:36:22.203Z",
   "source": {
@@ -8,17 +8,17 @@
   },
   "search": {
     "id": "search",
-    "url": "/data/items/search.da9d7e87fbf8.json",
-    "sha256": "da9d7e87fbf8f4996307c5b76146606b056710dec30e296e0790286eef02e821",
+    "url": "/data/items/search.cc5db33c89f2.json",
+    "sha256": "cc5db33c89f2f2e703ac067aac7fe5d37fa89cdf4e0aa77bffd782c49289a425",
     "recordCount": 6490,
-    "bytes": 2044814
+    "bytes": 2778094
   },
   "itemOptions": {
     "id": "item-options",
-    "url": "/data/item-options.0f59ab041289.json",
-    "sha256": "0f59ab041289374d256397fcd6d6f4d1cc60b0eea2c9387f10c47bde664d21a0",
-    "recordCount": 1122,
-    "bytes": 3540851
+    "url": "/data/item-options.e30f1350cbed.json",
+    "sha256": "e30f1350cbed2ad29353943f050dcd389de617d49163aafc55e3ea44e17d3d0d",
+    "recordCount": 2360,
+    "bytes": 3652252
   },
   "monsters": {
     "id": "monsters",
@@ -37,66 +37,66 @@
   "chunks": [
     {
       "id": "cards",
-      "url": "/data/items/cards.a08a93eb3934.json",
-      "sha256": "a08a93eb39342603eb9bc944c3e26fec296316b6686692662c983bff5c499d31",
+      "url": "/data/items/cards.3c82fb4eb311.json",
+      "sha256": "3c82fb4eb31149377f8c274550f1b8ec7af289c015c0f27a29d39c448ca115bc",
       "recordCount": 985,
-      "bytes": 926751
+      "bytes": 984236
     },
     {
       "id": "consumables",
-      "url": "/data/items/consumables.cb0fd61737bd.json",
-      "sha256": "cb0fd61737bd3ea7253e60e20edf79045e79a64acec25a405d0f230f9e277be7",
+      "url": "/data/items/consumables.670167f1ef86.json",
+      "sha256": "670167f1ef86a72426c14e0c1a123dfad97adf393b55291a6ee571d29dc27f06",
       "recordCount": 69,
-      "bytes": 63807
+      "bytes": 67464
     },
     {
       "id": "enchants",
-      "url": "/data/items/enchants.0698b6049d9c.json",
-      "sha256": "0698b6049d9cb4ec2bfc59421b04addb26c30791e48a9b94891b5b07d5f1b0d0",
+      "url": "/data/items/enchants.7fe0d8c2dda0.json",
+      "sha256": "7fe0d8c2dda0f4cebd07f0d4d2930a64bf832e563026727a74cd4cc7aab021a3",
       "recordCount": 2288,
-      "bytes": 2039247
+      "bytes": 2160660
     },
     {
       "id": "equipment-accessory",
-      "url": "/data/items/equipment-accessory.c4a5f8fb9a68.json",
-      "sha256": "c4a5f8fb9a68650ff20df572d969e09db2cd4dfb77d32d2429e0a6515a922ca1",
+      "url": "/data/items/equipment-accessory.1577ba89ae2c.json",
+      "sha256": "1577ba89ae2c3523ed2e289c6a50f0e888e336f7b3a82ba27afb5b8fc7217195",
       "recordCount": 371,
-      "bytes": 831915
+      "bytes": 855642
     },
     {
       "id": "equipment-armor",
-      "url": "/data/items/equipment-armor.298849b91ee4.json",
-      "sha256": "298849b91ee47069b249fb1991f8b668f53ea5085d99899b5209170177cae01e",
+      "url": "/data/items/equipment-armor.d5210e61c7bc.json",
+      "sha256": "d5210e61c7bcafaf6993cbbd4fd60549fc8d5827f1cefd7b754156af44425d1f",
       "recordCount": 580,
-      "bytes": 1300750
+      "bytes": 1332958
     },
     {
       "id": "equipment-head",
-      "url": "/data/items/equipment-head.534c3db0e105.json",
-      "sha256": "534c3db0e105fa538185c6e0c9020f7633c4dbf6b59a663108b8938647670923",
+      "url": "/data/items/equipment-head.8f54b2845e5b.json",
+      "sha256": "8f54b2845e5b9745c7c20dc8f89c09481f60d784f3c8014e0d2bedbd7585f149",
       "recordCount": 410,
-      "bytes": 998098
+      "bytes": 1022094
     },
     {
       "id": "equipment-weapon",
-      "url": "/data/items/equipment-weapon.170c5293bdb1.json",
-      "sha256": "170c5293bdb14236d1da9d37edcfa50ad3c67c36594bf8c7e427d2ac1c9a71e9",
+      "url": "/data/items/equipment-weapon.73fc05c2e694.json",
+      "sha256": "73fc05c2e6944d8085fc539ece99f8fbd78045b5200a0f2a46f7a3a09b014e7c",
       "recordCount": 921,
-      "bytes": 1945809
+      "bytes": 1996882
     },
     {
       "id": "misc",
-      "url": "/data/items/misc.ca26caf2d51c.json",
-      "sha256": "ca26caf2d51c9ccfac7c8dec26e964c2cf56cd4d35eed069177cbea8443a2c69",
+      "url": "/data/items/misc.b62ee0c18b75.json",
+      "sha256": "b62ee0c18b7573130af90ccbb0392bd256278da36dffacfbd0558d6c4f3cee8d",
       "recordCount": 88,
-      "bytes": 135357
+      "bytes": 140372
     },
     {
       "id": "shadow-equipment",
-      "url": "/data/items/shadow-equipment.a871114f0437.json",
-      "sha256": "a871114f0437dac12ee5b80f11b706ffafb261e36b90951b789e9da3ecadce94",
+      "url": "/data/items/shadow-equipment.b4a9111f53f2.json",
+      "sha256": "b4a9111f53f2ad957ae4688be8c4371845fdd877cd3bebeb873fabf03223017b",
       "recordCount": 778,
-      "bytes": 1425382
+      "bytes": 1476537
     }
   ]
 }

@@ -12,6 +12,7 @@ function optionToken(option: ItemOption): string {
   return [
     option.slot ?? "",
     option.key.trim().toLocaleLowerCase("en"),
+    option.itemId ?? "",
     option.value ?? "",
     option.unit ?? "",
     option.label.trim().toLocaleLowerCase("th"),

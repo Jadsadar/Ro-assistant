@@ -11,6 +11,8 @@ const eslintConfig = defineConfig([
     ".next/**",
     "out/**",
     "build/**",
+    "ro-assistant/**",
+    "tong-calc-ro/**",
     "next-env.d.ts",
   ]),
 ]);

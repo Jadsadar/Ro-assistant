@@ -57,4 +57,18 @@ test("variant fingerprint changes for price-relevant equipment properties", () =
       ],
     }),
   );
+  assert.notEqual(
+    createVariantFingerprint({
+      ...base,
+      enchants: [
+        { key: "special", itemId: 4872, unit: "text", label: "Hawkeye" },
+      ],
+    }),
+    createVariantFingerprint({
+      ...base,
+      enchants: [
+        { key: "special", itemId: 4873, unit: "text", label: "Hawkeye" },
+      ],
+    }),
+  );
 });

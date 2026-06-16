@@ -1,3 +1,5 @@
+import type { EquipmentSlot } from "@/lib/equipment/types";
+
 export interface CatalogAsset {
   id: string;
   url: string;
@@ -45,11 +47,18 @@ export interface CatalogSearchItem {
   name: string;
   aegisName: string;
   itemTypeId: number;
+  itemSubTypeId: number;
   itemType: string;
   slot: string | null;
+  equipSlots: EquipmentSlot[];
   category: string;
   slots: number;
+  compositionPos: number | null;
+  canGrade: boolean;
+  isRefinable: boolean;
   requiredLevel: number | null;
+  usableClass?: string[];
+  unusableClass?: string[];
   searchable: string;
 }
 
@@ -59,16 +68,51 @@ export interface CatalogItemDetail extends CatalogSearchItem {
   unidName: string;
   resName: string;
   description: string;
-  itemSubTypeId: number;
   itemLevel: number | null;
   attack: number | null;
   propertyAtk?: number | null;
   defense: number | null;
   weight: number;
-  compositionPos: number | null;
   usableClass?: string[];
   unusableClass?: string[];
-  canGrade?: boolean;
-  isRefinable?: boolean;
   script: Record<string, unknown[]>;
+}
+
+export interface CatalogMonster {
+  id: number;
+  dbname: string;
+  name: string;
+  spawn: string;
+  stats: {
+    level: number;
+    health: number;
+    defense: number;
+    magicDefense: number;
+    res: number;
+    mres: number;
+    elementName: string;
+    elementShortName: string;
+    scaleName: string;
+    raceName: string;
+    class: number;
+    mvp: number;
+    [key: string]: unknown;
+  };
+}
+
+export interface CatalogSkillChoice {
+  label: string;
+  value: string;
+  level: number;
+}
+
+export interface CatalogSkill {
+  name: string;
+  choices: CatalogSkillChoice[];
+}
+
+export interface CatalogClassSkills {
+  classId: number;
+  className: string;
+  skills: CatalogSkill[];
 }

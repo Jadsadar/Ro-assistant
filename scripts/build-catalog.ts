@@ -1,5 +1,6 @@
 import { createHash } from "node:crypto";
 import {
+  access,
   mkdir,
   readFile,
   rm,
@@ -23,6 +24,11 @@ import type {
   CatalogManifest,
   CatalogSearchItem,
 } from "../src/lib/catalog/types";
+import {
+  resolveEquipmentSlots,
+  resolveRandomOptionCount,
+} from "../src/lib/equipment/catalog-rules";
+import { EQUIPMENT_SLOT_RULES } from "../src/lib/equipment/types";
 
 interface RawItem {
   id: number;
@@ -54,8 +60,12 @@ type LegacyEnchantEntry = { name: string; enchants: LegacyEnchantGroup };
 
 const scriptDirectory = dirname(fileURLToPath(import.meta.url));
 const projectRoot = resolve(scriptDirectory, "..");
-const legacyRoot = resolve(projectRoot, "..", "tong-calc-ro");
+const legacyRoot = resolve(
+  projectRoot,
+  process.env.RO_LEGACY_ROOT ?? "tong-calc-ro",
+);
 const outputRoot = resolve(projectRoot, "public", "data");
+const manifestPath = resolve(outputRoot, "catalog-manifest.json");
 
 const sources = {
   items: resolve(legacyRoot, "item.json"),
@@ -89,6 +99,24 @@ function assertSafeOutputPath(): void {
   const projectPrefix = `${projectRoot}${sep}`;
   if (!outputRoot.startsWith(projectPrefix) || basename(outputRoot) !== "data") {
     throw new Error(`Refusing to replace unsafe output path: ${outputRoot}`);
+  }
+}
+
+async function hasAllCatalogSources(): Promise<boolean> {
+  try {
+    await Promise.all(Object.values(sources).map((path) => access(path)));
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+async function canUseExistingCatalog(): Promise<boolean> {
+  try {
+    await access(manifestPath);
+    return true;
+  } catch {
+    return false;
   }
 }
 
@@ -233,7 +261,13 @@ function toSearchItem(item: RawItem): CatalogSearchItem {
   const name = item.name?.trim() || item.aegisName?.trim() || `Item ${id}`;
   const aegisName = item.aegisName?.trim() ?? "";
   const itemTypeId = Number(item.itemTypeId ?? 0);
+  const itemSubTypeId = Number(item.itemSubTypeId ?? 0);
   const slot = resolvedSlot(item);
+  const equipSlots = resolveEquipmentSlots({
+    itemTypeId,
+    itemSubTypeId,
+    displaySlot: slot,
+  });
   const itemType = itemTypeLabel(item);
   const category = itemCategory(item);
   const searchable = normalizeSearchText(
@@ -256,14 +290,25 @@ function toSearchItem(item: RawItem): CatalogSearchItem {
     name,
     aegisName,
     itemTypeId,
+    itemSubTypeId,
     itemType,
     slot,
+    equipSlots,
     category,
     slots: Number(item.slots ?? 0),
+    compositionPos: item.compositionPos ?? null,
+    canGrade: item.canGrade === true,
+    isRefinable:
+      item.isRefinable ??
+      equipSlots.some(
+        (equipmentSlot) => EQUIPMENT_SLOT_RULES[equipmentSlot].allowsRefine,
+      ),
     requiredLevel:
       item.requiredLevel === null || item.requiredLevel === undefined
         ? null
         : Number(item.requiredLevel),
+    usableClass: item.usableClass,
+    unusableClass: item.unusableClass,
     searchable,
   };
 }
@@ -343,8 +388,15 @@ function buildItemOptionsIndexFromSources(
         };
       })
       .filter((group): group is CatalogOptionGroup => group !== null);
-    const randomOptionCount =
-      extraOptionTable[aegisName] ?? 0;
+    const randomOptionCount = resolveRandomOptionCount(
+      Number(item.itemTypeId ?? 0),
+      resolveEquipmentSlots({
+        itemTypeId: Number(item.itemTypeId ?? 0),
+        itemSubTypeId: Number(item.itemSubTypeId ?? 0),
+        displaySlot: resolvedSlot(item),
+      }),
+      extraOptionTable[aegisName] ?? 0,
+    );
 
     if (groups.length === 0 && randomOptionCount === 0) continue;
 
@@ -366,17 +418,13 @@ function toDetailItem(item: RawItem): CatalogItemDetail {
     unidName: item.unidName ?? "",
     resName: item.resName ?? "",
     description: item.description ?? "",
-    itemSubTypeId: Number(item.itemSubTypeId ?? 0),
     itemLevel: item.itemLevel ?? null,
     attack: item.attack ?? null,
     propertyAtk: item.propertyAtk ?? null,
     defense: item.defense ?? null,
     weight: Number(item.weight ?? 0),
-    compositionPos: item.compositionPos ?? null,
     usableClass: item.usableClass,
     unusableClass: item.unusableClass,
-    canGrade: item.canGrade,
-    isRefinable: item.isRefinable,
     script: item.script ?? {},
   };
 }
@@ -411,6 +459,19 @@ async function readJson<T>(path: string): Promise<{ raw: string; data: T }> {
 
 async function main(): Promise<void> {
   assertSafeOutputPath();
+
+  if (!(await hasAllCatalogSources())) {
+    if (await canUseExistingCatalog()) {
+      console.warn(
+        `Legacy catalog source not found at ${legacyRoot}; using committed public/data assets.`,
+      );
+      return;
+    }
+
+    throw new Error(
+      `Legacy catalog source not found at ${legacyRoot}, and no generated catalog manifest is available.`,
+    );
+  }
 
   const [itemSource, monsterSource, hpSpSource] = await Promise.all([
     readJson<Record<string, RawItem>>(sources.items),
@@ -479,7 +540,7 @@ async function main(): Promise<void> {
     `${sha256(itemSource.raw)}:${sha256(monsterSource.raw)}:${sha256(hpSpSource.raw)}`,
   ).slice(0, 16);
   const manifest: CatalogManifest = {
-    schemaVersion: 1,
+    schemaVersion: 2,
     catalogVersion,
     generatedAt: new Date(
       Math.max(...sourceStats.map((sourceStat) => sourceStat.mtimeMs)),
@@ -495,7 +556,7 @@ async function main(): Promise<void> {
     chunks,
   };
   await writeFile(
-    resolve(outputRoot, "catalog-manifest.json"),
+    manifestPath,
     JSON.stringify(manifest, null, 2),
     "utf8",
   );

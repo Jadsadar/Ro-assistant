@@ -49,18 +49,20 @@ export function parsePriceInput(raw: string): ParsedPrice | null {
 }
 
 export function formatCompactZeny(value: number): string {
-  if (value >= 1_000_000_000) {
-    return `${trimDecimal(value / 1_000_000_000)}b`;
+  const sign = value < 0 ? "-" : "";
+  const absolute = Math.abs(value);
+  if (absolute >= 1_000_000_000) {
+    return `${sign}${trimDecimal(absolute / 1_000_000_000)}b`;
   }
-  if (value >= 1_000_000) {
-    return `${trimDecimal(value / 1_000_000)}m`;
+  if (absolute >= 1_000_000) {
+    return `${sign}${trimDecimal(absolute / 1_000_000)}m`;
   }
-  if (value >= 1_000) {
-    return `${trimDecimal(value / 1_000)}k`;
+  if (absolute >= 1_000) {
+    return `${sign}${trimDecimal(absolute / 1_000)}k`;
   }
   return value.toLocaleString("en-US");
 }
 
 function trimDecimal(value: number): string {
-  return value.toFixed(value >= 100 ? 0 : value >= 10 ? 1 : 2).replace(/\.?0+$/, "");
+  return Number(value.toFixed(value >= 100 ? 0 : value >= 10 ? 1 : 2)).toString();
 }

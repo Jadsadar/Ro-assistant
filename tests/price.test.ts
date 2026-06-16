@@ -26,4 +26,5 @@ test("formats compact zeny consistently", () => {
   assert.equal(formatCompactZeny(12_500), "12.5k");
   assert.equal(formatCompactZeny(50_000_000), "50m");
   assert.equal(formatCompactZeny(1_250_000_000), "1.25b");
+  assert.equal(formatCompactZeny(-250_000_000), "-250m");
 });

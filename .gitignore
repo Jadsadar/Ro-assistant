@@ -54,4 +54,5 @@ node_modules/
 venv/
 
 # reference folder
+ro-assistant/
 tong-calc-ro/

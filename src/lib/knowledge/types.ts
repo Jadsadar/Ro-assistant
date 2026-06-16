@@ -1,3 +1,11 @@
+import type {
+  CharacterStats,
+  EquipmentSlot,
+  ItemGrade,
+  ServerId,
+} from "@/lib/equipment/types";
+import type { AttackElement } from "@/lib/calculator/metadata";
+
 export interface SlottedItem {
   slot: number;
   itemId: number;
@@ -6,6 +14,7 @@ export interface SlottedItem {
 export interface ItemOption {
   slot?: number;
   key: string;
+  itemId?: number;
   value?: number;
   unit?: "flat" | "percent" | "level" | "text";
   label: string;
@@ -16,7 +25,7 @@ export interface ItemVariant {
   itemId: number;
   fingerprint: string;
   refine: number;
-  grade?: "D" | "C" | "B" | "A";
+  grade?: ItemGrade;
   cards: SlottedItem[];
   enchants: ItemOption[];
   randomOptions: ItemOption[];
@@ -29,7 +38,7 @@ export interface ItemVariant {
 export interface PriceQuote {
   id: string;
   variantId: string;
-  server: string;
+  server: ServerId;
   priceZeny: number;
   quantity: number;
   sourceType: "manual" | "market" | "shop" | "trade" | "import";
@@ -38,6 +47,11 @@ export interface PriceQuote {
   note?: string;
   createdAt: string;
   updatedAt: string;
+}
+
+export interface SavedEquipmentSelection {
+  itemId?: number;
+  cardIds?: number[];
 }
 
 export interface UserTag {
@@ -68,12 +82,22 @@ export interface OwnedItem {
 export interface SavedBuild {
   id: string;
   name: string;
-  job: string;
-  skill: string;
+  classId: number;
+  className?: string;
+  baseLevel: number;
+  jobLevel: number;
+  skillId: string;
+  skillLevel: number;
+  propertyAtk: AttackElement;
   monsterId: number;
-  equipment: Record<string, string | null>;
-  stats: Record<string, number>;
-  buffs: string[];
+  server: ServerId;
+  equipment: Partial<
+    Record<EquipmentSlot, SavedEquipmentSelection | string | null>
+  >;
+  stats: CharacterStats;
+  skillLevels: Record<string, number>;
+  buffLevels: Record<string, number>;
+  consumableIds: number[];
   targetDamage?: number;
   budgetZeny?: number;
   createdAt: string;
