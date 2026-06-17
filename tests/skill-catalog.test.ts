@@ -29,3 +29,28 @@ test("skill choices retain calculator values and levels", () => {
   assert.equal(choice?.level, 5);
   assert.match(choice?.label ?? "", /Cross Impact/);
 });
+
+test("skill catalog includes legacy active and passive dropdowns", () => {
+  const shadowCross = skillCatalog.find(
+    (record) => record.classId === 4254,
+  );
+  const poisonousWeapon = shadowCross?.activeSkills?.find(
+    (skill) => skill.name === "Poisonous Weapon",
+  );
+  const newPoisonResearch = shadowCross?.passiveSkills?.find(
+    (skill) => skill.name === "New Poison Research",
+  );
+
+  assert.ok(poisonousWeapon);
+  assert.ok(
+    poisonousWeapon.choices.some(
+      (choice) => choice.label === "Pyrexia" && choice.level === 1,
+    ),
+  );
+  assert.ok(newPoisonResearch);
+  assert.ok(
+    newPoisonResearch.choices.some(
+      (choice) => choice.label === "Lv 10" && choice.level === 10,
+    ),
+  );
+});

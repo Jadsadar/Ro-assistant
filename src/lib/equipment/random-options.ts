@@ -253,6 +253,32 @@ export function resolveRandomOptionPath(
   return selected && !selected.children?.length ? selected : null;
 }
 
+export function findRandomOptionPath(
+  tree: RandomOptionNode[],
+  option: Pick<ItemOption, "key" | "value" | "unit">,
+): string[] | null {
+  const walk = (nodes: RandomOptionNode[], path: string[]): string[] | null => {
+    for (const node of nodes) {
+      const nextPath = [...path, node.value];
+      if (!node.children?.length) {
+        const nodeOption = toItemOption(node, option.value ?? 0);
+        if (
+          nodeOption.key === option.key &&
+          nodeOption.value === option.value &&
+          nodeOption.unit === option.unit
+        ) {
+          return nextPath;
+        }
+      }
+      const found = node.children ? walk(node.children, nextPath) : null;
+      if (found) return found;
+    }
+    return null;
+  };
+
+  return walk(tree, []);
+}
+
 const PERCENT_KEYS = new Set([
   "atkPercent",
   "matkPercent",

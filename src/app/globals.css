@@ -939,6 +939,99 @@ textarea:focus {
   background: rgb(124 156 255 / 12%);
 }
 
+.skill-config-section {
+  display: grid;
+  gap: 0.55rem;
+  padding-top: 0.4rem;
+  border-top: 1px solid var(--border);
+}
+
+.skill-config-section > strong {
+  color: var(--text-primary);
+  font-size: 0.78rem;
+}
+
+.skill-config-list {
+  display: grid;
+  gap: 0.55rem;
+  max-height: 300px;
+  overflow: auto;
+}
+
+.skill-config-list label {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.skill-config-list label > span {
+  color: var(--text-secondary);
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+
+.combat-summary-panel {
+  display: grid;
+  gap: 1rem;
+}
+
+.combat-summary-panel h2 {
+  margin: 0.3rem 0 0;
+  font-size: 1.05rem;
+}
+
+.combat-summary-panel p {
+  margin: 0.4rem 0 0;
+  color: var(--text-secondary);
+  font-size: 0.78rem;
+  line-height: 1.55;
+}
+
+.combat-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.combat-summary-grid article {
+  display: grid;
+  gap: 0.65rem;
+  padding: 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: rgb(11 14 20 / 28%);
+}
+
+.combat-summary-grid article > strong {
+  color: var(--text-primary);
+  font-size: 0.82rem;
+}
+
+.combat-summary-grid article > div {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.combat-summary-grid span {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem;
+  color: var(--text-muted);
+  font-size: 0.72rem;
+}
+
+.combat-summary-grid small {
+  color: var(--text-muted);
+  font-size: 0.68rem;
+}
+
+.combat-summary-grid b {
+  color: var(--text-primary);
+  font-size: 0.72rem;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
 .stat-fieldset {
   margin: 0;
   padding: 0.9rem;
@@ -1053,6 +1146,119 @@ textarea:focus {
   background: rgb(11 14 20 / 28%);
 }
 
+.legacy-equipment-grid {
+  grid-template-columns: 1fr;
+  gap: 0.55rem;
+}
+
+.legacy-equipment-row {
+  display: grid;
+  grid-template-columns: minmax(110px, 0.32fr) minmax(260px, 0.86fr) minmax(
+      360px,
+      1.42fr
+    );
+  align-items: start;
+  gap: 0.55rem;
+  padding: 0.55rem;
+}
+
+.legacy-slot-label {
+  display: grid;
+  gap: 0.22rem;
+  min-width: 0;
+}
+
+.legacy-slot-label > span {
+  color: var(--text-primary);
+  font-size: 0.76rem;
+  font-weight: 800;
+}
+
+.legacy-slot-label small {
+  color: var(--text-muted);
+  font-size: 0.66rem;
+}
+
+.legacy-main-controls {
+  display: grid;
+  grid-template-columns: 38px minmax(0, 1fr) minmax(82px, 0.25fr) minmax(
+      78px,
+      0.22fr
+    );
+  gap: 0.45rem;
+  min-width: 0;
+}
+
+.legacy-main-controls > .select-with-preview {
+  min-width: 0;
+}
+
+.legacy-main-controls > select {
+  min-height: 38px;
+  padding-inline: 0.55rem;
+  font-size: 0.72rem;
+}
+
+.legacy-relation-controls {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.45rem;
+  min-width: 0;
+}
+
+.legacy-relation-controls .select-with-preview {
+  grid-template-columns: minmax(0, 1fr) 34px;
+  gap: 0.35rem;
+}
+
+.legacy-relation-controls select,
+.legacy-relation-controls input {
+  min-height: 36px;
+  padding-inline: 0.55rem;
+  font-size: 0.72rem;
+}
+
+.legacy-relation-controls .preview-eye {
+  width: 34px;
+  min-height: 34px;
+}
+
+.random-option-input {
+  border-style: dashed;
+}
+
+.legacy-hidden-ammo {
+  display: none !important;
+}
+
+.legacy-equipment-row > .select-with-preview {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.legacy-equipment-row > .legacy-main-controls {
+  grid-column: 2;
+  grid-row: 2;
+}
+
+.legacy-equipment-row > .selected-item-strip {
+  grid-column: 1;
+  grid-row: 2;
+  min-width: 0;
+}
+
+.legacy-equipment-row > .card-select-row,
+.legacy-equipment-row > .enchant-select-row,
+.legacy-equipment-row > .random-option-input,
+.legacy-equipment-row > .random-option-row {
+  grid-column: 3;
+}
+
+.legacy-equipment-row > small:last-child {
+  grid-column: 1;
+  grid-row: 3;
+}
+
 .select-with-preview {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 38px;
@@ -1062,6 +1268,38 @@ textarea:focus {
 
 .card-select-row {
   margin-top: 0.5rem;
+}
+
+.random-option-row {
+  display: grid;
+  gap: 0.45rem;
+  min-width: 0;
+}
+
+.random-option-row .option-cascade {
+  padding: 0.55rem;
+  border-radius: 10px;
+}
+
+.manual-option-strip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.55rem;
+  min-width: 0;
+  padding: 0.45rem 0.55rem;
+  border: 1px dashed var(--border);
+  border-radius: 9px;
+  background: rgb(251 191 36 / 8%);
+}
+
+.manual-option-strip small {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.manual-option-strip .secondary-button {
+  min-height: 30px;
 }
 
 .selected-item-strip {
@@ -1385,6 +1623,19 @@ input[type="file"] {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .legacy-equipment-grid,
+  .legacy-equipment-row {
+    grid-template-columns: 1fr;
+  }
+
+  .legacy-relation-controls {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .combat-summary-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .calculator-field-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -1426,10 +1677,16 @@ input[type="file"] {
 
   .equipment-toolbar,
   .equipment-summary,
+  .combat-summary-grid,
   .calculator-target-layout,
   .equipment-slot-grid,
   .calculator-field-grid,
   .monster-picker {
+    grid-template-columns: 1fr;
+  }
+
+  .legacy-main-controls,
+  .legacy-relation-controls {
     grid-template-columns: 1fr;
   }
 

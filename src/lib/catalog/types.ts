@@ -104,10 +104,14 @@ export interface CatalogSkillChoice {
   label: string;
   value: string;
   level: number;
+  isUse?: boolean;
+  bonus?: Record<string, unknown>;
 }
 
 export interface CatalogSkill {
   name: string;
+  label?: string;
+  inputType?: string;
   choices: CatalogSkillChoice[];
 }
 
@@ -115,4 +119,6 @@ export interface CatalogClassSkills {
   classId: number;
   className: string;
   skills: CatalogSkill[];
+  activeSkills?: CatalogSkill[];
+  passiveSkills?: CatalogSkill[];
 }

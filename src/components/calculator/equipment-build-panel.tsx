@@ -4,15 +4,20 @@ import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
 import {
   loadCatalogItemDetail,
+  loadCatalogItemOptions,
   loadCatalogMonsters,
   loadCatalogSearch,
   loadCatalogSkills,
 } from "@/lib/catalog/client";
+import { RandomOptionCascade } from "@/components/equipment/random-option-cascade";
 import type {
   CatalogClassSkills,
   CatalogItemDetail,
+  CatalogItemOptionsIndex,
   CatalogMonster,
   CatalogSearchItem,
+  CatalogSkill,
+  CatalogSkillChoice,
 } from "@/lib/catalog/types";
 import {
   ATTACK_ELEMENTS,
@@ -20,15 +25,30 @@ import {
   DEFAULT_CHARACTER_STATS,
   type AttackElement,
 } from "@/lib/calculator/metadata";
+import {
+  createBlankEquipmentSelection,
+  enchantChoiceKeyFromItemId,
+  getCalculatorSelectionTemplate,
+  updateEnchantSelectionByChoiceKey,
+} from "@/lib/calculator/equipment-selection";
+import { resolveCardSlotCount } from "@/lib/equipment/catalog-rules";
+import {
+  findRandomOptionPath,
+  getLegacyRandomOptionTree,
+  resolveRandomOptionPath,
+  toItemOption,
+} from "@/lib/equipment/random-options";
 import type {
   CharacterStatKey,
   CharacterStats,
   EquipmentSlot,
+  ItemGrade,
   ServerId,
 } from "@/lib/equipment/types";
 import {
   EQUIPMENT_SLOTS,
   EQUIPMENT_SLOT_RULES,
+  ITEM_GRADES,
   cardPositionsForSlot,
 } from "@/lib/equipment/types";
 import {
@@ -41,13 +61,18 @@ import {
   saveBuild,
 } from "@/lib/knowledge/repository";
 import type {
+  CalculatorBuildDraft,
+  ItemOption,
   KnowledgeSnapshot,
   SavedBuild,
   SavedEquipmentSelection,
 } from "@/lib/knowledge/types";
 
-const STORAGE_KEY = "ro-assistant-equipment-draft-v3";
+const STORAGE_KEY = "ro-assistant-equipment-draft-v4";
+const LEGACY_STORAGE_KEY = "ro-assistant-equipment-draft-v3";
 const DEFAULT_CLASS_ID = 12;
+const MAX_REFINE = 18;
+const MAX_SHADOW_REFINE = 10;
 
 const EMPTY_KNOWLEDGE: KnowledgeSnapshot = {
   itemVariants: [],
@@ -93,6 +118,69 @@ interface SlotGroup {
   slots: SlotDefinition[];
 }
 
+interface SkillChoiceOption extends CatalogSkillChoice {
+  skillName: string;
+  skillLabel: string;
+}
+
+interface CombatSummaryGroup {
+  title: string;
+  items: Array<{
+    label: string;
+    value: string;
+    hint?: string;
+  }>;
+}
+
+const PENDING_SUMMARY_VALUE = "รอสูตร";
+
+const COMBAT_SUMMARY_GROUPS: CombatSummaryGroup[] = [
+  {
+    title: "Physical",
+    items: [
+      { label: "Alt+Q Atk", value: PENDING_SUMMARY_VALUE },
+      { label: "P.Atk", value: PENDING_SUMMARY_VALUE },
+      { label: "C.Rate", value: PENDING_SUMMARY_VALUE },
+      { label: "ASPD", value: PENDING_SUMMARY_VALUE },
+      { label: "Hit", value: PENDING_SUMMARY_VALUE },
+      { label: "Perfect Hit", value: PENDING_SUMMARY_VALUE },
+      { label: "CriRate", value: PENDING_SUMMARY_VALUE },
+      { label: "CriDmg", value: PENDING_SUMMARY_VALUE },
+      { label: "Melee", value: PENDING_SUMMARY_VALUE },
+      { label: "Range", value: PENDING_SUMMARY_VALUE },
+    ],
+  },
+  {
+    title: "Defense",
+    items: [
+      { label: "Def", value: PENDING_SUMMARY_VALUE },
+      { label: "Res", value: PENDING_SUMMARY_VALUE },
+      { label: "Mdef", value: PENDING_SUMMARY_VALUE },
+      { label: "MRes", value: PENDING_SUMMARY_VALUE },
+      { label: "Flee", value: PENDING_SUMMARY_VALUE },
+    ],
+  },
+  {
+    title: "Magic & Cast",
+    items: [
+      { label: "Alt+Q Matk", value: PENDING_SUMMARY_VALUE },
+      { label: "Matk %", value: PENDING_SUMMARY_VALUE },
+      { label: "S.Matk", value: PENDING_SUMMARY_VALUE },
+      { label: "After Cast Delay", value: PENDING_SUMMARY_VALUE },
+      { label: "Fixed Cast Time", value: PENDING_SUMMARY_VALUE },
+      { label: "Variable Cast Time", value: PENDING_SUMMARY_VALUE },
+      { label: "Dex2 Int1", value: PENDING_SUMMARY_VALUE },
+    ],
+  },
+  {
+    title: "Resource",
+    items: [
+      { label: "HP", value: PENDING_SUMMARY_VALUE },
+      { label: "SP", value: PENDING_SUMMARY_VALUE },
+    ],
+  },
+];
+
 const SLOT_GROUPS: SlotGroup[] = [
   {
     title: "Main Equipment",
@@ -114,8 +202,12 @@ const SLOT_GROUPS: SlotGroup[] = [
       { slot: "boot", label: "Shoes" },
       { slot: "accLeft", label: "Accessory Left" },
       { slot: "accRight", label: "Accessory Right" },
-      { slot: "pet", label: "Pet" },
     ],
+  },
+  {
+    title: "Pet",
+    description: "Pet slot from the legacy calculator.",
+    slots: [{ slot: "pet", label: "Pet" }],
   },
   {
     title: "Costume",
@@ -151,6 +243,79 @@ type CalculatorEquipmentDraft = Partial<
   Record<EquipmentSlot, SavedEquipmentSelection>
 >;
 
+interface CalculatorInputDraft extends CalculatorBuildDraft {
+  equipped: Partial<Record<EquipmentSlot, number>>;
+  refine: Partial<Record<EquipmentSlot, number>>;
+  grade: Partial<Record<EquipmentSlot, ItemGrade>>;
+  cards: Partial<Record<EquipmentSlot, number[]>>;
+  enchants: Partial<Record<EquipmentSlot, number[]>>;
+  option2: Partial<Record<EquipmentSlot, ItemOption[]>>;
+  skill_buffs: Record<string, number>;
+  active_skills: Record<string, number>;
+  passive_skills: Record<string, number>;
+}
+
+function normalizeSelection(value: unknown): SavedEquipmentSelection | null {
+  if (!value || typeof value !== "object" || Array.isArray(value)) return null;
+  const record = value as Record<string, unknown>;
+  const itemId = Number(record.itemId);
+  if (!Number.isInteger(itemId) || itemId <= 0) return null;
+  const refine = Number(record.refine);
+  const grade = ITEM_GRADES.includes(record.grade as ItemGrade)
+    ? (record.grade as ItemGrade)
+    : undefined;
+  const cardIds = Array.isArray(record.cardIds)
+    ? record.cardIds.flatMap((entry) => {
+        const cardId = Number(entry);
+        return Number.isInteger(cardId) && cardId > 0 ? [cardId] : [];
+      })
+    : [];
+  const enchantIds = Array.isArray(record.enchantIds)
+    ? record.enchantIds.map((entry) => {
+        const enchantId = Number(entry);
+        return Number.isInteger(enchantId) && enchantId > 0 ? enchantId : 0;
+      })
+    : [];
+  const randomOptions = Array.isArray(record.randomOptions)
+    ? record.randomOptions.flatMap((entry, index) => {
+        if (!entry || typeof entry !== "object" || Array.isArray(entry)) {
+          return [];
+        }
+        const option = entry as Record<string, unknown>;
+        const key = String(option.key ?? "").trim();
+        const label = String(option.label ?? key).trim();
+        if (!key || !label) return [];
+        return [
+          {
+            slot: Number.isInteger(option.slot) ? (option.slot as number) : index,
+            key,
+            itemId: Number.isInteger(option.itemId)
+              ? (option.itemId as number)
+              : undefined,
+            value: Number.isFinite(option.value as number)
+              ? (option.value as number)
+              : undefined,
+            unit:
+              option.unit === "percent" ||
+              option.unit === "level" ||
+              option.unit === "text"
+                ? option.unit
+                : "flat",
+            label,
+          } satisfies ItemOption,
+        ];
+      })
+    : [];
+  return {
+    itemId,
+    refine: Number.isInteger(refine) ? Math.max(0, refine) : 0,
+    grade,
+    cardIds,
+    enchantIds,
+    randomOptions,
+  };
+}
+
 function parseStoredDraft(raw: string | null): CalculatorEquipmentDraft {
   if (!raw) return {};
   try {
@@ -160,13 +325,11 @@ function parseStoredDraft(raw: string | null): CalculatorEquipmentDraft {
     }
     const validSlots = new Set<string>(EQUIPMENT_SLOTS);
     return Object.fromEntries(
-      Object.entries(parsed).filter(
-        ([slot, value]) =>
-          validSlots.has(slot) &&
-          typeof value === "object" &&
-          value !== null &&
-          !Array.isArray(value),
-      ),
+      Object.entries(parsed).flatMap(([slot, value]) => {
+        if (!validSlots.has(slot)) return [];
+        const selection = normalizeSelection(value);
+        return selection ? [[slot, selection]] : [];
+      }),
     ) as CalculatorEquipmentDraft;
   } catch {
     return {};
@@ -181,8 +344,10 @@ function sanitizeEquipmentDraft(
   const sanitized = Object.fromEntries(
     Object.entries(draft).flatMap(([slot, selection]) => {
       const equipmentSlot = slot as EquipmentSlot;
+      if (equipmentSlot === "ammo" || equipmentSlot === "leftWeapon") return [];
       const item = selection.itemId ? itemById.get(selection.itemId) : undefined;
       if (!item?.equipSlots.includes(equipmentSlot)) return [];
+      const rule = EQUIPMENT_SLOT_RULES[equipmentSlot];
 
       const allowedCardPositions = new Set<number>(
         cardPositionsForSlot(equipmentSlot),
@@ -194,9 +359,35 @@ function sanitizeEquipmentDraft(
           card.compositionPos !== null &&
           allowedCardPositions.has(card.compositionPos)
         );
+      }).slice(0, resolveCardSlotCount(item, rule.maxCards));
+      const enchantIds = (selection.enchantIds ?? []).map((enchantId) => {
+        const enchant = itemById.get(enchantId);
+        return enchant?.category === "enchants" || enchant?.itemTypeId === 10
+          ? enchantId
+          : 0;
       });
 
-      return [[equipmentSlot, { itemId: item.id, cardIds }]];
+      return [[
+        equipmentSlot,
+        {
+          itemId: item.id,
+          refine: rule.allowsRefine
+            ? Math.min(
+                equipmentSlot.toString().startsWith("shadow")
+                  ? MAX_SHADOW_REFINE
+                  : MAX_REFINE,
+                Math.max(0, selection.refine ?? 0),
+              )
+            : 0,
+          grade:
+            rule.allowsGrade && item.canGrade
+              ? selection.grade
+              : undefined,
+          cardIds,
+          enchantIds,
+          randomOptions: selection.randomOptions ?? [],
+        },
+      ]];
     }),
   ) as CalculatorEquipmentDraft;
   const weapon = sanitized.weapon?.itemId
@@ -206,6 +397,17 @@ function sanitizeEquipmentDraft(
     delete sanitized.shield;
   }
   return sanitized;
+}
+
+function randomOptionForIndex(
+  options: ItemOption[] | undefined,
+  index: number,
+): ItemOption | null {
+  return (
+    options?.find((option) => option.slot === index + 1) ??
+    options?.[index] ??
+    null
+  );
 }
 
 function cleanDescription(description: string): string {
@@ -257,6 +459,29 @@ function isBuffConsumable(item: CatalogSearchItem): boolean {
   return /potion|booster|almighty|candy|bbq|cocktail|brisket|stew|salad|dish|food|elixir|celermine/i.test(
     `${item.name} ${item.aegisName} ${item.itemType}`,
   );
+}
+
+function skillOptions(skills: CatalogSkill[] = []): SkillChoiceOption[] {
+  const choices = skills.flatMap((skill) =>
+    skill.choices.map((choice) => ({
+      ...choice,
+      skillName: skill.name,
+      skillLabel: skill.label ?? skill.name,
+    })),
+  );
+  return [...new Map(choices.map((choice) => [choice.value, choice])).values()];
+}
+
+function selectedSkillValue(
+  values: Record<string, number>,
+  skill: CatalogSkill,
+): string {
+  const selectedLevel = values[skill.name] ?? 0;
+  const exactChoice = skill.choices.find(
+    (choice) => choice.level === selectedLevel,
+  );
+  if (exactChoice) return exactChoice.value;
+  return skill.choices.find((choice) => choice.isUse === false)?.value ?? "";
 }
 
 function classToken(name: string): string {
@@ -430,6 +655,7 @@ export function EquipmentBuildPanel() {
   const [catalog, setCatalog] = useState<CatalogSearchItem[]>([]);
   const [monsters, setMonsters] = useState<CatalogMonster[]>([]);
   const [skillCatalog, setSkillCatalog] = useState<CatalogClassSkills[]>([]);
+  const [itemOptions, setItemOptions] = useState<CatalogItemOptionsIndex>({});
   const [knowledge, setKnowledge] =
     useState<KnowledgeSnapshot>(EMPTY_KNOWLEDGE);
   const [equipment, setEquipment] = useState<CalculatorEquipmentDraft>({});
@@ -453,6 +679,12 @@ export function EquipmentBuildPanel() {
   const [selectedConsumableIds, setSelectedConsumableIds] = useState<number[]>(
     [],
   );
+  const [activeSkillValues, setActiveSkillValues] = useState<
+    Record<string, number>
+  >({});
+  const [passiveSkillValues, setPassiveSkillValues] = useState<
+    Record<string, number>
+  >({});
   const [isSkillPanelOpen, setIsSkillPanelOpen] = useState(false);
   const [status, setStatus] = useState("");
   const [isReady, setIsReady] = useState(false);
@@ -463,19 +695,24 @@ export function EquipmentBuildPanel() {
     let cancelled = false;
     Promise.all([
       loadCatalogSearch(),
+      loadCatalogItemOptions(),
       loadCatalogMonsters(),
       loadCatalogSkills(),
       loadKnowledgeSnapshot(),
     ])
-      .then(([items, monsterRecords, skills, snapshot]) => {
+      .then(([items, optionRecords, monsterRecords, skills, snapshot]) => {
         if (cancelled) return;
         setCatalog(items);
+        setItemOptions(optionRecords);
         setMonsters(monsterRecords);
         setSkillCatalog(skills);
         setKnowledge(snapshot);
+        const storedDraft =
+          localStorage.getItem(STORAGE_KEY) ??
+          localStorage.getItem(LEGACY_STORAGE_KEY);
         setEquipment(
           sanitizeEquipmentDraft(
-            parseStoredDraft(localStorage.getItem(STORAGE_KEY)),
+            parseStoredDraft(storedDraft),
             items,
           ),
         );
@@ -510,6 +747,7 @@ export function EquipmentBuildPanel() {
     () => new Map(catalog.map((item) => [item.id, item])),
     [catalog],
   );
+  const randomOptionTree = useMemo(() => getLegacyRandomOptionTree(), []);
   const selectedWeapon = equipment.weapon?.itemId
     ? itemById.get(equipment.weapon.itemId)
     : undefined;
@@ -596,39 +834,148 @@ export function EquipmentBuildPanel() {
     },
     [monsterId, monsters, normalizedMonsterQuery],
   );
-  const classSkills = useMemo(
-    () => {
-      const choices =
-        skillCatalog
-        .find((record) => record.classId === classId)
-        ?.skills.flatMap((skill) =>
-          skill.choices.map((choice) => ({
-            ...choice,
-            skillName: skill.name,
-          })),
-        ) ?? [];
-      return [
-        ...new Map(choices.map((choice) => [choice.value, choice])).values(),
-      ];
-    },
+  const classSkillRecord = useMemo(
+    () => skillCatalog.find((record) => record.classId === classId),
     [classId, skillCatalog],
   );
-  const selectedSkillExists = classSkills.some(
+  const offensiveSkillChoices = useMemo(
+    () => skillOptions(classSkillRecord?.skills),
+    [classSkillRecord],
+  );
+  const activeSkillGroups = classSkillRecord?.activeSkills ?? [];
+  const passiveSkillGroups = classSkillRecord?.passiveSkills ?? [];
+  const selectedSkillExists = offensiveSkillChoices.some(
     (choice) => choice.value === skillId,
   );
 
-  const selectedRows = Object.entries(equipment).flatMap(
-    ([slot, selection]) => {
-      const item = selection.itemId ? itemById.get(selection.itemId) : undefined;
-      if (!item) return [];
-      return [{ slot: slot as EquipmentSlot, selection, item }];
-    },
+  const selectedRows = useMemo(
+    () =>
+      Object.entries(equipment).flatMap(([slot, selection]) => {
+        const item = selection.itemId
+          ? itemById.get(selection.itemId)
+          : undefined;
+        if (!item) return [];
+        return [{ slot: slot as EquipmentSlot, selection, item }];
+      }),
+    [equipment, itemById],
   );
   const parsedBudget = budgetInput ? parsePriceInput(budgetInput) : null;
   const targetDamage = targetDamageInput
     ? Number(targetDamageInput.replaceAll(",", ""))
     : undefined;
   const selectedMonster = monsters.find((monster) => monster.id === monsterId);
+  const selectedClass = CALCULATOR_CLASSES.find((entry) => entry.id === classId);
+  const selectedSkillLabel =
+    offensiveSkillChoices.find((choice) => choice.value === skillId)?.label ??
+    skillId;
+  const equippedCount = selectedRows.length;
+  const selectedCardCount = selectedRows.reduce(
+    (sum, row) =>
+      sum + (row.selection.cardIds?.filter((cardId) => cardId > 0).length ?? 0),
+    0,
+  );
+  const selectedEnchantCount = selectedRows.reduce(
+    (sum, row) =>
+      sum +
+      (row.selection.enchantIds?.filter((enchantId) => enchantId > 0).length ??
+        0),
+    0,
+  );
+  const selectedOptionCount = selectedRows.reduce(
+    (sum, row) => sum + (row.selection.randomOptions?.length ?? 0),
+    0,
+  );
+  const calculatorInputDraft = useMemo<CalculatorInputDraft>(
+    () => ({
+      classId,
+      className: selectedClass?.name,
+      baseLevel,
+      jobLevel,
+      skillId,
+      skillLevel,
+      propertyAtk,
+      monsterId,
+      server,
+      equipment,
+      stats,
+      skillLevels: {
+        [skillId]: skillLevel,
+        ...Object.fromEntries(
+          Object.entries(passiveSkillValues).filter(([, value]) => value > 0),
+        ),
+      },
+      buffLevels: Object.fromEntries(
+        Object.entries(activeSkillValues).filter(([, value]) => value > 0),
+      ),
+      consumableIds: selectedConsumableIds,
+      targetDamage,
+      budgetZeny: parsedBudget?.value,
+      equipped: Object.fromEntries(
+        selectedRows.map((row) => [row.slot, row.selection.itemId]),
+      ) as Partial<Record<EquipmentSlot, number>>,
+      refine: Object.fromEntries(
+        selectedRows.map((row) => [row.slot, row.selection.refine ?? 0]),
+      ) as Partial<Record<EquipmentSlot, number>>,
+      grade: Object.fromEntries(
+        selectedRows.flatMap((row) =>
+          row.selection.grade ? [[row.slot, row.selection.grade]] : [],
+        ),
+      ) as Partial<Record<EquipmentSlot, ItemGrade>>,
+      cards: Object.fromEntries(
+        selectedRows.map((row) => [row.slot, row.selection.cardIds ?? []]),
+      ) as Partial<Record<EquipmentSlot, number[]>>,
+      enchants: Object.fromEntries(
+        selectedRows.map((row) => [row.slot, row.selection.enchantIds ?? []]),
+      ) as Partial<Record<EquipmentSlot, number[]>>,
+      option2: Object.fromEntries(
+        selectedRows.map((row) => [row.slot, row.selection.randomOptions ?? []]),
+      ) as Partial<Record<EquipmentSlot, ItemOption[]>>,
+      skill_buffs: Object.fromEntries(
+        Object.entries(activeSkillValues).filter(([, value]) => value > 0),
+      ),
+      active_skills: Object.fromEntries(
+        Object.entries(activeSkillValues).filter(([, value]) => value > 0),
+      ),
+      passive_skills: Object.fromEntries(
+        Object.entries(passiveSkillValues).filter(([, value]) => value > 0),
+      ),
+    }),
+    [
+      activeSkillValues,
+      baseLevel,
+      classId,
+      equipment,
+      jobLevel,
+      monsterId,
+      parsedBudget?.value,
+      passiveSkillValues,
+      propertyAtk,
+      selectedClass?.name,
+      selectedConsumableIds,
+      selectedRows,
+      server,
+      skillId,
+      skillLevel,
+      stats,
+      targetDamage,
+    ],
+  );
+
+  function updateEquipmentSelection(
+    slot: EquipmentSlot,
+    updater: (selection: SavedEquipmentSelection) => SavedEquipmentSelection | null,
+  ): void {
+    setEquipment((current) => {
+      const next = { ...current };
+      const updated = updater(current[slot] ?? {});
+      if (updated?.itemId) {
+        next[slot] = updated;
+      } else {
+        delete next[slot];
+      }
+      return next;
+    });
+  }
 
   function resetBuild(): void {
     setBuildId("");
@@ -649,6 +996,8 @@ export function EquipmentBuildPanel() {
     setTargetDamageInput("");
     setBudgetInput("");
     setSelectedConsumableIds([]);
+    setActiveSkillValues({});
+    setPassiveSkillValues({});
     setIsSkillPanelOpen(false);
     setError("");
     setStatus("");
@@ -661,6 +1010,8 @@ export function EquipmentBuildPanel() {
     setClassId(nextClassId);
     setSkillId(firstSkill?.value ?? "");
     setSkillLevel(firstSkill?.level ?? 1);
+    setActiveSkillValues({});
+    setPassiveSkillValues({});
     setEquipment((current) =>
       sanitizeEquipmentDraft(
         sanitizeEquipmentForClass(current, nextClassId, catalog),
@@ -701,6 +1052,12 @@ export function EquipmentBuildPanel() {
       build.budgetZeny === undefined ? "" : String(build.budgetZeny),
     );
     setSelectedConsumableIds(build.consumableIds);
+    setActiveSkillValues(build.buffLevels);
+    setPassiveSkillValues(
+      Object.fromEntries(
+        Object.entries(build.skillLevels).filter(([key]) => !key.includes("==")),
+      ),
+    );
     setStatus(`โหลด build: ${build.name}`);
     setError("");
   }
@@ -779,8 +1136,13 @@ export function EquipmentBuildPanel() {
       stats,
       skillLevels: {
         [skillId.trim()]: skillLevel,
+        ...Object.fromEntries(
+          Object.entries(passiveSkillValues).filter(([, value]) => value > 0),
+        ),
       },
-      buffLevels: existing?.buffLevels ?? {},
+      buffLevels: Object.fromEntries(
+        Object.entries(activeSkillValues).filter(([, value]) => value > 0),
+      ),
       consumableIds: selectedConsumableIds,
       targetDamage,
       budgetZeny: parsedBudget?.value,
@@ -887,9 +1249,9 @@ export function EquipmentBuildPanel() {
           <label>
             <span>Offensive Skill</span>
             <select
-              disabled={classSkills.length === 0}
+              disabled={offensiveSkillChoices.length === 0}
               onChange={(event) => {
-                const choice = classSkills.find(
+                const choice = offensiveSkillChoices.find(
                   (entry) => entry.value === event.target.value,
                 );
                 setSkillId(event.target.value);
@@ -900,7 +1262,7 @@ export function EquipmentBuildPanel() {
               {!selectedSkillExists && skillId ? (
                 <option value={skillId}>{skillId}</option>
               ) : null}
-              {classSkills.map((choice) => (
+              {offensiveSkillChoices.map((choice) => (
                 <option
                   key={`${choice.skillName}:${choice.value}`}
                   value={choice.value}
@@ -957,38 +1319,26 @@ export function EquipmentBuildPanel() {
                 <p className="eyebrow">Buff Window</p>
                 <h2>อาหาร ยา Ammo และบัพ</h2>
               </div>
-              <label>
-                <span>Ammo</span>
+              <label className="legacy-hidden-ammo">
                 <div className="select-with-preview">
                   <select
-                    onChange={(event) =>
-                      setEquipment((current) => {
-                        const next = { ...current };
-                        const itemId = Number(event.target.value);
-                        if (Number.isInteger(itemId) && itemId > 0) {
-                          next.ammo = { itemId, cardIds: [] };
-                        } else {
-                          delete next.ammo;
-                        }
-                        return next;
-                      })
-                    }
-                    value={equipment.ammo?.itemId ?? ""}
+                    onChange={(event) => {
+                      const itemId = Number(event.target.value);
+                      if (!Number.isInteger(itemId) || itemId <= 0) return;
+                      setSelectedConsumableIds((current) =>
+                        current.includes(itemId) ? current : [...current, itemId],
+                      );
+                      event.target.value = "";
+                    }}
+                    value=""
                   >
-                    <option value="">ไม่ใช้ Ammo</option>
+                    <option value="">เพิ่ม Ammo</option>
                     {ammoItems.map((item) => (
                       <option key={item.id} value={item.id}>
                         #{item.id} {item.name}
                       </option>
                     ))}
                   </select>
-                  <ItemPreviewButton
-                    item={
-                      equipment.ammo?.itemId
-                        ? itemById.get(equipment.ammo.itemId)
-                        : undefined
-                    }
-                  />
                 </div>
               </label>
               <label>
@@ -1123,20 +1473,15 @@ export function EquipmentBuildPanel() {
               </button>
               {isSkillPanelOpen ? (
                 <div className="skill-upgrade-body">
-                  <label>
-                    <span>Selected Skill Level</span>
-                    <input
-                      max="20"
-                      min="1"
-                      onChange={(event) =>
-                        setSkillLevel(Number(event.target.value))
-                      }
-                      type="number"
-                      value={skillLevel}
-                    />
-                  </label>
+                  <NumericDropdown
+                    label="Selected Skill Level"
+                    max={20}
+                    min={1}
+                    onChange={setSkillLevel}
+                    value={skillLevel}
+                  />
                   <div className="skill-choice-list">
-                    {classSkills.slice(0, 80).map((choice) => (
+                    {offensiveSkillChoices.slice(0, 80).map((choice) => (
                       <button
                         className={
                           choice.value === skillId
@@ -1153,6 +1498,68 @@ export function EquipmentBuildPanel() {
                         {choice.label}
                       </button>
                     ))}
+                  </div>
+                  <div className="skill-config-section">
+                    <strong>Active Buff Skills</strong>
+                    <div className="skill-config-list">
+                      {activeSkillGroups.map((skill) => (
+                        <label key={skill.name}>
+                          <span>{skill.label ?? skill.name}</span>
+                          <select
+                            onChange={(event) => {
+                              const choice = skill.choices.find(
+                                (entry) => entry.value === event.target.value,
+                              );
+                              setActiveSkillValues((current) => ({
+                                ...current,
+                                [skill.name]: choice?.level ?? 0,
+                              }));
+                            }}
+                            value={selectedSkillValue(activeSkillValues, skill)}
+                          >
+                            {skill.choices.map((choice) => (
+                              <option key={choice.value} value={choice.value}>
+                                {choice.label}
+                              </option>
+                            ))}
+                          </select>
+                        </label>
+                      ))}
+                      {activeSkillGroups.length === 0 ? (
+                        <small>No active buff skills in the legacy catalog.</small>
+                      ) : null}
+                    </div>
+                  </div>
+                  <div className="skill-config-section">
+                    <strong>Passive / Learned Skills</strong>
+                    <div className="skill-config-list">
+                      {passiveSkillGroups.map((skill) => (
+                        <label key={skill.name}>
+                          <span>{skill.label ?? skill.name}</span>
+                          <select
+                            onChange={(event) => {
+                              const choice = skill.choices.find(
+                                (entry) => entry.value === event.target.value,
+                              );
+                              setPassiveSkillValues((current) => ({
+                                ...current,
+                                [skill.name]: choice?.level ?? 0,
+                              }));
+                            }}
+                            value={selectedSkillValue(passiveSkillValues, skill)}
+                          >
+                            {skill.choices.map((choice) => (
+                              <option key={choice.value} value={choice.value}>
+                                {choice.label}
+                              </option>
+                            ))}
+                          </select>
+                        </label>
+                      ))}
+                      {passiveSkillGroups.length === 0 ? (
+                        <small>No passive skills in the legacy catalog.</small>
+                      ) : null}
+                    </div>
                   </div>
                   <small>
                     รายการนี้ดึงจาก skill catalog ของเว็บเก่า และปิดไว้ก่อนเพราะ
@@ -1189,6 +1596,34 @@ export function EquipmentBuildPanel() {
         {error ? <div className="error-banner">{error}</div> : null}
       </form>
 
+      <section className="combat-summary-panel panel">
+        <header>
+          <div>
+            <p className="eyebrow">Legacy Calculator Summary</p>
+            <h2>ค่าสรุปตัวละครแบบหน้า calculator เดิม</h2>
+            <p>
+              ช่องเหล่านี้เตรียมไว้ให้ engine คำนวณจริงจาก stats, equipment,
+              cards, buffs, consumables และ monster โดยยังไม่แสดงเลขปลอม
+            </p>
+          </div>
+        </header>
+        <div className="combat-summary-grid">
+          {COMBAT_SUMMARY_GROUPS.map((group) => (
+            <article key={group.title}>
+              <strong>{group.title}</strong>
+              <div>
+                {group.items.map((item) => (
+                  <span key={item.label}>
+                    <small>{item.label}</small>
+                    <b>{item.value}</b>
+                  </span>
+                ))}
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
       <div className="equipment-toolbar panel">
         <div>
           <p className="eyebrow">Equipment Draft</p>
@@ -1221,21 +1656,28 @@ export function EquipmentBuildPanel() {
 
       <div className="equipment-summary panel">
         <span>
-          Selected <strong>{selectedRows.length}</strong>
+          Equipped <strong>{equippedCount}</strong>
         </span>
         <span>
-          Cards <strong>
-            {selectedRows.reduce(
-              (sum, row) =>
-                sum +
-                (row.selection.cardIds?.filter((cardId) => cardId > 0)
-                  .length ?? 0),
-              0,
-            )}
-          </strong>
+          Cards <strong>{selectedCardCount}</strong>
+        </span>
+        <span>
+          Enchants <strong>{selectedEnchantCount}</strong>
+        </span>
+        <span>
+          Options <strong>{selectedOptionCount}</strong>
         </span>
         <span>
           Catalog items <strong>{catalog.length.toLocaleString("en-US")}</strong>
+        </span>
+        <span>
+          Class <strong>{selectedClass?.name ?? "-"}</strong>
+        </span>
+        <span>
+          Skill <strong>{selectedSkillLabel || "-"}</strong>
+        </span>
+        <span>
+          Payload <strong>{Object.keys(calculatorInputDraft.equipped).length} slots</strong>
         </span>
         {parsedBudget ? (
           <span>
@@ -1252,7 +1694,7 @@ export function EquipmentBuildPanel() {
               <p>{group.description}</p>
             </div>
           </header>
-          <div className="equipment-slot-grid">
+          <div className="equipment-slot-grid legacy-equipment-grid">
             {group.slots.map((definition) => {
               if (definition.slot === "shield" && !canUseShield) return null;
               const items = itemsBySlot.get(definition.slot) ?? [];
@@ -1260,15 +1702,24 @@ export function EquipmentBuildPanel() {
               const selectedItem = selection.itemId
                 ? itemById.get(selection.itemId)
                 : undefined;
-              const cardCount = selectedItem
-                ? Math.min(
-                    selectedItem.slots,
-                    EQUIPMENT_SLOT_RULES[definition.slot].maxCards,
+              const rule = EQUIPMENT_SLOT_RULES[definition.slot];
+              const optionRecord = selectedItem
+                ? itemOptions[selectedItem.id]
+                : undefined;
+              const selectionTemplate = selectedItem
+                ? getCalculatorSelectionTemplate(
+                    selectedItem,
+                    definition.slot,
+                    optionRecord,
                   )
-                : 0;
+                : null;
+              const cardCount = selectionTemplate?.cardCount ?? 0;
               const cards = cardsBySlot.get(definition.slot) ?? [];
               return (
-                <div className="equipment-slot" key={definition.slot}>
+                <div
+                  className="equipment-slot legacy-equipment-row"
+                  key={definition.slot}
+                >
                   <span>{definition.label}</span>
                   <div className="select-with-preview">
                     <select
@@ -1282,10 +1733,12 @@ export function EquipmentBuildPanel() {
                             if (!nextItem || !itemMatchesClass(nextItem, classId)) {
                               return next;
                             }
-                            next[definition.slot] = {
-                              itemId,
-                              cardIds: [],
-                            };
+                            next[definition.slot] =
+                              createBlankEquipmentSelection(
+                                nextItem,
+                                definition.slot,
+                                itemOptions[nextItem.id],
+                              );
                             if (definition.slot === "weapon") {
                               if (!nextItem.equipSlots.includes("leftWeapon")) {
                                 delete next.shield;
@@ -1315,6 +1768,57 @@ export function EquipmentBuildPanel() {
                     </select>
                     <ItemPreviewButton item={selectedItem} />
                   </div>
+                  <div className="legacy-main-controls">
+                    {rule.allowsGrade ? (
+                      <select
+                        aria-label={`${definition.label} grade`}
+                        disabled={!selectedItem?.canGrade}
+                        onChange={(event) =>
+                          updateEquipmentSelection(definition.slot, (current) => ({
+                            ...current,
+                            grade: event.target.value
+                              ? (event.target.value as ItemGrade)
+                              : undefined,
+                          }))
+                        }
+                        value={selection.grade ?? ""}
+                      >
+                        <option value="">ungrade</option>
+                        {ITEM_GRADES.map((grade) => (
+                          <option key={grade} value={grade}>
+                            {grade}
+                          </option>
+                        ))}
+                      </select>
+                    ) : null}
+                    {rule.allowsRefine ? (
+                      <select
+                        aria-label={`${definition.label} refine`}
+                        disabled={!selectedItem}
+                        onChange={(event) =>
+                          updateEquipmentSelection(definition.slot, (current) => ({
+                            ...current,
+                            refine: Number(event.target.value),
+                          }))
+                        }
+                        value={selection.refine ?? 0}
+                      >
+                        {Array.from(
+                          {
+                            length:
+                              (definition.slot.startsWith("shadow")
+                                ? MAX_SHADOW_REFINE
+                                : MAX_REFINE) + 1,
+                          },
+                          (_, refine) => (
+                            <option key={refine} value={refine}>
+                              {refine > 0 ? `+ ${refine}` : "0"}
+                            </option>
+                          ),
+                        )}
+                      </select>
+                    ) : null}
+                  </div>
                   {selectedItem ? (
                     <div className="selected-item-strip">
                       <span className="catalog-thumb">
@@ -1331,7 +1835,7 @@ export function EquipmentBuildPanel() {
                         <span>{fallbackInitials(selectedItem.name)}</span>
                       </span>
                       <small>
-                        {selectedItem.itemType} · {selectedItem.slots} slots
+                        {selectedItem.itemType} · {cardCount} card slots
                       </small>
                     </div>
                   ) : null}
@@ -1348,9 +1852,9 @@ export function EquipmentBuildPanel() {
                         <select
                           onChange={(event) => {
                             const cardId = Number(event.target.value);
-                            setEquipment((current) => {
-                              const currentSelection =
-                                current[definition.slot] ?? {};
+                            updateEquipmentSelection(
+                              definition.slot,
+                              (currentSelection) => {
                               const nextCards = [
                                 ...(currentSelection.cardIds ?? []),
                               ];
@@ -1359,14 +1863,12 @@ export function EquipmentBuildPanel() {
                               } else {
                                 nextCards[index] = 0;
                               }
-                              return {
-                                ...current,
-                                [definition.slot]: {
+                                return {
                                   ...currentSelection,
                                   cardIds: nextCards,
-                                },
-                              };
-                            });
+                                };
+                              },
+                            );
                           }}
                           value={selectedCardId || ""}
                         >
@@ -1381,6 +1883,127 @@ export function EquipmentBuildPanel() {
                       </div>
                     );
                   })}
+                  {selectionTemplate?.enchantGroups.map((enchantGroup) => {
+                    const selectedEnchantId =
+                      selection.enchantIds?.[enchantGroup.slot] ?? 0;
+                    const selectedEnchant = selectedEnchantId
+                      ? itemById.get(selectedEnchantId)
+                      : undefined;
+                    return (
+                      <div
+                        className="select-with-preview enchant-select-row"
+                        key={`enchant-${enchantGroup.slot}`}
+                      >
+                        <select
+                          onChange={(event) =>
+                            updateEquipmentSelection(
+                              definition.slot,
+                              (currentSelection) =>
+                                updateEnchantSelectionByChoiceKey(
+                                  currentSelection,
+                                  enchantGroup,
+                                  event.target.value,
+                                ),
+                            )
+                          }
+                          value={enchantChoiceKeyFromItemId(
+                            enchantGroup,
+                            selectedEnchantId,
+                          )}
+                        >
+                          <option value="">{enchantGroup.label}</option>
+                          {enchantGroup.choices.map((choice) => (
+                            <option
+                              key={`${enchantGroup.slot}:${choice.key}`}
+                              value={choice.key}
+                            >
+                              {choice.label}
+                            </option>
+                          ))}
+                        </select>
+                        <ItemPreviewButton item={selectedEnchant} />
+                      </div>
+                    );
+                  })}
+                  {selectionTemplate
+                    ? Array.from(
+                        { length: selectionTemplate.randomOptionCount },
+                        (_, index) => {
+                          const option = randomOptionForIndex(
+                            selection.randomOptions,
+                            index,
+                          );
+                          const path = option
+                            ? findRandomOptionPath(randomOptionTree, option) ?? []
+                            : [];
+                          const isManualOption = Boolean(option && path.length === 0);
+                          return (
+                            <div className="random-option-row" key={`option-${index}`}>
+                              {isManualOption ? (
+                                <div className="manual-option-strip">
+                                  <small>{option?.label}</small>
+                                  <button
+                                    className="secondary-button"
+                                    onClick={() =>
+                                      updateEquipmentSelection(
+                                        definition.slot,
+                                        (currentSelection) => ({
+                                          ...currentSelection,
+                                          randomOptions: (
+                                            currentSelection.randomOptions ?? []
+                                          ).filter(
+                                            (entry, entryIndex) =>
+                                              entryIndex !== index &&
+                                              entry.slot !== index &&
+                                              entry.slot !== index + 1,
+                                          ),
+                                        }),
+                                      )
+                                    }
+                                    type="button"
+                                  >
+                                    Clear
+                                  </button>
+                                </div>
+                              ) : null}
+                              <RandomOptionCascade
+                                index={index}
+                                onChange={(nextPath) =>
+                                  updateEquipmentSelection(
+                                    definition.slot,
+                                    (currentSelection) => {
+                                      const selectedNode = resolveRandomOptionPath(
+                                        randomOptionTree,
+                                        nextPath,
+                                      );
+                                      const nextOptions = (
+                                        currentSelection.randomOptions ?? []
+                                      ).filter(
+                                        (entry, entryIndex) =>
+                                          entryIndex !== index &&
+                                          entry.slot !== index &&
+                                          entry.slot !== index + 1,
+                                      );
+                                      return {
+                                        ...currentSelection,
+                                        randomOptions: selectedNode
+                                          ? [
+                                              ...nextOptions,
+                                              toItemOption(selectedNode, index + 1),
+                                            ]
+                                          : nextOptions,
+                                      };
+                                    },
+                                  )
+                                }
+                                path={path}
+                                tree={randomOptionTree}
+                              />
+                            </div>
+                          );
+                        },
+                      )
+                    : null}
                   <small>
                     {selectedItem
                       ? `${cardCount} card slots · ${server}`

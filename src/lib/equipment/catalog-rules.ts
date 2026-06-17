@@ -135,3 +135,17 @@ export function resolveRandomOptionCount(
   if (equipSlots.some((slot) => slot.startsWith("shadow"))) return 1;
   return configuredCount;
 }
+
+export function resolveCardSlotCount(
+  item: { name?: string; aegisName?: string; slots?: number | null },
+  maxCards: number,
+): number {
+  const catalogSlots = Number.isFinite(item.slots) ? Number(item.slots) : 0;
+  const bracketSlots = [item.name, item.aegisName].reduce((largest, value) => {
+    const match = value?.match(/\[(\d+)\]\s*$/);
+    const parsed = match ? Number(match[1]) : 0;
+    return Number.isInteger(parsed) ? Math.max(largest, parsed) : largest;
+  }, 0);
+
+  return Math.min(maxCards, Math.max(catalogSlots, bracketSlots));
+}

@@ -8,10 +8,10 @@
   },
   "search": {
     "id": "search",
-    "url": "/data/items/search.cc5db33c89f2.json",
-    "sha256": "cc5db33c89f2f2e703ac067aac7fe5d37fa89cdf4e0aa77bffd782c49289a425",
+    "url": "/data/items/search.eb988e7079fa.json",
+    "sha256": "eb988e7079fa343cee900414eeb8aec9e88c678ef8350bc3306e6c45647b96ee",
     "recordCount": 6490,
-    "bytes": 2778094
+    "bytes": 2782358
   },
   "itemOptions": {
     "id": "item-options",
@@ -79,10 +79,10 @@
     },
     {
       "id": "equipment-weapon",
-      "url": "/data/items/equipment-weapon.73fc05c2e694.json",
-      "sha256": "73fc05c2e6944d8085fc539ece99f8fbd78045b5200a0f2a46f7a3a09b014e7c",
+      "url": "/data/items/equipment-weapon.9b4e23ad4d7e.json",
+      "sha256": "9b4e23ad4d7e3f3acb80a5a1017c4d6c1893e1d5f2dcebf20927dbd159d25dea",
       "recordCount": 921,
-      "bytes": 1996882
+      "bytes": 2001146
     },
     {
       "id": "misc",

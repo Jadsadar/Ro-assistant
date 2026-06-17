@@ -78,46 +78,75 @@ require.extensions[".ts"] = function compileTypeScript(module, filename) {
 };
 
 function parseSkillLevel(value, fallback = 1) {
+  if (typeof value === "number" && Number.isFinite(value)) return value;
   if (typeof value !== "string") return fallback;
   const match = value.match(/==(\d+)$/);
-  return match ? Number(match[1]) : fallback;
+  if (match) return Number(match[1]);
+  const numeric = Number(value);
+  return Number.isFinite(numeric) ? numeric : fallback;
+}
+
+function cleanBonus(bonus) {
+  if (!bonus || typeof bonus !== "object" || Array.isArray(bonus)) {
+    return undefined;
+  }
+  return bonus;
 }
 
 function skillChoices(skill) {
-  if (Array.isArray(skill.levelList) && skill.levelList.length > 0) {
-    return skill.levelList
-      .filter((choice) => typeof choice?.value === "string")
-      .map((choice) => ({
-        label: String(choice.label || skill.label),
-        value: choice.value,
-        level: parseSkillLevel(choice.value),
-      }));
-  }
+  const source =
+    Array.isArray(skill.levelList) && skill.levelList.length > 0
+      ? skill.levelList
+      : Array.isArray(skill.dropdown) && skill.dropdown.length > 0
+        ? skill.dropdown
+        : [
+            {
+              label: skill.label || skill.name || skill.value,
+              value: skill.value,
+            },
+          ];
 
-  return [
-    {
-      label: String(skill.label || skill.name || skill.value),
-      value: String(skill.value),
-      level: parseSkillLevel(skill.value),
-    },
-  ];
+  return source
+    .filter((choice) => choice?.value !== undefined && choice?.value !== null)
+    .map((choice) => ({
+      label: String(choice.label || skill.label || skill.name || choice.value),
+      value: String(choice.value),
+      level: parseSkillLevel(choice.skillLv ?? choice.value),
+      ...(typeof choice.isUse === "boolean" ? { isUse: choice.isUse } : {}),
+      ...(cleanBonus(choice.bonus) ? { bonus: cleanBonus(choice.bonus) } : {}),
+    }));
+}
+
+function skillList(skills) {
+  if (!Array.isArray(skills)) return [];
+  return skills
+    .map((skill) => ({
+      name: String(skill.name || skill.label || skill.value),
+      label: skill.label ? String(skill.label) : undefined,
+      inputType: skill.inputType ? String(skill.inputType) : undefined,
+      choices: skillChoices(skill),
+    }))
+    .filter((skill) => skill.name && skill.choices.length > 0);
 }
 
 const { getClassDropdownList } = require(classListPath);
 const records = getClassDropdownList().map((entry) => ({
   classId: Number(entry.value),
   className: String(entry.label),
-  skills: entry.instant.atkSkills.map((skill) => ({
-    name: String(skill.name),
-    choices: skillChoices(skill),
-  })),
+  skills: skillList(entry.instant.atkSkills),
+  activeSkills: skillList(entry.instant.activeSkills),
+  passiveSkills: skillList(entry.instant.passiveSkills),
 }));
 
 fs.mkdirSync(path.dirname(outputPath), { recursive: true });
 fs.writeFileSync(outputPath, JSON.stringify(records), "utf8");
 console.log(
   `Skill catalog: ${records.length} classes, ${records.reduce(
-    (sum, record) => sum + record.skills.length,
+    (sum, record) =>
+      sum +
+      record.skills.length +
+      record.activeSkills.length +
+      record.passiveSkills.length,
     0,
   )} skills generated`,
 );

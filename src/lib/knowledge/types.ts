@@ -52,6 +52,29 @@ export interface PriceQuote {
 export interface SavedEquipmentSelection {
   itemId?: number;
   cardIds?: number[];
+  refine?: number;
+  grade?: ItemGrade;
+  enchantIds?: number[];
+  randomOptions?: ItemOption[];
+}
+
+export interface CalculatorBuildDraft {
+  classId: number;
+  className?: string;
+  baseLevel: number;
+  jobLevel: number;
+  skillId: string;
+  skillLevel: number;
+  propertyAtk: AttackElement;
+  monsterId: number;
+  server: ServerId;
+  equipment: Partial<Record<EquipmentSlot, SavedEquipmentSelection>>;
+  stats: CharacterStats;
+  skillLevels: Record<string, number>;
+  buffLevels: Record<string, number>;
+  consumableIds: number[];
+  targetDamage?: number;
+  budgetZeny?: number;
 }
 
 export interface UserTag {
