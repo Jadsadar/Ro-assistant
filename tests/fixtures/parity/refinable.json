@@ -1,0 +1,16 @@
+{
+  "generatedBy": "scripts/build-parity-fixtures.ts",
+  "generatedAt": "2026-08-20T09:17:33.780Z",
+  "source": {
+    "repository": "tong-calc-ro",
+    "commit": "ff883cc45861a7e024fc349cc377d3298fd4dc1a",
+    "itemCount": 6490
+  },
+  "refinable": [
+    490276,
+    490277,
+    490278
+  ],
+  "explicitlyNotRefinable": [],
+  "unknownCount": 6487
+}

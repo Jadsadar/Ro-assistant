@@ -1,3 +1,6 @@
+/* PrimeFlex grid, the same utility layer the legacy calculator lays out with. */
+@import "primeflex/primeflex.css";
+
 @import "tailwindcss";
 
 :root {
@@ -58,89 +61,23 @@ button {
   flex-direction: column;
 }
 
-.topbar {
-  position: sticky;
-  top: 0;
-  z-index: 20;
-  display: grid;
-  grid-template-columns: minmax(210px, 1fr) auto minmax(80px, 1fr);
-  align-items: center;
-  gap: 1rem;
-  min-height: 68px;
-  padding: 0.75rem clamp(1rem, 4vw, 3.5rem);
-  border-bottom: 1px solid rgb(255 255 255 / 7%);
-  background: rgb(11 14 20 / 88%);
-  backdrop-filter: blur(18px);
-}
-
-.brand {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.7rem;
-  width: fit-content;
-}
-
-.brand-mark {
-  display: grid;
-  place-items: center;
-  width: 38px;
-  height: 38px;
-  border: 1px solid rgb(124 156 255 / 60%);
-  border-radius: 12px;
-  color: var(--accent-strong);
-  background: rgb(124 156 255 / 10%);
-  font-size: 0.8rem;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-}
-
-.brand strong,
-.brand small {
-  display: block;
-}
-
-.brand small {
-  margin-top: 0.08rem;
-  color: var(--text-muted);
-  font-size: 0.68rem;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-}
-
-.topbar nav {
-  display: flex;
-  gap: 0.25rem;
-  padding: 0.3rem;
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  background: rgb(21 26 36 / 78%);
-}
-
-.topbar nav a,
-.data-link {
-  padding: 0.55rem 0.8rem;
-  border-radius: 8px;
-  color: var(--text-secondary);
-  font-size: 0.84rem;
-  transition: 140ms ease;
-}
-
-.topbar nav a:hover,
-.data-link:hover {
-  color: var(--text-primary);
-  background: var(--bg-elevated);
-}
-
-.data-link {
-  justify-self: end;
-  border: 1px solid var(--border);
-}
-
 .page-container {
   width: min(1440px, 100%);
   margin: 0 auto;
   padding: clamp(1.25rem, 3vw, 2.5rem);
   flex: 1;
+}
+
+/* Full-bleed host for the verbatim legacy calculator layout: no width cap and
+   no padding, so the 1500px legacy grid keeps its own edges. */
+.page-full-bleed {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: auto;
 }
 
 .page-stack {
@@ -1592,16 +1529,6 @@ input[type="file"] {
 }
 
 @media (max-width: 980px) {
-  .topbar {
-    grid-template-columns: 1fr auto;
-  }
-
-  .topbar nav {
-    grid-column: 1 / -1;
-    order: 3;
-    overflow-x: auto;
-  }
-
   .feature-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -1654,18 +1581,6 @@ input[type="file"] {
 }
 
 @media (max-width: 640px) {
-  .topbar {
-    position: static;
-  }
-
-  .topbar nav {
-    width: 100%;
-  }
-
-  .topbar nav a {
-    white-space: nowrap;
-  }
-
   .feature-grid,
   .coming-grid {
     grid-template-columns: 1fr;

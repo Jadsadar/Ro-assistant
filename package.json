@@ -3,7 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "catalog:build": "tsx scripts/build-catalog.ts && node scripts/build-skill-catalog.cjs",
+    "legacy:status": "node scripts/sync-legacy.cjs --status",
+    "legacy:sync": "node scripts/sync-legacy.cjs",
+    "catalog:build": "tsx scripts/build-catalog.ts && node scripts/build-skill-catalog.cjs && node scripts/build-legacy-engine.cjs",
+    "parity:fixtures": "tsx scripts/build-parity-fixtures.ts",
+    "legacy:page": "node scripts/build-legacy-page.cjs",
+    "catalog:update": "npm run legacy:sync && npm run catalog:build && npm run parity:fixtures",
     "predev": "npm run catalog:build",
     "dev": "next dev",
     "prebuild": "npm run catalog:build",
@@ -15,6 +20,7 @@
   },
   "dependencies": {
     "next": "16.2.2",
+    "primeflex": "^3.3.1",
     "react": "19.2.4",
     "react-dom": "19.2.4"
   },
@@ -23,8 +29,10 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "esbuild": "^0.28.1",
     "eslint": "^9",
     "eslint-config-next": "16.2.2",
+    "playwright": "^1.62.1",
     "tailwindcss": "^4",
     "tsx": "^4.22.4",
     "typescript": "^5"

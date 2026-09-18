@@ -10,6 +10,7 @@ import {
   ITEM_TYPE_IDS,
   resolveCardSlotCount,
   resolveEquipmentSlots,
+  resolveWeaponCapabilities,
   resolveRandomOptionCount,
 } from "../src/lib/equipment/catalog-rules";
 
@@ -28,43 +29,61 @@ test("card compatibility follows the legacy calculator positions", () => {
 });
 
 test("catalog slots match the legacy item subtype rules", () => {
+  // Weapons occupy the main hand only. Off-hand eligibility is a capability,
+  // asserted separately below and in tests/parity-equipment-list.test.ts.
+  for (const itemSubTypeId of [
+    ITEM_SUB_TYPE_IDS.oneHandSword,
+    ITEM_SUB_TYPE_IDS.spear,
+    ITEM_SUB_TYPE_IDS.twoHandSword,
+    ITEM_SUB_TYPE_IDS.bow,
+  ]) {
+    assert.deepEqual(
+      resolveEquipmentSlots({
+        itemTypeId: ITEM_TYPE_IDS.weapon,
+        itemSubTypeId,
+        headgearLocation: null,
+      }),
+      ["weapon"],
+    );
+  }
   assert.deepEqual(
     resolveEquipmentSlots({
-      itemTypeId: ITEM_TYPE_IDS.weapon,
-      itemSubTypeId: ITEM_SUB_TYPE_IDS.oneHandSword,
-      displaySlot: "Weapon",
+      itemTypeId: ITEM_TYPE_IDS.ammo,
+      itemSubTypeId: ITEM_SUB_TYPE_IDS.arrow,
+      headgearLocation: null,
     }),
-    ["weapon", "leftWeapon"],
+    ["ammo"],
+  );
+  // itemTypeId 3 is the legacy consumable bucket, not ammo.
+  assert.deepEqual(
+    resolveEquipmentSlots({
+      itemTypeId: ITEM_TYPE_IDS.consumable,
+      itemSubTypeId: 768,
+      headgearLocation: null,
+    }),
+    [],
   );
   assert.deepEqual(
     resolveEquipmentSlots({
-      itemTypeId: ITEM_TYPE_IDS.weapon,
-      itemSubTypeId: ITEM_SUB_TYPE_IDS.spear,
-      displaySlot: "Weapon",
+      itemTypeId: ITEM_TYPE_IDS.armor,
+      itemSubTypeId: ITEM_SUB_TYPE_IDS.upper,
+      headgearLocation: null,
     }),
-    ["weapon", "leftWeapon"],
+    ["headUpper"],
   );
   assert.deepEqual(
     resolveEquipmentSlots({
-      itemTypeId: ITEM_TYPE_IDS.weapon,
-      itemSubTypeId: ITEM_SUB_TYPE_IDS.twoHandSword,
-      displaySlot: "Weapon",
+      itemTypeId: ITEM_TYPE_IDS.armor,
+      itemSubTypeId: ITEM_SUB_TYPE_IDS.upper,
+      headgearLocation: "Middle",
     }),
-    ["weapon"],
-  );
-  assert.deepEqual(
-    resolveEquipmentSlots({
-      itemTypeId: ITEM_TYPE_IDS.weapon,
-      itemSubTypeId: ITEM_SUB_TYPE_IDS.bow,
-      displaySlot: "Weapon",
-    }),
-    ["weapon"],
+    ["headMiddle"],
   );
   assert.deepEqual(
     resolveEquipmentSlots({
       itemTypeId: ITEM_TYPE_IDS.costume,
       itemSubTypeId: ITEM_SUB_TYPE_IDS.costumeUpper,
-      displaySlot: "Upper",
+      headgearLocation: null,
     }),
     ["costumeUpper"],
   );
@@ -72,7 +91,7 @@ test("catalog slots match the legacy item subtype rules", () => {
     resolveEquipmentSlots({
       itemTypeId: 11,
       itemSubTypeId: ITEM_SUB_TYPE_IDS.costumeEnchantGarment2,
-      displaySlot: null,
+      headgearLocation: null,
     }),
     ["costumeEnchantGarment2"],
   );
@@ -80,10 +99,73 @@ test("catalog slots match the legacy item subtype rules", () => {
     resolveEquipmentSlots({
       itemTypeId: ITEM_TYPE_IDS.shadow,
       itemSubTypeId: ITEM_SUB_TYPE_IDS.shadowBoot,
-      displaySlot: "Shadow Shoes",
+      headgearLocation: null,
     }),
     ["shadowBoot"],
   );
+});
+
+test("weapon capabilities separate off-hand, shield and ammo eligibility", () => {
+  const capability = (itemSubTypeId: number) =>
+    resolveWeaponCapabilities({
+      itemTypeId: ITEM_TYPE_IDS.weapon,
+      itemSubTypeId,
+    });
+
+  // Only daggers and one-hand swords entered the legacy leftWeaponList.
+  assert.equal(capability(ITEM_SUB_TYPE_IDS.dagger).canEquipLeftWeapon, true);
+  assert.equal(
+    capability(ITEM_SUB_TYPE_IDS.oneHandSword).canEquipLeftWeapon,
+    true,
+  );
+  for (const itemSubTypeId of [
+    ITEM_SUB_TYPE_IDS.spear,
+    ITEM_SUB_TYPE_IDS.axe,
+    ITEM_SUB_TYPE_IDS.mace,
+    ITEM_SUB_TYPE_IDS.rod,
+    ITEM_SUB_TYPE_IDS.fist,
+    ITEM_SUB_TYPE_IDS.book,
+  ]) {
+    assert.equal(capability(itemSubTypeId).canEquipLeftWeapon, false);
+  }
+
+  // ...but all of those still leave the shield slot open, as do whip and instrument.
+  for (const itemSubTypeId of [
+    ITEM_SUB_TYPE_IDS.spear,
+    ITEM_SUB_TYPE_IDS.axe,
+    ITEM_SUB_TYPE_IDS.whip,
+    ITEM_SUB_TYPE_IDS.instrument,
+  ]) {
+    assert.equal(capability(itemSubTypeId).allowsShield, true);
+  }
+  for (const itemSubTypeId of [
+    ITEM_SUB_TYPE_IDS.twoHandSword,
+    ITEM_SUB_TYPE_IDS.bow,
+    ITEM_SUB_TYPE_IDS.katar,
+    ITEM_SUB_TYPE_IDS.shuriken,
+  ]) {
+    assert.equal(capability(itemSubTypeId).allowsShield, false);
+  }
+
+  assert.equal(capability(ITEM_SUB_TYPE_IDS.twoHandSpear).twoHanded, true);
+  assert.equal(capability(ITEM_SUB_TYPE_IDS.spear).twoHanded, false);
+
+  assert.deepEqual(
+    {
+      allowsAmmo: capability(ITEM_SUB_TYPE_IDS.bow).allowsAmmo,
+      ammoSubTypeId: capability(ITEM_SUB_TYPE_IDS.bow).ammoSubTypeId,
+    },
+    { allowsAmmo: true, ammoSubTypeId: ITEM_SUB_TYPE_IDS.arrow },
+  );
+  assert.equal(
+    capability(ITEM_SUB_TYPE_IDS.revolver).ammoSubTypeId,
+    ITEM_SUB_TYPE_IDS.bullet,
+  );
+  assert.equal(
+    capability(ITEM_SUB_TYPE_IDS.shuriken).ammoSubTypeId,
+    ITEM_SUB_TYPE_IDS.kunai,
+  );
+  assert.equal(capability(ITEM_SUB_TYPE_IDS.dagger).allowsAmmo, false);
 });
 
 test("slot relations match the legacy calculator controls", () => {

@@ -1,4 +1,5 @@
 import { createHash } from "node:crypto";
+import { execFileSync } from "node:child_process";
 import {
   access,
   mkdir,
@@ -25,10 +26,14 @@ import type {
   CatalogSearchItem,
 } from "../src/lib/catalog/types";
 import {
+  resolveCanGrade,
   resolveEquipmentSlots,
   resolveRandomOptionCount,
 } from "../src/lib/equipment/catalog-rules";
-import { EQUIPMENT_SLOT_RULES } from "../src/lib/equipment/types";
+import {
+  EQUIPMENT_SLOT_RULES,
+  type EquipmentSlot,
+} from "../src/lib/equipment/types";
 
 interface RawItem {
   id: number;
@@ -66,16 +71,19 @@ const legacyRoot = resolve(
 );
 const outputRoot = resolve(projectRoot, "public", "data");
 const manifestPath = resolve(outputRoot, "catalog-manifest.json");
+const legacyDataRoot = resolve(
+  legacyRoot,
+  "src",
+  "assets",
+  "demo",
+  "data",
+);
 
 const sources = {
-  items: resolve(legacyRoot, "item.json"),
-  monsters: resolve(legacyRoot, "monster.json"),
+  items: resolve(legacyDataRoot, "item.json"),
+  monsters: resolve(legacyDataRoot, "monster.json"),
   hpSpTable: resolve(
-    legacyRoot,
-    "src",
-    "assets",
-    "demo",
-    "data",
+    legacyDataRoot,
     "hp_sp_table.json",
   ),
   enchantTable: resolve(
@@ -94,6 +102,46 @@ const sources = {
     "extra-option-table.ts",
   ),
 };
+
+function readLegacyGitSource(): CatalogManifest["source"]["git"] | undefined {
+  try {
+    const git = (...args: string[]) =>
+      execFileSync("git", ["-C", legacyRoot, ...args], {
+        encoding: "utf8",
+        stdio: ["ignore", "pipe", "ignore"],
+      }).trim();
+    const commit = git("rev-parse", "HEAD");
+    const exactTag = (() => {
+      try {
+        return git("describe", "--tags", "--exact-match", "HEAD");
+      } catch {
+        return "";
+      }
+    })();
+    const branch = (() => {
+      try {
+        return git("symbolic-ref", "--short", "-q", "HEAD");
+      } catch {
+        return "";
+      }
+    })();
+    const repository = (() => {
+      try {
+        return git("remote", "get-url", "origin");
+      } catch {
+        return "";
+      }
+    })();
+
+    return {
+      ...(repository ? { repository } : {}),
+      ref: exactTag || branch || "detached",
+      commit,
+    };
+  } catch {
+    return undefined;
+  }
+}
 
 function assertSafeOutputPath(): void {
   const projectPrefix = `${projectRoot}${sep}`;
@@ -256,6 +304,30 @@ function itemCategory(item: RawItem): string {
   return "misc";
 }
 
+/**
+ * Legacy refine semantics (equipment.component.ts:243-254).
+ *
+ * The legacy refine dropdown was 0-18 for every slot, and `isRefinable` was only
+ * consulted for accessories: an accessory whose source record does not say
+ * `isRefinable: true` had its refine control removed and its refine reset to 0.
+ * The previous fallback treated a missing flag as refinable-by-slot, which
+ * invented a refine control for hundreds of accessories.
+ */
+function resolveIsRefinable(
+  item: RawItem,
+  equipSlots: readonly EquipmentSlot[],
+): boolean {
+  const isAccessory = equipSlots.some(
+    (equipmentSlot) =>
+      equipmentSlot === "accLeft" || equipmentSlot === "accRight",
+  );
+  if (isAccessory) return item.isRefinable === true;
+
+  return equipSlots.some(
+    (equipmentSlot) => EQUIPMENT_SLOT_RULES[equipmentSlot].allowsRefine,
+  );
+}
+
 function toSearchItem(item: RawItem): CatalogSearchItem {
   const id = Number(item.id);
   const name = item.name?.trim() || item.aegisName?.trim() || `Item ${id}`;
@@ -266,7 +338,7 @@ function toSearchItem(item: RawItem): CatalogSearchItem {
   const equipSlots = resolveEquipmentSlots({
     itemTypeId,
     itemSubTypeId,
-    displaySlot: slot,
+    headgearLocation: item.location ?? null,
   });
   const itemType = itemTypeLabel(item);
   const category = itemCategory(item);
@@ -297,12 +369,10 @@ function toSearchItem(item: RawItem): CatalogSearchItem {
     category,
     slots: Number(item.slots ?? 0),
     compositionPos: item.compositionPos ?? null,
-    canGrade: item.canGrade === true,
-    isRefinable:
-      item.isRefinable ??
-      equipSlots.some(
-        (equipmentSlot) => EQUIPMENT_SLOT_RULES[equipmentSlot].allowsRefine,
-      ),
+    // equipment.component.ts:171 reads `isRefinable ?? false`. Treating a missing
+    // flag as refinable-by-slot invented a refine control for hundreds of
+    // accessories the legacy calculator kept at +0.
+    isRefinable: resolveIsRefinable(item, equipSlots),
     requiredLevel:
       item.requiredLevel === null || item.requiredLevel === undefined
         ? null
@@ -310,6 +380,12 @@ function toSearchItem(item: RawItem): CatalogSearchItem {
     usableClass: item.usableClass,
     unusableClass: item.unusableClass,
     searchable,
+    canGrade: resolveCanGrade({
+      name,
+      aegisName,
+      canGrade: item.canGrade,
+      equipSlots,
+    }),
   };
 }
 
@@ -393,7 +469,7 @@ function buildItemOptionsIndexFromSources(
       resolveEquipmentSlots({
         itemTypeId: Number(item.itemTypeId ?? 0),
         itemSubTypeId: Number(item.itemSubTypeId ?? 0),
-        displaySlot: resolvedSlot(item),
+        headgearLocation: item.location ?? null,
       }),
       extraOptionTable[aegisName] ?? 0,
     );
@@ -539,6 +615,7 @@ async function main(): Promise<void> {
   const catalogVersion = sha256(
     `${sha256(itemSource.raw)}:${sha256(monsterSource.raw)}:${sha256(hpSpSource.raw)}`,
   ).slice(0, 16);
+  const legacyGitSource = readLegacyGitSource();
   const manifest: CatalogManifest = {
     schemaVersion: 2,
     catalogVersion,
@@ -548,6 +625,7 @@ async function main(): Promise<void> {
     source: {
       itemCount: items.length,
       monsterCount: monsterRecords.length,
+      ...(legacyGitSource ? { git: legacyGitSource } : {}),
     },
     search: searchAsset,
     itemOptions,

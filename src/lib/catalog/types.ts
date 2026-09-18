@@ -34,6 +34,11 @@ export interface CatalogManifest {
   source: {
     itemCount: number;
     monsterCount: number;
+    git?: {
+      repository?: string;
+      ref: string;
+      commit: string;
+    };
   };
   search: CatalogAsset;
   itemOptions: CatalogAsset;
@@ -63,6 +68,14 @@ export interface CatalogSearchItem {
 }
 
 export type CatalogItemOptionsIndex = Record<number, CatalogItemOptions>;
+
+export interface CatalogHpSpEntry {
+  jobs: Record<string, boolean>;
+  baseHp: Record<string, number> | number[];
+  baseSp: Record<string, number> | number[];
+}
+
+export type CatalogHpSpTable = CatalogHpSpEntry[];
 
 export interface CatalogItemDetail extends CatalogSearchItem {
   unidName: string;

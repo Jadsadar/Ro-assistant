@@ -1,0 +1,8319 @@
+{
+  "generatedBy": "scripts/build-parity-fixtures.ts",
+  "generatedAt": "2026-08-20T09:17:33.780Z",
+  "source": {
+    "repository": "tong-calc-ro",
+    "commit": "ff883cc45861a7e024fc349cc377d3298fd4dc1a",
+    "itemCount": 6490
+  },
+  "allowLeftWeaponClasses": [
+    "GuillotineCross",
+    "ShadowCross",
+    "Oboro",
+    "Shiranui",
+    "Kagerou",
+    "Shinkiro"
+  ],
+  "classAmmoSubTypes": {
+    "Oboro": 1026,
+    "Shinkiro": 1026,
+    "Kagerou": 1026,
+    "Shiranui": 1026,
+    "Mechanic": 1025,
+    "Meister": 1025,
+    "Genetic": 1025,
+    "Biolo": 1025
+  },
+  "allowsShieldWithoutWeapon": true,
+  "weapons": [
+    {
+      "id": 1103,
+      "itemSubTypeId": 257,
+      "typeName": "sword",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 1136,
+      "itemSubTypeId": 257,
+      "typeName": "sword",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 1186,
+      "itemSubTypeId": 258,
+      "typeName": "twohandSword",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 1201,
+      "itemSubTypeId": 256,
+      "typeName": "dagger",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 1208,
+      "itemSubTypeId": 256,
+      "typeName": "dagger",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 1223,
+      "itemSubTypeId": 256,
+      "typeName": "dagger",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 1230,
+      "itemSubTypeId": 256,
+      "typeName": "dagger",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 1231,
+      "itemSubTypeId": 256,
+      "typeName": "dagger",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 1284,
+      "itemSubTypeId": 272,
+      "typeName": "katar",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 1285,
+      "itemSubTypeId": 272,
+      "typeName": "katar",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 1291,
+      "itemSubTypeId": 272,
+      "typeName": "katar",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 1292,
+      "itemSubTypeId": 272,
+      "typeName": "katar",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 1295,
+      "itemSubTypeId": 272,
+      "typeName": "katar",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 1326,
+      "itemSubTypeId": 261,
+      "typeName": "axe",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 1333,
+      "itemSubTypeId": 261,
+      "typeName": "axe",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 1336,
+      "itemSubTypeId": 261,
+      "typeName": "axe",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 1341,
+      "itemSubTypeId": 261,
+      "typeName": "axe",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 1398,
+      "itemSubTypeId": 262,
+      "typeName": "twohandAxe",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 1408,
+      "itemSubTypeId": 259,
+      "typeName": "spear",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 1418,
+      "itemSubTypeId": 259,
+      "typeName": "spear",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 1433,
+      "itemSubTypeId": 259,
+      "typeName": "spear",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 1438,
+      "itemSubTypeId": 259,
+      "typeName": "spear",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 1443,
+      "itemSubTypeId": 259,
+      "typeName": "spear",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 1447,
+      "itemSubTypeId": 259,
+      "typeName": "spear",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 1493,
+      "itemSubTypeId": 260,
+      "typeName": "twohandSpear",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 1496,
+      "itemSubTypeId": 260,
+      "typeName": "twohandSpear",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 1502,
+      "itemSubTypeId": 263,
+      "typeName": "mace",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 1584,
+      "itemSubTypeId": 271,
+      "typeName": "book",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 1588,
+      "itemSubTypeId": 271,
+      "typeName": "book",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 1600,
+      "itemSubTypeId": 265,
+      "typeName": "rod",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 1602,
+      "itemSubTypeId": 265,
+      "typeName": "rod",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 1618,
+      "itemSubTypeId": 265,
+      "typeName": "rod",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 1620,
+      "itemSubTypeId": 265,
+      "typeName": "rod",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 1631,
+      "itemSubTypeId": 265,
+      "typeName": "rod",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 1639,
+      "itemSubTypeId": 265,
+      "typeName": "rod",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 1646,
+      "itemSubTypeId": 265,
+      "typeName": "rod",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 1654,
+      "itemSubTypeId": 265,
+      "typeName": "rod",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 1659,
+      "itemSubTypeId": 265,
+      "typeName": "rod",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 1664,
+      "itemSubTypeId": 265,
+      "typeName": "rod",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 1669,
+      "itemSubTypeId": 265,
+      "typeName": "rod",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 1679,
+      "itemSubTypeId": 265,
+      "typeName": "rod",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 1680,
+      "itemSubTypeId": 265,
+      "typeName": "rod",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 1691,
+      "itemSubTypeId": 265,
+      "typeName": "rod",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 1692,
+      "itemSubTypeId": 265,
+      "typeName": "rod",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 1693,
+      "itemSubTypeId": 265,
+      "typeName": "rod",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 1694,
+      "itemSubTypeId": 265,
+      "typeName": "rod",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 1695,
+      "itemSubTypeId": 265,
+      "typeName": "rod",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 1696,
+      "itemSubTypeId": 265,
+      "typeName": "rod",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 1697,
+      "itemSubTypeId": 265,
+      "typeName": "rod",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 1703,
+      "itemSubTypeId": 267,
+      "typeName": "bow",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 1836,
+      "itemSubTypeId": 268,
+      "typeName": "fist",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 1839,
+      "itemSubTypeId": 268,
+      "typeName": "fist",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 1846,
+      "itemSubTypeId": 268,
+      "typeName": "fist",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 1847,
+      "itemSubTypeId": 268,
+      "typeName": "fist",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 1862,
+      "itemSubTypeId": 268,
+      "typeName": "fist",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 1865,
+      "itemSubTypeId": 268,
+      "typeName": "fist",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 1866,
+      "itemSubTypeId": 268,
+      "typeName": "fist",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 1867,
+      "itemSubTypeId": 268,
+      "typeName": "fist",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 1870,
+      "itemSubTypeId": 268,
+      "typeName": "fist",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 1900,
+      "itemSubTypeId": 269,
+      "typeName": "instrument",
+      "allowsShield": true,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 1933,
+      "itemSubTypeId": 269,
+      "typeName": "instrument",
+      "allowsShield": true,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 1935,
+      "itemSubTypeId": 269,
+      "typeName": "instrument",
+      "allowsShield": true,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 1988,
+      "itemSubTypeId": 270,
+      "typeName": "whip",
+      "allowsShield": true,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 1996,
+      "itemSubTypeId": 270,
+      "typeName": "whip",
+      "allowsShield": true,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 2000,
+      "itemSubTypeId": 266,
+      "typeName": "twohandRod",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 2004,
+      "itemSubTypeId": 266,
+      "typeName": "twohandRod",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 2015,
+      "itemSubTypeId": 266,
+      "typeName": "twohandRod",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 2018,
+      "itemSubTypeId": 266,
+      "typeName": "twohandRod",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 2023,
+      "itemSubTypeId": 266,
+      "typeName": "twohandRod",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 2025,
+      "itemSubTypeId": 266,
+      "typeName": "twohandRod",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 2027,
+      "itemSubTypeId": 266,
+      "typeName": "twohandRod",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 2048,
+      "itemSubTypeId": 266,
+      "typeName": "twohandRod",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 2049,
+      "itemSubTypeId": 266,
+      "typeName": "twohandRod",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 2051,
+      "itemSubTypeId": 266,
+      "typeName": "twohandRod",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 2055,
+      "itemSubTypeId": 266,
+      "typeName": "twohandRod",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 2056,
+      "itemSubTypeId": 266,
+      "typeName": "twohandRod",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 2057,
+      "itemSubTypeId": 266,
+      "typeName": "twohandRod",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 2058,
+      "itemSubTypeId": 266,
+      "typeName": "twohandRod",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 2060,
+      "itemSubTypeId": 266,
+      "typeName": "twohandRod",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 13001,
+      "itemSubTypeId": 256,
+      "typeName": "dagger",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 13017,
+      "itemSubTypeId": 256,
+      "typeName": "dagger",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 13027,
+      "itemSubTypeId": 256,
+      "typeName": "dagger",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 13030,
+      "itemSubTypeId": 256,
+      "typeName": "dagger",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 13034,
+      "itemSubTypeId": 256,
+      "typeName": "dagger",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 13035,
+      "itemSubTypeId": 256,
+      "typeName": "dagger",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 13061,
+      "itemSubTypeId": 256,
+      "typeName": "dagger",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 13079,
+      "itemSubTypeId": 256,
+      "typeName": "dagger",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 13093,
+      "itemSubTypeId": 256,
+      "typeName": "dagger",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 13127,
+      "itemSubTypeId": 273,
+      "typeName": "gun",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1027,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 13138,
+      "itemSubTypeId": 273,
+      "typeName": "gun",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1027,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 13146,
+      "itemSubTypeId": 273,
+      "typeName": "gun",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1027,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 13154,
+      "itemSubTypeId": 276,
+      "typeName": "gun",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1027,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 13189,
+      "itemSubTypeId": 274,
+      "typeName": "gun",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1027,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 13314,
+      "itemSubTypeId": 1026,
+      "typeName": "",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 13322,
+      "itemSubTypeId": 278,
+      "typeName": "shuriken",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1026,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 13332,
+      "itemSubTypeId": 278,
+      "typeName": "shuriken",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1026,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 13337,
+      "itemSubTypeId": 278,
+      "typeName": "shuriken",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1026,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 13338,
+      "itemSubTypeId": 278,
+      "typeName": "shuriken",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1026,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 13345,
+      "itemSubTypeId": 278,
+      "typeName": "shuriken",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1026,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 13346,
+      "itemSubTypeId": 278,
+      "typeName": "shuriken",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1026,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 13347,
+      "itemSubTypeId": 278,
+      "typeName": "shuriken",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1026,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 13412,
+      "itemSubTypeId": 257,
+      "typeName": "sword",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 13413,
+      "itemSubTypeId": 257,
+      "typeName": "sword",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 13414,
+      "itemSubTypeId": 257,
+      "typeName": "sword",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 13441,
+      "itemSubTypeId": 257,
+      "typeName": "sword",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 13442,
+      "itemSubTypeId": 257,
+      "typeName": "sword",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 13461,
+      "itemSubTypeId": 257,
+      "typeName": "sword",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 13485,
+      "itemSubTypeId": 257,
+      "typeName": "sword",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 13493,
+      "itemSubTypeId": 257,
+      "typeName": "sword",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 16013,
+      "itemSubTypeId": 263,
+      "typeName": "mace",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 16018,
+      "itemSubTypeId": 263,
+      "typeName": "mace",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 16023,
+      "itemSubTypeId": 263,
+      "typeName": "mace",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 16028,
+      "itemSubTypeId": 263,
+      "typeName": "mace",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 16033,
+      "itemSubTypeId": 263,
+      "typeName": "mace",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 16039,
+      "itemSubTypeId": 263,
+      "typeName": "mace",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 16040,
+      "itemSubTypeId": 263,
+      "typeName": "mace",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 16063,
+      "itemSubTypeId": 263,
+      "typeName": "mace",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 16088,
+      "itemSubTypeId": 263,
+      "typeName": "mace",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 16089,
+      "itemSubTypeId": 263,
+      "typeName": "mace",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 16092,
+      "itemSubTypeId": 263,
+      "typeName": "mace",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 16093,
+      "itemSubTypeId": 263,
+      "typeName": "mace",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 16094,
+      "itemSubTypeId": 263,
+      "typeName": "mace",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 16095,
+      "itemSubTypeId": 263,
+      "typeName": "mace",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 16096,
+      "itemSubTypeId": 263,
+      "typeName": "mace",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 16099,
+      "itemSubTypeId": 263,
+      "typeName": "mace",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 18112,
+      "itemSubTypeId": 267,
+      "typeName": "bow",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 18119,
+      "itemSubTypeId": 267,
+      "typeName": "bow",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 18121,
+      "itemSubTypeId": 267,
+      "typeName": "bow",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 18122,
+      "itemSubTypeId": 267,
+      "typeName": "bow",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 18130,
+      "itemSubTypeId": 267,
+      "typeName": "bow",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 18132,
+      "itemSubTypeId": 267,
+      "typeName": "bow",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 18145,
+      "itemSubTypeId": 267,
+      "typeName": "bow",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 18149,
+      "itemSubTypeId": 267,
+      "typeName": "bow",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 18164,
+      "itemSubTypeId": 267,
+      "typeName": "bow",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 18170,
+      "itemSubTypeId": 267,
+      "typeName": "bow",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 18174,
+      "itemSubTypeId": 267,
+      "typeName": "bow",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 18178,
+      "itemSubTypeId": 267,
+      "typeName": "bow",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 18179,
+      "itemSubTypeId": 267,
+      "typeName": "bow",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 18180,
+      "itemSubTypeId": 267,
+      "typeName": "bow",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 18184,
+      "itemSubTypeId": 267,
+      "typeName": "bow",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 18185,
+      "itemSubTypeId": 267,
+      "typeName": "bow",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 18186,
+      "itemSubTypeId": 267,
+      "typeName": "bow",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 18187,
+      "itemSubTypeId": 267,
+      "typeName": "bow",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 18188,
+      "itemSubTypeId": 267,
+      "typeName": "bow",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 18190,
+      "itemSubTypeId": 267,
+      "typeName": "bow",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 18191,
+      "itemSubTypeId": 267,
+      "typeName": "bow",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 18198,
+      "itemSubTypeId": 267,
+      "typeName": "bow",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 21005,
+      "itemSubTypeId": 258,
+      "typeName": "twohandSword",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 21009,
+      "itemSubTypeId": 258,
+      "typeName": "twohandSword",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 21011,
+      "itemSubTypeId": 258,
+      "typeName": "twohandSword",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 21016,
+      "itemSubTypeId": 258,
+      "typeName": "twohandSword",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 21018,
+      "itemSubTypeId": 258,
+      "typeName": "twohandSword",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 21038,
+      "itemSubTypeId": 258,
+      "typeName": "twohandSword",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 21039,
+      "itemSubTypeId": 258,
+      "typeName": "twohandSword",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 21047,
+      "itemSubTypeId": 258,
+      "typeName": "twohandSword",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 21050,
+      "itemSubTypeId": 258,
+      "typeName": "twohandSword",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 21051,
+      "itemSubTypeId": 258,
+      "typeName": "twohandSword",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 21052,
+      "itemSubTypeId": 258,
+      "typeName": "twohandSword",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 21054,
+      "itemSubTypeId": 258,
+      "typeName": "twohandSword",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 21055,
+      "itemSubTypeId": 258,
+      "typeName": "twohandSword",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 21058,
+      "itemSubTypeId": 258,
+      "typeName": "twohandSword",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 21063,
+      "itemSubTypeId": 258,
+      "typeName": "twohandSword",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 26007,
+      "itemSubTypeId": 260,
+      "typeName": "twohandSpear",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 26118,
+      "itemSubTypeId": 265,
+      "typeName": "rod",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 26138,
+      "itemSubTypeId": 265,
+      "typeName": "rod",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 26139,
+      "itemSubTypeId": 265,
+      "typeName": "rod",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 26140,
+      "itemSubTypeId": 266,
+      "typeName": "twohandRod",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 26151,
+      "itemSubTypeId": 265,
+      "typeName": "rod",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 26154,
+      "itemSubTypeId": 265,
+      "typeName": "rod",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 26155,
+      "itemSubTypeId": 265,
+      "typeName": "rod",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 26158,
+      "itemSubTypeId": 265,
+      "typeName": "rod",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 26159,
+      "itemSubTypeId": 265,
+      "typeName": "rod",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 26160,
+      "itemSubTypeId": 265,
+      "typeName": "rod",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 26161,
+      "itemSubTypeId": 265,
+      "typeName": "rod",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 26162,
+      "itemSubTypeId": 265,
+      "typeName": "rod",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 26164,
+      "itemSubTypeId": 265,
+      "typeName": "rod",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 26165,
+      "itemSubTypeId": 265,
+      "typeName": "rod",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 26166,
+      "itemSubTypeId": 265,
+      "typeName": "rod",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 26172,
+      "itemSubTypeId": 265,
+      "typeName": "rod",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 26200,
+      "itemSubTypeId": 270,
+      "typeName": "whip",
+      "allowsShield": true,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 26212,
+      "itemSubTypeId": 270,
+      "typeName": "whip",
+      "allowsShield": true,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 26213,
+      "itemSubTypeId": 270,
+      "typeName": "whip",
+      "allowsShield": true,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 26215,
+      "itemSubTypeId": 270,
+      "typeName": "whip",
+      "allowsShield": true,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 26216,
+      "itemSubTypeId": 270,
+      "typeName": "whip",
+      "allowsShield": true,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 26221,
+      "itemSubTypeId": 270,
+      "typeName": "whip",
+      "allowsShield": true,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 28000,
+      "itemSubTypeId": 272,
+      "typeName": "katar",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 28007,
+      "itemSubTypeId": 272,
+      "typeName": "katar",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 28010,
+      "itemSubTypeId": 272,
+      "typeName": "katar",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 28022,
+      "itemSubTypeId": 272,
+      "typeName": "katar",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 28038,
+      "itemSubTypeId": 272,
+      "typeName": "katar",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 28039,
+      "itemSubTypeId": 272,
+      "typeName": "katar",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 28042,
+      "itemSubTypeId": 272,
+      "typeName": "katar",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 28044,
+      "itemSubTypeId": 272,
+      "typeName": "katar",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 28045,
+      "itemSubTypeId": 272,
+      "typeName": "katar",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 28046,
+      "itemSubTypeId": 272,
+      "typeName": "katar",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 28100,
+      "itemSubTypeId": 262,
+      "typeName": "twohandAxe",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 28101,
+      "itemSubTypeId": 262,
+      "typeName": "twohandAxe",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 28106,
+      "itemSubTypeId": 262,
+      "typeName": "twohandAxe",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 28120,
+      "itemSubTypeId": 262,
+      "typeName": "twohandAxe",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 28130,
+      "itemSubTypeId": 262,
+      "typeName": "twohandAxe",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 28136,
+      "itemSubTypeId": 262,
+      "typeName": "twohandAxe",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 28138,
+      "itemSubTypeId": 262,
+      "typeName": "twohandAxe",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 28140,
+      "itemSubTypeId": 262,
+      "typeName": "twohandAxe",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 28141,
+      "itemSubTypeId": 262,
+      "typeName": "twohandAxe",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 28223,
+      "itemSubTypeId": 274,
+      "typeName": "gun",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1027,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 28225,
+      "itemSubTypeId": 275,
+      "typeName": "gun",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1027,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 28226,
+      "itemSubTypeId": 277,
+      "typeName": "gun",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1027,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 28240,
+      "itemSubTypeId": 274,
+      "typeName": "gun",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1027,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 28241,
+      "itemSubTypeId": 275,
+      "typeName": "gun",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1027,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 28242,
+      "itemSubTypeId": 276,
+      "typeName": "gun",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1027,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 28243,
+      "itemSubTypeId": 277,
+      "typeName": "gun",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1027,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 28244,
+      "itemSubTypeId": 276,
+      "typeName": "gun",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1027,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 28253,
+      "itemSubTypeId": 274,
+      "typeName": "gun",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1027,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 28254,
+      "itemSubTypeId": 275,
+      "typeName": "gun",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1027,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 28257,
+      "itemSubTypeId": 277,
+      "typeName": "gun",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1027,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 28258,
+      "itemSubTypeId": 275,
+      "typeName": "gun",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1027,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 28618,
+      "itemSubTypeId": 271,
+      "typeName": "book",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 28619,
+      "itemSubTypeId": 271,
+      "typeName": "book",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 28626,
+      "itemSubTypeId": 271,
+      "typeName": "book",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 28629,
+      "itemSubTypeId": 271,
+      "typeName": "book",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 28633,
+      "itemSubTypeId": 271,
+      "typeName": "book",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 28635,
+      "itemSubTypeId": 271,
+      "typeName": "book",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 28636,
+      "itemSubTypeId": 271,
+      "typeName": "book",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 28705,
+      "itemSubTypeId": 256,
+      "typeName": "dagger",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 28706,
+      "itemSubTypeId": 256,
+      "typeName": "dagger",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 28721,
+      "itemSubTypeId": 256,
+      "typeName": "dagger",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 28755,
+      "itemSubTypeId": 256,
+      "typeName": "dagger",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 28762,
+      "itemSubTypeId": 256,
+      "typeName": "dagger",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 28763,
+      "itemSubTypeId": 256,
+      "typeName": "dagger",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 28764,
+      "itemSubTypeId": 256,
+      "typeName": "dagger",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 28765,
+      "itemSubTypeId": 256,
+      "typeName": "dagger",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 28766,
+      "itemSubTypeId": 256,
+      "typeName": "dagger",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 28767,
+      "itemSubTypeId": 256,
+      "typeName": "dagger",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 28768,
+      "itemSubTypeId": 256,
+      "typeName": "dagger",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 28771,
+      "itemSubTypeId": 256,
+      "typeName": "dagger",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 28772,
+      "itemSubTypeId": 256,
+      "typeName": "dagger",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 28774,
+      "itemSubTypeId": 256,
+      "typeName": "dagger",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 28775,
+      "itemSubTypeId": 256,
+      "typeName": "dagger",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 28776,
+      "itemSubTypeId": 256,
+      "typeName": "dagger",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 28785,
+      "itemSubTypeId": 256,
+      "typeName": "dagger",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 28787,
+      "itemSubTypeId": 256,
+      "typeName": "dagger",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 28789,
+      "itemSubTypeId": 256,
+      "typeName": "dagger",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 32005,
+      "itemSubTypeId": 259,
+      "typeName": "spear",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 32013,
+      "itemSubTypeId": 259,
+      "typeName": "spear",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 32018,
+      "itemSubTypeId": 259,
+      "typeName": "spear",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 32019,
+      "itemSubTypeId": 259,
+      "typeName": "spear",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 32023,
+      "itemSubTypeId": 259,
+      "typeName": "spear",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 32024,
+      "itemSubTypeId": 259,
+      "typeName": "spear",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 32025,
+      "itemSubTypeId": 259,
+      "typeName": "spear",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 32026,
+      "itemSubTypeId": 259,
+      "typeName": "spear",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 32027,
+      "itemSubTypeId": 259,
+      "typeName": "spear",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 32107,
+      "itemSubTypeId": 269,
+      "typeName": "instrument",
+      "allowsShield": true,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 32108,
+      "itemSubTypeId": 269,
+      "typeName": "instrument",
+      "allowsShield": true,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 32110,
+      "itemSubTypeId": 269,
+      "typeName": "instrument",
+      "allowsShield": true,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 32111,
+      "itemSubTypeId": 269,
+      "typeName": "instrument",
+      "allowsShield": true,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 32117,
+      "itemSubTypeId": 269,
+      "typeName": "instrument",
+      "allowsShield": true,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 32301,
+      "itemSubTypeId": 273,
+      "typeName": "gun",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1027,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 32302,
+      "itemSubTypeId": 273,
+      "typeName": "gun",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1027,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 32303,
+      "itemSubTypeId": 273,
+      "typeName": "gun",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1027,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 32304,
+      "itemSubTypeId": 273,
+      "typeName": "gun",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1027,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 32350,
+      "itemSubTypeId": 257,
+      "typeName": "sword",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 32351,
+      "itemSubTypeId": 257,
+      "typeName": "sword",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 32352,
+      "itemSubTypeId": 257,
+      "typeName": "sword",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 32353,
+      "itemSubTypeId": 257,
+      "typeName": "sword",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 32401,
+      "itemSubTypeId": 263,
+      "typeName": "mace",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 32402,
+      "itemSubTypeId": 263,
+      "typeName": "mace",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 32403,
+      "itemSubTypeId": 263,
+      "typeName": "mace",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 500001,
+      "itemSubTypeId": 257,
+      "typeName": "sword",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 500003,
+      "itemSubTypeId": 257,
+      "typeName": "sword",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 500004,
+      "itemSubTypeId": 257,
+      "typeName": "sword",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 500007,
+      "itemSubTypeId": 257,
+      "typeName": "sword",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 500008,
+      "itemSubTypeId": 257,
+      "typeName": "sword",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 500013,
+      "itemSubTypeId": 257,
+      "typeName": "sword",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 500014,
+      "itemSubTypeId": 257,
+      "typeName": "sword",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 500015,
+      "itemSubTypeId": 257,
+      "typeName": "sword",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 500016,
+      "itemSubTypeId": 257,
+      "typeName": "sword",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 500017,
+      "itemSubTypeId": 257,
+      "typeName": "sword",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 500018,
+      "itemSubTypeId": 257,
+      "typeName": "sword",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 500019,
+      "itemSubTypeId": 257,
+      "typeName": "sword",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 500020,
+      "itemSubTypeId": 257,
+      "typeName": "sword",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 500024,
+      "itemSubTypeId": 257,
+      "typeName": "sword",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 500025,
+      "itemSubTypeId": 257,
+      "typeName": "sword",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 500026,
+      "itemSubTypeId": 257,
+      "typeName": "sword",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 500027,
+      "itemSubTypeId": 257,
+      "typeName": "sword",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 500028,
+      "itemSubTypeId": 257,
+      "typeName": "sword",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 500030,
+      "itemSubTypeId": 257,
+      "typeName": "sword",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 500036,
+      "itemSubTypeId": 257,
+      "typeName": "sword",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 500037,
+      "itemSubTypeId": 257,
+      "typeName": "sword",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 500038,
+      "itemSubTypeId": 257,
+      "typeName": "sword",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 500039,
+      "itemSubTypeId": 257,
+      "typeName": "sword",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 500040,
+      "itemSubTypeId": 257,
+      "typeName": "sword",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 500042,
+      "itemSubTypeId": 257,
+      "typeName": "sword",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 500043,
+      "itemSubTypeId": 257,
+      "typeName": "sword",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 500044,
+      "itemSubTypeId": 256,
+      "typeName": "dagger",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 500045,
+      "itemSubTypeId": 257,
+      "typeName": "sword",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 500046,
+      "itemSubTypeId": 257,
+      "typeName": "sword",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 500049,
+      "itemSubTypeId": 257,
+      "typeName": "sword",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 500050,
+      "itemSubTypeId": 257,
+      "typeName": "sword",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 500051,
+      "itemSubTypeId": 257,
+      "typeName": "sword",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 500054,
+      "itemSubTypeId": 257,
+      "typeName": "sword",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 500055,
+      "itemSubTypeId": 257,
+      "typeName": "sword",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 500056,
+      "itemSubTypeId": 257,
+      "typeName": "sword",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 500062,
+      "itemSubTypeId": 257,
+      "typeName": "sword",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 500063,
+      "itemSubTypeId": 257,
+      "typeName": "sword",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 500065,
+      "itemSubTypeId": 257,
+      "typeName": "sword",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 500066,
+      "itemSubTypeId": 257,
+      "typeName": "sword",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 500072,
+      "itemSubTypeId": 257,
+      "typeName": "sword",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 500074,
+      "itemSubTypeId": 257,
+      "typeName": "sword",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 500092,
+      "itemSubTypeId": 257,
+      "typeName": "sword",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 500093,
+      "itemSubTypeId": 257,
+      "typeName": "sword",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 500094,
+      "itemSubTypeId": 257,
+      "typeName": "sword",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 500101,
+      "itemSubTypeId": 257,
+      "typeName": "sword",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 500102,
+      "itemSubTypeId": 257,
+      "typeName": "sword",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 500103,
+      "itemSubTypeId": 257,
+      "typeName": "sword",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 500107,
+      "itemSubTypeId": 257,
+      "typeName": "sword",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 510001,
+      "itemSubTypeId": 256,
+      "typeName": "dagger",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 510002,
+      "itemSubTypeId": 256,
+      "typeName": "dagger",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 510006,
+      "itemSubTypeId": 256,
+      "typeName": "dagger",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 510008,
+      "itemSubTypeId": 256,
+      "typeName": "dagger",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 510009,
+      "itemSubTypeId": 256,
+      "typeName": "dagger",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 510017,
+      "itemSubTypeId": 256,
+      "typeName": "dagger",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 510018,
+      "itemSubTypeId": 256,
+      "typeName": "dagger",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 510019,
+      "itemSubTypeId": 256,
+      "typeName": "dagger",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 510020,
+      "itemSubTypeId": 256,
+      "typeName": "dagger",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 510022,
+      "itemSubTypeId": 256,
+      "typeName": "dagger",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 510026,
+      "itemSubTypeId": 256,
+      "typeName": "dagger",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 510027,
+      "itemSubTypeId": 256,
+      "typeName": "dagger",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 510028,
+      "itemSubTypeId": 256,
+      "typeName": "dagger",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 510030,
+      "itemSubTypeId": 256,
+      "typeName": "dagger",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 510032,
+      "itemSubTypeId": 256,
+      "typeName": "dagger",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 510033,
+      "itemSubTypeId": 256,
+      "typeName": "dagger",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 510034,
+      "itemSubTypeId": 256,
+      "typeName": "dagger",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 510038,
+      "itemSubTypeId": 256,
+      "typeName": "dagger",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 510039,
+      "itemSubTypeId": 256,
+      "typeName": "dagger",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 510040,
+      "itemSubTypeId": 256,
+      "typeName": "dagger",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 510041,
+      "itemSubTypeId": 256,
+      "typeName": "dagger",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 510050,
+      "itemSubTypeId": 256,
+      "typeName": "dagger",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 510051,
+      "itemSubTypeId": 256,
+      "typeName": "dagger",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 510052,
+      "itemSubTypeId": 256,
+      "typeName": "dagger",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 510053,
+      "itemSubTypeId": 256,
+      "typeName": "dagger",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 510054,
+      "itemSubTypeId": 256,
+      "typeName": "dagger",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 510055,
+      "itemSubTypeId": 256,
+      "typeName": "dagger",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 510056,
+      "itemSubTypeId": 256,
+      "typeName": "dagger",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 510057,
+      "itemSubTypeId": 256,
+      "typeName": "dagger",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 510060,
+      "itemSubTypeId": 256,
+      "typeName": "dagger",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 510061,
+      "itemSubTypeId": 256,
+      "typeName": "dagger",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 510062,
+      "itemSubTypeId": 256,
+      "typeName": "dagger",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 510066,
+      "itemSubTypeId": 256,
+      "typeName": "dagger",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 510069,
+      "itemSubTypeId": 256,
+      "typeName": "dagger",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 510070,
+      "itemSubTypeId": 256,
+      "typeName": "dagger",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 510071,
+      "itemSubTypeId": 256,
+      "typeName": "dagger",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 510072,
+      "itemSubTypeId": 256,
+      "typeName": "dagger",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 510075,
+      "itemSubTypeId": 256,
+      "typeName": "dagger",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 510076,
+      "itemSubTypeId": 256,
+      "typeName": "dagger",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 510077,
+      "itemSubTypeId": 256,
+      "typeName": "dagger",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 510091,
+      "itemSubTypeId": 256,
+      "typeName": "dagger",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 510092,
+      "itemSubTypeId": 256,
+      "typeName": "dagger",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 510102,
+      "itemSubTypeId": 256,
+      "typeName": "dagger",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 510103,
+      "itemSubTypeId": 256,
+      "typeName": "dagger",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 510104,
+      "itemSubTypeId": 256,
+      "typeName": "dagger",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 510105,
+      "itemSubTypeId": 256,
+      "typeName": "dagger",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 510106,
+      "itemSubTypeId": 256,
+      "typeName": "dagger",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 510139,
+      "itemSubTypeId": 256,
+      "typeName": "dagger",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 510150,
+      "itemSubTypeId": 256,
+      "typeName": "dagger",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 510151,
+      "itemSubTypeId": 256,
+      "typeName": "dagger",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 510152,
+      "itemSubTypeId": 256,
+      "typeName": "dagger",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 510153,
+      "itemSubTypeId": 256,
+      "typeName": "dagger",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 510165,
+      "itemSubTypeId": 256,
+      "typeName": "dagger",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 510166,
+      "itemSubTypeId": 256,
+      "typeName": "dagger",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 510172,
+      "itemSubTypeId": 256,
+      "typeName": "dagger",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": true
+    },
+    {
+      "id": 520000,
+      "itemSubTypeId": 261,
+      "typeName": "axe",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 520002,
+      "itemSubTypeId": 261,
+      "typeName": "axe",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 520008,
+      "itemSubTypeId": 261,
+      "typeName": "axe",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 520009,
+      "itemSubTypeId": 261,
+      "typeName": "axe",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 520012,
+      "itemSubTypeId": 261,
+      "typeName": "axe",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 520017,
+      "itemSubTypeId": 261,
+      "typeName": "axe",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 520021,
+      "itemSubTypeId": 261,
+      "typeName": "axe",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 520031,
+      "itemSubTypeId": 261,
+      "typeName": "axe",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 530000,
+      "itemSubTypeId": 259,
+      "typeName": "spear",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 530002,
+      "itemSubTypeId": 259,
+      "typeName": "spear",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 530005,
+      "itemSubTypeId": 259,
+      "typeName": "spear",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 530006,
+      "itemSubTypeId": 259,
+      "typeName": "spear",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 530009,
+      "itemSubTypeId": 259,
+      "typeName": "spear",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 530010,
+      "itemSubTypeId": 259,
+      "typeName": "spear",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 530012,
+      "itemSubTypeId": 259,
+      "typeName": "spear",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 530013,
+      "itemSubTypeId": 259,
+      "typeName": "spear",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 530014,
+      "itemSubTypeId": 259,
+      "typeName": "spear",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 530015,
+      "itemSubTypeId": 259,
+      "typeName": "spear",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 530018,
+      "itemSubTypeId": 259,
+      "typeName": "spear",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 530019,
+      "itemSubTypeId": 259,
+      "typeName": "spear",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 530023,
+      "itemSubTypeId": 259,
+      "typeName": "spear",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 530025,
+      "itemSubTypeId": 259,
+      "typeName": "spear",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 530031,
+      "itemSubTypeId": 259,
+      "typeName": "spear",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 530034,
+      "itemSubTypeId": 259,
+      "typeName": "spear",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 530035,
+      "itemSubTypeId": 259,
+      "typeName": "spear",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 530045,
+      "itemSubTypeId": 259,
+      "typeName": "spear",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 530054,
+      "itemSubTypeId": 259,
+      "typeName": "spear",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 530057,
+      "itemSubTypeId": 259,
+      "typeName": "spear",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 530058,
+      "itemSubTypeId": 259,
+      "typeName": "spear",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 530060,
+      "itemSubTypeId": 259,
+      "typeName": "spear",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 540000,
+      "itemSubTypeId": 271,
+      "typeName": "book",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 540001,
+      "itemSubTypeId": 271,
+      "typeName": "book",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 540004,
+      "itemSubTypeId": 271,
+      "typeName": "book",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 540005,
+      "itemSubTypeId": 271,
+      "typeName": "book",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 540009,
+      "itemSubTypeId": 271,
+      "typeName": "book",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 540010,
+      "itemSubTypeId": 271,
+      "typeName": "book",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 540011,
+      "itemSubTypeId": 271,
+      "typeName": "book",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 540013,
+      "itemSubTypeId": 271,
+      "typeName": "book",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 540014,
+      "itemSubTypeId": 271,
+      "typeName": "book",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 540015,
+      "itemSubTypeId": 271,
+      "typeName": "book",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 540019,
+      "itemSubTypeId": 271,
+      "typeName": "book",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 540020,
+      "itemSubTypeId": 271,
+      "typeName": "book",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 540021,
+      "itemSubTypeId": 271,
+      "typeName": "book",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 540022,
+      "itemSubTypeId": 271,
+      "typeName": "book",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 540023,
+      "itemSubTypeId": 271,
+      "typeName": "book",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 540024,
+      "itemSubTypeId": 271,
+      "typeName": "book",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 540025,
+      "itemSubTypeId": 271,
+      "typeName": "book",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 540026,
+      "itemSubTypeId": 271,
+      "typeName": "book",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 540031,
+      "itemSubTypeId": 271,
+      "typeName": "book",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 540032,
+      "itemSubTypeId": 271,
+      "typeName": "book",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 540033,
+      "itemSubTypeId": 271,
+      "typeName": "book",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 540034,
+      "itemSubTypeId": 271,
+      "typeName": "book",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 540035,
+      "itemSubTypeId": 271,
+      "typeName": "book",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 540039,
+      "itemSubTypeId": 271,
+      "typeName": "book",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 540040,
+      "itemSubTypeId": 271,
+      "typeName": "book",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 540041,
+      "itemSubTypeId": 271,
+      "typeName": "book",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 540042,
+      "itemSubTypeId": 271,
+      "typeName": "book",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 540043,
+      "itemSubTypeId": 271,
+      "typeName": "book",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 540044,
+      "itemSubTypeId": 271,
+      "typeName": "book",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 540045,
+      "itemSubTypeId": 271,
+      "typeName": "book",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 540046,
+      "itemSubTypeId": 271,
+      "typeName": "book",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 540048,
+      "itemSubTypeId": 271,
+      "typeName": "book",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 540049,
+      "itemSubTypeId": 271,
+      "typeName": "book",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 540051,
+      "itemSubTypeId": 271,
+      "typeName": "book",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 540053,
+      "itemSubTypeId": 271,
+      "typeName": "book",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 540054,
+      "itemSubTypeId": 271,
+      "typeName": "book",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 540055,
+      "itemSubTypeId": 271,
+      "typeName": "book",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 540056,
+      "itemSubTypeId": 271,
+      "typeName": "book",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 540058,
+      "itemSubTypeId": 271,
+      "typeName": "book",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 540059,
+      "itemSubTypeId": 271,
+      "typeName": "book",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 540060,
+      "itemSubTypeId": 271,
+      "typeName": "book",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 540074,
+      "itemSubTypeId": 271,
+      "typeName": "book",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 540075,
+      "itemSubTypeId": 271,
+      "typeName": "book",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 540079,
+      "itemSubTypeId": 271,
+      "typeName": "book",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 540080,
+      "itemSubTypeId": 271,
+      "typeName": "book",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 540081,
+      "itemSubTypeId": 271,
+      "typeName": "book",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 540082,
+      "itemSubTypeId": 271,
+      "typeName": "book",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 540083,
+      "itemSubTypeId": 271,
+      "typeName": "book",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 540086,
+      "itemSubTypeId": 271,
+      "typeName": "book",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 540087,
+      "itemSubTypeId": 271,
+      "typeName": "book",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 540088,
+      "itemSubTypeId": 271,
+      "typeName": "book",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 540090,
+      "itemSubTypeId": 271,
+      "typeName": "book",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 540091,
+      "itemSubTypeId": 271,
+      "typeName": "book",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 540094,
+      "itemSubTypeId": 271,
+      "typeName": "book",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 540096,
+      "itemSubTypeId": 271,
+      "typeName": "book",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 550001,
+      "itemSubTypeId": 265,
+      "typeName": "rod",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 550002,
+      "itemSubTypeId": 265,
+      "typeName": "rod",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 550006,
+      "itemSubTypeId": 265,
+      "typeName": "rod",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 550007,
+      "itemSubTypeId": 265,
+      "typeName": "rod",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 550008,
+      "itemSubTypeId": 265,
+      "typeName": "rod",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 550009,
+      "itemSubTypeId": 265,
+      "typeName": "rod",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 550010,
+      "itemSubTypeId": 265,
+      "typeName": "rod",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 550011,
+      "itemSubTypeId": 265,
+      "typeName": "rod",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 550012,
+      "itemSubTypeId": 265,
+      "typeName": "rod",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 550013,
+      "itemSubTypeId": 265,
+      "typeName": "rod",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 550014,
+      "itemSubTypeId": 265,
+      "typeName": "rod",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 550015,
+      "itemSubTypeId": 265,
+      "typeName": "rod",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 550019,
+      "itemSubTypeId": 265,
+      "typeName": "rod",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 550020,
+      "itemSubTypeId": 265,
+      "typeName": "rod",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 550023,
+      "itemSubTypeId": 265,
+      "typeName": "rod",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 550024,
+      "itemSubTypeId": 265,
+      "typeName": "rod",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 550025,
+      "itemSubTypeId": 265,
+      "typeName": "rod",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 550026,
+      "itemSubTypeId": 265,
+      "typeName": "rod",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 550027,
+      "itemSubTypeId": 265,
+      "typeName": "rod",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 550028,
+      "itemSubTypeId": 265,
+      "typeName": "rod",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 550029,
+      "itemSubTypeId": 265,
+      "typeName": "rod",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 550030,
+      "itemSubTypeId": 265,
+      "typeName": "rod",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 550031,
+      "itemSubTypeId": 265,
+      "typeName": "rod",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 550041,
+      "itemSubTypeId": 265,
+      "typeName": "rod",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 550042,
+      "itemSubTypeId": 265,
+      "typeName": "rod",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 550043,
+      "itemSubTypeId": 265,
+      "typeName": "rod",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 550044,
+      "itemSubTypeId": 265,
+      "typeName": "rod",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 550045,
+      "itemSubTypeId": 265,
+      "typeName": "rod",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 550046,
+      "itemSubTypeId": 265,
+      "typeName": "rod",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 550050,
+      "itemSubTypeId": 265,
+      "typeName": "rod",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 550051,
+      "itemSubTypeId": 265,
+      "typeName": "rod",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 550052,
+      "itemSubTypeId": 265,
+      "typeName": "rod",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 550053,
+      "itemSubTypeId": 265,
+      "typeName": "rod",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 550054,
+      "itemSubTypeId": 265,
+      "typeName": "rod",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 550055,
+      "itemSubTypeId": 265,
+      "typeName": "rod",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 550056,
+      "itemSubTypeId": 265,
+      "typeName": "rod",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 550057,
+      "itemSubTypeId": 265,
+      "typeName": "rod",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 550058,
+      "itemSubTypeId": 265,
+      "typeName": "rod",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 550059,
+      "itemSubTypeId": 265,
+      "typeName": "rod",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 550060,
+      "itemSubTypeId": 265,
+      "typeName": "rod",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 550061,
+      "itemSubTypeId": 265,
+      "typeName": "rod",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 550062,
+      "itemSubTypeId": 265,
+      "typeName": "rod",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 550063,
+      "itemSubTypeId": 265,
+      "typeName": "rod",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 550064,
+      "itemSubTypeId": 265,
+      "typeName": "rod",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 550065,
+      "itemSubTypeId": 265,
+      "typeName": "rod",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 550066,
+      "itemSubTypeId": 265,
+      "typeName": "rod",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 550067,
+      "itemSubTypeId": 265,
+      "typeName": "rod",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 550068,
+      "itemSubTypeId": 265,
+      "typeName": "rod",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 550069,
+      "itemSubTypeId": 265,
+      "typeName": "rod",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 550070,
+      "itemSubTypeId": 265,
+      "typeName": "rod",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 550075,
+      "itemSubTypeId": 265,
+      "typeName": "rod",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 550076,
+      "itemSubTypeId": 265,
+      "typeName": "rod",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 550079,
+      "itemSubTypeId": 265,
+      "typeName": "rod",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 550080,
+      "itemSubTypeId": 265,
+      "typeName": "rod",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 550081,
+      "itemSubTypeId": 265,
+      "typeName": "rod",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 550082,
+      "itemSubTypeId": 265,
+      "typeName": "rod",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 550088,
+      "itemSubTypeId": 265,
+      "typeName": "rod",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 550089,
+      "itemSubTypeId": 265,
+      "typeName": "rod",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 550090,
+      "itemSubTypeId": 265,
+      "typeName": "rod",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 550091,
+      "itemSubTypeId": 265,
+      "typeName": "rod",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 550092,
+      "itemSubTypeId": 265,
+      "typeName": "rod",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 550093,
+      "itemSubTypeId": 265,
+      "typeName": "rod",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 550094,
+      "itemSubTypeId": 265,
+      "typeName": "rod",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 550115,
+      "itemSubTypeId": 265,
+      "typeName": "rod",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 550116,
+      "itemSubTypeId": 265,
+      "typeName": "rod",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 550117,
+      "itemSubTypeId": 265,
+      "typeName": "rod",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 550118,
+      "itemSubTypeId": 265,
+      "typeName": "rod",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 550119,
+      "itemSubTypeId": 265,
+      "typeName": "rod",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 550130,
+      "itemSubTypeId": 265,
+      "typeName": "rod",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 550131,
+      "itemSubTypeId": 265,
+      "typeName": "rod",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 550132,
+      "itemSubTypeId": 265,
+      "typeName": "rod",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 550133,
+      "itemSubTypeId": 265,
+      "typeName": "rod",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 550134,
+      "itemSubTypeId": 265,
+      "typeName": "rod",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 550135,
+      "itemSubTypeId": 265,
+      "typeName": "rod",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 550141,
+      "itemSubTypeId": 265,
+      "typeName": "rod",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 550143,
+      "itemSubTypeId": 265,
+      "typeName": "rod",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 550144,
+      "itemSubTypeId": 265,
+      "typeName": "rod",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 550145,
+      "itemSubTypeId": 265,
+      "typeName": "rod",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 550146,
+      "itemSubTypeId": 265,
+      "typeName": "rod",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 550148,
+      "itemSubTypeId": 265,
+      "typeName": "rod",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 550150,
+      "itemSubTypeId": 265,
+      "typeName": "rod",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 550152,
+      "itemSubTypeId": 265,
+      "typeName": "rod",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 550155,
+      "itemSubTypeId": 265,
+      "typeName": "rod",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 550156,
+      "itemSubTypeId": 265,
+      "typeName": "rod",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 550159,
+      "itemSubTypeId": 265,
+      "typeName": "rod",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 560000,
+      "itemSubTypeId": 268,
+      "typeName": "fist",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 560002,
+      "itemSubTypeId": 268,
+      "typeName": "fist",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 560004,
+      "itemSubTypeId": 268,
+      "typeName": "fist",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 560006,
+      "itemSubTypeId": 268,
+      "typeName": "fist",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 560007,
+      "itemSubTypeId": 268,
+      "typeName": "fist",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 560008,
+      "itemSubTypeId": 268,
+      "typeName": "fist",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 560009,
+      "itemSubTypeId": 268,
+      "typeName": "fist",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 560011,
+      "itemSubTypeId": 268,
+      "typeName": "fist",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 560012,
+      "itemSubTypeId": 268,
+      "typeName": "fist",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 560013,
+      "itemSubTypeId": 268,
+      "typeName": "fist",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 560017,
+      "itemSubTypeId": 268,
+      "typeName": "fist",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 560018,
+      "itemSubTypeId": 268,
+      "typeName": "fist",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 560019,
+      "itemSubTypeId": 268,
+      "typeName": "fist",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 560020,
+      "itemSubTypeId": 268,
+      "typeName": "fist",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 560021,
+      "itemSubTypeId": 268,
+      "typeName": "fist",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 560024,
+      "itemSubTypeId": 268,
+      "typeName": "fist",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 560025,
+      "itemSubTypeId": 268,
+      "typeName": "fist",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 560026,
+      "itemSubTypeId": 268,
+      "typeName": "fist",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 560027,
+      "itemSubTypeId": 268,
+      "typeName": "fist",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 560030,
+      "itemSubTypeId": 268,
+      "typeName": "fist",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 560032,
+      "itemSubTypeId": 268,
+      "typeName": "fist",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 560034,
+      "itemSubTypeId": 268,
+      "typeName": "fist",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 560036,
+      "itemSubTypeId": 268,
+      "typeName": "fist",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 560037,
+      "itemSubTypeId": 268,
+      "typeName": "fist",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 560038,
+      "itemSubTypeId": 268,
+      "typeName": "fist",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 560048,
+      "itemSubTypeId": 268,
+      "typeName": "fist",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 560060,
+      "itemSubTypeId": 268,
+      "typeName": "fist",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 560061,
+      "itemSubTypeId": 268,
+      "typeName": "fist",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 560067,
+      "itemSubTypeId": 268,
+      "typeName": "fist",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 560068,
+      "itemSubTypeId": 268,
+      "typeName": "fist",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 560072,
+      "itemSubTypeId": 268,
+      "typeName": "fist",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 570000,
+      "itemSubTypeId": 269,
+      "typeName": "instrument",
+      "allowsShield": true,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 570002,
+      "itemSubTypeId": 269,
+      "typeName": "instrument",
+      "allowsShield": true,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 570005,
+      "itemSubTypeId": 269,
+      "typeName": "instrument",
+      "allowsShield": true,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 570008,
+      "itemSubTypeId": 269,
+      "typeName": "instrument",
+      "allowsShield": true,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 570009,
+      "itemSubTypeId": 269,
+      "typeName": "instrument",
+      "allowsShield": true,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 570010,
+      "itemSubTypeId": 269,
+      "typeName": "instrument",
+      "allowsShield": true,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 570012,
+      "itemSubTypeId": 269,
+      "typeName": "instrument",
+      "allowsShield": true,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 570013,
+      "itemSubTypeId": 269,
+      "typeName": "instrument",
+      "allowsShield": true,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 570016,
+      "itemSubTypeId": 269,
+      "typeName": "instrument",
+      "allowsShield": true,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 570017,
+      "itemSubTypeId": 269,
+      "typeName": "instrument",
+      "allowsShield": true,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 570018,
+      "itemSubTypeId": 269,
+      "typeName": "instrument",
+      "allowsShield": true,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 570019,
+      "itemSubTypeId": 269,
+      "typeName": "instrument",
+      "allowsShield": true,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 570020,
+      "itemSubTypeId": 269,
+      "typeName": "instrument",
+      "allowsShield": true,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 570022,
+      "itemSubTypeId": 269,
+      "typeName": "instrument",
+      "allowsShield": true,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 570023,
+      "itemSubTypeId": 269,
+      "typeName": "instrument",
+      "allowsShield": true,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 570024,
+      "itemSubTypeId": 269,
+      "typeName": "instrument",
+      "allowsShield": true,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 570027,
+      "itemSubTypeId": 269,
+      "typeName": "instrument",
+      "allowsShield": true,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 570028,
+      "itemSubTypeId": 269,
+      "typeName": "instrument",
+      "allowsShield": true,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 570029,
+      "itemSubTypeId": 269,
+      "typeName": "instrument",
+      "allowsShield": true,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 570032,
+      "itemSubTypeId": 269,
+      "typeName": "instrument",
+      "allowsShield": true,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 570033,
+      "itemSubTypeId": 269,
+      "typeName": "instrument",
+      "allowsShield": true,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 570036,
+      "itemSubTypeId": 269,
+      "typeName": "instrument",
+      "allowsShield": true,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 570037,
+      "itemSubTypeId": 269,
+      "typeName": "instrument",
+      "allowsShield": true,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 570045,
+      "itemSubTypeId": 269,
+      "typeName": "instrument",
+      "allowsShield": true,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 570062,
+      "itemSubTypeId": 269,
+      "typeName": "instrument",
+      "allowsShield": true,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 570063,
+      "itemSubTypeId": 269,
+      "typeName": "instrument",
+      "allowsShield": true,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 570072,
+      "itemSubTypeId": 269,
+      "typeName": "instrument",
+      "allowsShield": true,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 570073,
+      "itemSubTypeId": 269,
+      "typeName": "instrument",
+      "allowsShield": true,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 570075,
+      "itemSubTypeId": 269,
+      "typeName": "instrument",
+      "allowsShield": true,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 580000,
+      "itemSubTypeId": 270,
+      "typeName": "whip",
+      "allowsShield": true,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 580002,
+      "itemSubTypeId": 270,
+      "typeName": "whip",
+      "allowsShield": true,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 580005,
+      "itemSubTypeId": 270,
+      "typeName": "whip",
+      "allowsShield": true,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 580008,
+      "itemSubTypeId": 270,
+      "typeName": "whip",
+      "allowsShield": true,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 580009,
+      "itemSubTypeId": 270,
+      "typeName": "whip",
+      "allowsShield": true,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 580010,
+      "itemSubTypeId": 270,
+      "typeName": "whip",
+      "allowsShield": true,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 580012,
+      "itemSubTypeId": 270,
+      "typeName": "whip",
+      "allowsShield": true,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 580013,
+      "itemSubTypeId": 270,
+      "typeName": "whip",
+      "allowsShield": true,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 580016,
+      "itemSubTypeId": 270,
+      "typeName": "whip",
+      "allowsShield": true,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 580017,
+      "itemSubTypeId": 270,
+      "typeName": "whip",
+      "allowsShield": true,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 580018,
+      "itemSubTypeId": 270,
+      "typeName": "whip",
+      "allowsShield": true,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 580019,
+      "itemSubTypeId": 270,
+      "typeName": "whip",
+      "allowsShield": true,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 580020,
+      "itemSubTypeId": 270,
+      "typeName": "whip",
+      "allowsShield": true,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 580022,
+      "itemSubTypeId": 270,
+      "typeName": "whip",
+      "allowsShield": true,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 580023,
+      "itemSubTypeId": 270,
+      "typeName": "whip",
+      "allowsShield": true,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 580024,
+      "itemSubTypeId": 270,
+      "typeName": "whip",
+      "allowsShield": true,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 580027,
+      "itemSubTypeId": 270,
+      "typeName": "whip",
+      "allowsShield": true,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 580028,
+      "itemSubTypeId": 270,
+      "typeName": "whip",
+      "allowsShield": true,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 580030,
+      "itemSubTypeId": 270,
+      "typeName": "whip",
+      "allowsShield": true,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 580033,
+      "itemSubTypeId": 270,
+      "typeName": "whip",
+      "allowsShield": true,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 580034,
+      "itemSubTypeId": 270,
+      "typeName": "whip",
+      "allowsShield": true,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 580037,
+      "itemSubTypeId": 270,
+      "typeName": "whip",
+      "allowsShield": true,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 580038,
+      "itemSubTypeId": 270,
+      "typeName": "whip",
+      "allowsShield": true,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 580046,
+      "itemSubTypeId": 270,
+      "typeName": "whip",
+      "allowsShield": true,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 580061,
+      "itemSubTypeId": 270,
+      "typeName": "whip",
+      "allowsShield": true,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 580062,
+      "itemSubTypeId": 270,
+      "typeName": "whip",
+      "allowsShield": true,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 580072,
+      "itemSubTypeId": 270,
+      "typeName": "whip",
+      "allowsShield": true,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 580073,
+      "itemSubTypeId": 270,
+      "typeName": "whip",
+      "allowsShield": true,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 580075,
+      "itemSubTypeId": 270,
+      "typeName": "whip",
+      "allowsShield": true,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 590000,
+      "itemSubTypeId": 263,
+      "typeName": "mace",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 590002,
+      "itemSubTypeId": 263,
+      "typeName": "mace",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 590003,
+      "itemSubTypeId": 263,
+      "typeName": "mace",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 590006,
+      "itemSubTypeId": 263,
+      "typeName": "mace",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 590008,
+      "itemSubTypeId": 263,
+      "typeName": "mace",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 590009,
+      "itemSubTypeId": 263,
+      "typeName": "mace",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 590010,
+      "itemSubTypeId": 263,
+      "typeName": "mace",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 590011,
+      "itemSubTypeId": 263,
+      "typeName": "mace",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 590012,
+      "itemSubTypeId": 263,
+      "typeName": "mace",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 590015,
+      "itemSubTypeId": 263,
+      "typeName": "mace",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 590016,
+      "itemSubTypeId": 261,
+      "typeName": "axe",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 590017,
+      "itemSubTypeId": 263,
+      "typeName": "mace",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 590020,
+      "itemSubTypeId": 263,
+      "typeName": "mace",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 590021,
+      "itemSubTypeId": 263,
+      "typeName": "mace",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 590022,
+      "itemSubTypeId": 263,
+      "typeName": "mace",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 590023,
+      "itemSubTypeId": 263,
+      "typeName": "mace",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 590024,
+      "itemSubTypeId": 263,
+      "typeName": "mace",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 590028,
+      "itemSubTypeId": 263,
+      "typeName": "mace",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 590029,
+      "itemSubTypeId": 263,
+      "typeName": "mace",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 590030,
+      "itemSubTypeId": 263,
+      "typeName": "mace",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 590034,
+      "itemSubTypeId": 263,
+      "typeName": "mace",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 590036,
+      "itemSubTypeId": 263,
+      "typeName": "mace",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 590038,
+      "itemSubTypeId": 263,
+      "typeName": "mace",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 590039,
+      "itemSubTypeId": 263,
+      "typeName": "mace",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 590043,
+      "itemSubTypeId": 263,
+      "typeName": "mace",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 590044,
+      "itemSubTypeId": 263,
+      "typeName": "mace",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 590045,
+      "itemSubTypeId": 263,
+      "typeName": "mace",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 590047,
+      "itemSubTypeId": 263,
+      "typeName": "mace",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 590048,
+      "itemSubTypeId": 263,
+      "typeName": "mace",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 590049,
+      "itemSubTypeId": 263,
+      "typeName": "mace",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 590062,
+      "itemSubTypeId": 263,
+      "typeName": "mace",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 590063,
+      "itemSubTypeId": 263,
+      "typeName": "mace",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 590079,
+      "itemSubTypeId": 263,
+      "typeName": "mace",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 590080,
+      "itemSubTypeId": 263,
+      "typeName": "mace",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 590087,
+      "itemSubTypeId": 263,
+      "typeName": "mace",
+      "allowsShield": true,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 600001,
+      "itemSubTypeId": 258,
+      "typeName": "twohandSword",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 600004,
+      "itemSubTypeId": 258,
+      "typeName": "twohandSword",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 600008,
+      "itemSubTypeId": 258,
+      "typeName": "twohandSword",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 600009,
+      "itemSubTypeId": 258,
+      "typeName": "twohandSword",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 600011,
+      "itemSubTypeId": 258,
+      "typeName": "twohandSword",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 600012,
+      "itemSubTypeId": 258,
+      "typeName": "twohandSword",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 600013,
+      "itemSubTypeId": 258,
+      "typeName": "twohandSword",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 600014,
+      "itemSubTypeId": 258,
+      "typeName": "twohandSword",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 600016,
+      "itemSubTypeId": 258,
+      "typeName": "twohandSword",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 600017,
+      "itemSubTypeId": 258,
+      "typeName": "twohandSword",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 600018,
+      "itemSubTypeId": 258,
+      "typeName": "twohandSword",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 600021,
+      "itemSubTypeId": 258,
+      "typeName": "twohandSword",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 600023,
+      "itemSubTypeId": 258,
+      "typeName": "twohandSword",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 600024,
+      "itemSubTypeId": 258,
+      "typeName": "twohandSword",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 600027,
+      "itemSubTypeId": 258,
+      "typeName": "twohandSword",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 600028,
+      "itemSubTypeId": 258,
+      "typeName": "twohandSword",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 600030,
+      "itemSubTypeId": 258,
+      "typeName": "twohandSword",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 600031,
+      "itemSubTypeId": 258,
+      "typeName": "twohandSword",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 600041,
+      "itemSubTypeId": 258,
+      "typeName": "twohandSword",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 600054,
+      "itemSubTypeId": 258,
+      "typeName": "twohandSword",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 600059,
+      "itemSubTypeId": 258,
+      "typeName": "twohandSword",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 610000,
+      "itemSubTypeId": 272,
+      "typeName": "katar",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 610003,
+      "itemSubTypeId": 272,
+      "typeName": "katar",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 610006,
+      "itemSubTypeId": 272,
+      "typeName": "katar",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 610008,
+      "itemSubTypeId": 272,
+      "typeName": "katar",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 610009,
+      "itemSubTypeId": 272,
+      "typeName": "katar",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 610012,
+      "itemSubTypeId": 272,
+      "typeName": "katar",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 610013,
+      "itemSubTypeId": 272,
+      "typeName": "katar",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 610015,
+      "itemSubTypeId": 272,
+      "typeName": "katar",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 610016,
+      "itemSubTypeId": 272,
+      "typeName": "katar",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 610019,
+      "itemSubTypeId": 272,
+      "typeName": "katar",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 610020,
+      "itemSubTypeId": 272,
+      "typeName": "katar",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 610021,
+      "itemSubTypeId": 272,
+      "typeName": "katar",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 610022,
+      "itemSubTypeId": 272,
+      "typeName": "katar",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 610023,
+      "itemSubTypeId": 272,
+      "typeName": "katar",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 610026,
+      "itemSubTypeId": 272,
+      "typeName": "katar",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 610027,
+      "itemSubTypeId": 272,
+      "typeName": "katar",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 610028,
+      "itemSubTypeId": 272,
+      "typeName": "katar",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 610033,
+      "itemSubTypeId": 272,
+      "typeName": "katar",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 610034,
+      "itemSubTypeId": 272,
+      "typeName": "katar",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 610035,
+      "itemSubTypeId": 272,
+      "typeName": "katar",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 610037,
+      "itemSubTypeId": 272,
+      "typeName": "katar",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 610039,
+      "itemSubTypeId": 272,
+      "typeName": "katar",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 610041,
+      "itemSubTypeId": 272,
+      "typeName": "katar",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 610042,
+      "itemSubTypeId": 272,
+      "typeName": "katar",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 610044,
+      "itemSubTypeId": 272,
+      "typeName": "katar",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 610045,
+      "itemSubTypeId": 272,
+      "typeName": "katar",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 610054,
+      "itemSubTypeId": 272,
+      "typeName": "katar",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 610064,
+      "itemSubTypeId": 272,
+      "typeName": "katar",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 610065,
+      "itemSubTypeId": 272,
+      "typeName": "katar",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 610071,
+      "itemSubTypeId": 272,
+      "typeName": "katar",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 610072,
+      "itemSubTypeId": 278,
+      "typeName": "shuriken",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1026,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 620003,
+      "itemSubTypeId": 262,
+      "typeName": "twohandAxe",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 620004,
+      "itemSubTypeId": 262,
+      "typeName": "twohandAxe",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 620005,
+      "itemSubTypeId": 262,
+      "typeName": "twohandAxe",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 620006,
+      "itemSubTypeId": 262,
+      "typeName": "twohandAxe",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 620009,
+      "itemSubTypeId": 262,
+      "typeName": "twohandAxe",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 620010,
+      "itemSubTypeId": 262,
+      "typeName": "twohandAxe",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 620012,
+      "itemSubTypeId": 262,
+      "typeName": "twohandAxe",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 620015,
+      "itemSubTypeId": 262,
+      "typeName": "twohandAxe",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 620016,
+      "itemSubTypeId": 262,
+      "typeName": "twohandAxe",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 620017,
+      "itemSubTypeId": 262,
+      "typeName": "twohandAxe",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 620018,
+      "itemSubTypeId": 262,
+      "typeName": "twohandAxe",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 620019,
+      "itemSubTypeId": 262,
+      "typeName": "twohandAxe",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 620020,
+      "itemSubTypeId": 262,
+      "typeName": "twohandAxe",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 620022,
+      "itemSubTypeId": 262,
+      "typeName": "twohandAxe",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 620037,
+      "itemSubTypeId": 262,
+      "typeName": "twohandAxe",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 620040,
+      "itemSubTypeId": 262,
+      "typeName": "twohandAxe",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 620043,
+      "itemSubTypeId": 262,
+      "typeName": "twohandAxe",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 630003,
+      "itemSubTypeId": 260,
+      "typeName": "twohandSpear",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 630006,
+      "itemSubTypeId": 260,
+      "typeName": "twohandSpear",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 630007,
+      "itemSubTypeId": 260,
+      "typeName": "twohandSpear",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 630008,
+      "itemSubTypeId": 260,
+      "typeName": "twohandSpear",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 630009,
+      "itemSubTypeId": 260,
+      "typeName": "twohandSpear",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 630012,
+      "itemSubTypeId": 260,
+      "typeName": "twohandSpear",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 630013,
+      "itemSubTypeId": 260,
+      "typeName": "twohandSpear",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 630015,
+      "itemSubTypeId": 260,
+      "typeName": "twohandSpear",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 630018,
+      "itemSubTypeId": 260,
+      "typeName": "twohandSpear",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 630019,
+      "itemSubTypeId": 260,
+      "typeName": "twohandSpear",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 630027,
+      "itemSubTypeId": 260,
+      "typeName": "twohandSpear",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 630028,
+      "itemSubTypeId": 260,
+      "typeName": "twohandSpear",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 630041,
+      "itemSubTypeId": 260,
+      "typeName": "twohandSpear",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 630045,
+      "itemSubTypeId": 260,
+      "typeName": "twohandSpear",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 630049,
+      "itemSubTypeId": 260,
+      "typeName": "twohandSpear",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 640000,
+      "itemSubTypeId": 266,
+      "typeName": "twohandRod",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 640004,
+      "itemSubTypeId": 266,
+      "typeName": "twohandRod",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 640005,
+      "itemSubTypeId": 266,
+      "typeName": "twohandRod",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 640009,
+      "itemSubTypeId": 266,
+      "typeName": "twohandRod",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 640010,
+      "itemSubTypeId": 266,
+      "typeName": "twohandRod",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 640011,
+      "itemSubTypeId": 266,
+      "typeName": "twohandRod",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 640012,
+      "itemSubTypeId": 266,
+      "typeName": "twohandRod",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 640013,
+      "itemSubTypeId": 266,
+      "typeName": "twohandRod",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 640014,
+      "itemSubTypeId": 266,
+      "typeName": "twohandRod",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 640015,
+      "itemSubTypeId": 266,
+      "typeName": "twohandRod",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 640017,
+      "itemSubTypeId": 266,
+      "typeName": "twohandRod",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 640019,
+      "itemSubTypeId": 266,
+      "typeName": "twohandRod",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 640020,
+      "itemSubTypeId": 266,
+      "typeName": "twohandRod",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 640021,
+      "itemSubTypeId": 266,
+      "typeName": "twohandRod",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 640022,
+      "itemSubTypeId": 266,
+      "typeName": "twohandRod",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 640023,
+      "itemSubTypeId": 266,
+      "typeName": "twohandRod",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 640024,
+      "itemSubTypeId": 266,
+      "typeName": "twohandRod",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 640025,
+      "itemSubTypeId": 266,
+      "typeName": "twohandRod",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 640026,
+      "itemSubTypeId": 266,
+      "typeName": "twohandRod",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 640027,
+      "itemSubTypeId": 266,
+      "typeName": "twohandRod",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 640028,
+      "itemSubTypeId": 266,
+      "typeName": "twohandRod",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 640031,
+      "itemSubTypeId": 266,
+      "typeName": "twohandRod",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 640033,
+      "itemSubTypeId": 266,
+      "typeName": "twohandRod",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 640034,
+      "itemSubTypeId": 266,
+      "typeName": "twohandRod",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 640035,
+      "itemSubTypeId": 266,
+      "typeName": "twohandRod",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 640036,
+      "itemSubTypeId": 266,
+      "typeName": "twohandRod",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 640037,
+      "itemSubTypeId": 266,
+      "typeName": "twohandRod",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 640046,
+      "itemSubTypeId": 266,
+      "typeName": "twohandRod",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 640049,
+      "itemSubTypeId": 266,
+      "typeName": "twohandRod",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 640050,
+      "itemSubTypeId": 266,
+      "typeName": "twohandRod",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 640053,
+      "itemSubTypeId": 266,
+      "typeName": "twohandRod",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 640054,
+      "itemSubTypeId": 266,
+      "typeName": "twohandRod",
+      "allowsShield": false,
+      "allowsAmmo": false,
+      "ammoSubTypeId": null,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 650003,
+      "itemSubTypeId": 278,
+      "typeName": "shuriken",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1026,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 650004,
+      "itemSubTypeId": 278,
+      "typeName": "shuriken",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1026,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 650008,
+      "itemSubTypeId": 278,
+      "typeName": "shuriken",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1026,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 650009,
+      "itemSubTypeId": 278,
+      "typeName": "shuriken",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1026,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 650012,
+      "itemSubTypeId": 278,
+      "typeName": "shuriken",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1026,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 650013,
+      "itemSubTypeId": 278,
+      "typeName": "shuriken",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1026,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 650017,
+      "itemSubTypeId": 278,
+      "typeName": "shuriken",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1026,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 650018,
+      "itemSubTypeId": 278,
+      "typeName": "shuriken",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1026,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 650019,
+      "itemSubTypeId": 278,
+      "typeName": "shuriken",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1026,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 650020,
+      "itemSubTypeId": 278,
+      "typeName": "shuriken",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1026,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 650021,
+      "itemSubTypeId": 278,
+      "typeName": "shuriken",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1026,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 650022,
+      "itemSubTypeId": 278,
+      "typeName": "shuriken",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1026,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 650024,
+      "itemSubTypeId": 278,
+      "typeName": "shuriken",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1026,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 650025,
+      "itemSubTypeId": 278,
+      "typeName": "shuriken",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1026,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 650028,
+      "itemSubTypeId": 278,
+      "typeName": "shuriken",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1026,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 650029,
+      "itemSubTypeId": 278,
+      "typeName": "shuriken",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1026,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 650033,
+      "itemSubTypeId": 278,
+      "typeName": "shuriken",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1026,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 650034,
+      "itemSubTypeId": 278,
+      "typeName": "shuriken",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1026,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 650046,
+      "itemSubTypeId": 278,
+      "typeName": "shuriken",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1026,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 650047,
+      "itemSubTypeId": 278,
+      "typeName": "shuriken",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1026,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 650049,
+      "itemSubTypeId": 278,
+      "typeName": "shuriken",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1026,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 700001,
+      "itemSubTypeId": 267,
+      "typeName": "bow",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 700003,
+      "itemSubTypeId": 267,
+      "typeName": "bow",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 700007,
+      "itemSubTypeId": 267,
+      "typeName": "bow",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 700008,
+      "itemSubTypeId": 267,
+      "typeName": "bow",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 700009,
+      "itemSubTypeId": 267,
+      "typeName": "bow",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 700013,
+      "itemSubTypeId": 267,
+      "typeName": "bow",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 700014,
+      "itemSubTypeId": 267,
+      "typeName": "bow",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 700015,
+      "itemSubTypeId": 267,
+      "typeName": "bow",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 700016,
+      "itemSubTypeId": 267,
+      "typeName": "bow",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 700017,
+      "itemSubTypeId": 267,
+      "typeName": "bow",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 700018,
+      "itemSubTypeId": 267,
+      "typeName": "bow",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 700019,
+      "itemSubTypeId": 267,
+      "typeName": "bow",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 700021,
+      "itemSubTypeId": 267,
+      "typeName": "bow",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 700022,
+      "itemSubTypeId": 267,
+      "typeName": "bow",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 700023,
+      "itemSubTypeId": 267,
+      "typeName": "bow",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 700024,
+      "itemSubTypeId": 267,
+      "typeName": "bow",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 700025,
+      "itemSubTypeId": 267,
+      "typeName": "bow",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 700029,
+      "itemSubTypeId": 267,
+      "typeName": "bow",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 700030,
+      "itemSubTypeId": 267,
+      "typeName": "bow",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 700031,
+      "itemSubTypeId": 267,
+      "typeName": "bow",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 700032,
+      "itemSubTypeId": 267,
+      "typeName": "bow",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 700033,
+      "itemSubTypeId": 267,
+      "typeName": "bow",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 700034,
+      "itemSubTypeId": 267,
+      "typeName": "bow",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 700035,
+      "itemSubTypeId": 267,
+      "typeName": "bow",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 700041,
+      "itemSubTypeId": 267,
+      "typeName": "bow",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 700042,
+      "itemSubTypeId": 267,
+      "typeName": "bow",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 700043,
+      "itemSubTypeId": 267,
+      "typeName": "bow",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 700045,
+      "itemSubTypeId": 267,
+      "typeName": "bow",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 700046,
+      "itemSubTypeId": 267,
+      "typeName": "bow",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 700049,
+      "itemSubTypeId": 267,
+      "typeName": "bow",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 700050,
+      "itemSubTypeId": 267,
+      "typeName": "bow",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 700052,
+      "itemSubTypeId": 267,
+      "typeName": "bow",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 700054,
+      "itemSubTypeId": 267,
+      "typeName": "bow",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 700055,
+      "itemSubTypeId": 267,
+      "typeName": "bow",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 700056,
+      "itemSubTypeId": 267,
+      "typeName": "bow",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 700059,
+      "itemSubTypeId": 267,
+      "typeName": "bow",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 700060,
+      "itemSubTypeId": 267,
+      "typeName": "bow",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 700065,
+      "itemSubTypeId": 267,
+      "typeName": "bow",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 700066,
+      "itemSubTypeId": 267,
+      "typeName": "bow",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 700076,
+      "itemSubTypeId": 267,
+      "typeName": "bow",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 700092,
+      "itemSubTypeId": 267,
+      "typeName": "bow",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 700093,
+      "itemSubTypeId": 267,
+      "typeName": "bow",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 700094,
+      "itemSubTypeId": 267,
+      "typeName": "bow",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 700100,
+      "itemSubTypeId": 267,
+      "typeName": "bow",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 700101,
+      "itemSubTypeId": 267,
+      "typeName": "bow",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 700108,
+      "itemSubTypeId": 267,
+      "typeName": "bow",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1024,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 800002,
+      "itemSubTypeId": 273,
+      "typeName": "gun",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1027,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 800003,
+      "itemSubTypeId": 273,
+      "typeName": "gun",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1027,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 800006,
+      "itemSubTypeId": 273,
+      "typeName": "gun",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1027,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 800008,
+      "itemSubTypeId": 273,
+      "typeName": "gun",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1027,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 800009,
+      "itemSubTypeId": 273,
+      "typeName": "gun",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1027,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 800010,
+      "itemSubTypeId": 273,
+      "typeName": "gun",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1027,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 800011,
+      "itemSubTypeId": 273,
+      "typeName": "gun",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1027,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 800012,
+      "itemSubTypeId": 273,
+      "typeName": "gun",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1027,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 800013,
+      "itemSubTypeId": 273,
+      "typeName": "gun",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1027,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 800014,
+      "itemSubTypeId": 273,
+      "typeName": "gun",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1027,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 800015,
+      "itemSubTypeId": 273,
+      "typeName": "gun",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1027,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 800016,
+      "itemSubTypeId": 273,
+      "typeName": "gun",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1027,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 800026,
+      "itemSubTypeId": 273,
+      "typeName": "gun",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1027,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 800027,
+      "itemSubTypeId": 273,
+      "typeName": "gun",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1027,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 800042,
+      "itemSubTypeId": 273,
+      "typeName": "gun",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1027,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 810000,
+      "itemSubTypeId": 274,
+      "typeName": "gun",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1027,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 810001,
+      "itemSubTypeId": 274,
+      "typeName": "gun",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1027,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 810002,
+      "itemSubTypeId": 274,
+      "typeName": "gun",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1027,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 810005,
+      "itemSubTypeId": 274,
+      "typeName": "gun",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1027,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 810006,
+      "itemSubTypeId": 274,
+      "typeName": "gun",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1027,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 810007,
+      "itemSubTypeId": 274,
+      "typeName": "gun",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1027,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 810008,
+      "itemSubTypeId": 274,
+      "typeName": "gun",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1027,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 810009,
+      "itemSubTypeId": 274,
+      "typeName": "gun",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1027,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 810010,
+      "itemSubTypeId": 274,
+      "typeName": "gun",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1027,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 810013,
+      "itemSubTypeId": 274,
+      "typeName": "gun",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1027,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 810015,
+      "itemSubTypeId": 274,
+      "typeName": "gun",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1027,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 810026,
+      "itemSubTypeId": 274,
+      "typeName": "gun",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1027,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 810027,
+      "itemSubTypeId": 274,
+      "typeName": "gun",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1027,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 810034,
+      "itemSubTypeId": 274,
+      "typeName": "gun",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1027,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 810040,
+      "itemSubTypeId": 274,
+      "typeName": "gun",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1027,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 810042,
+      "itemSubTypeId": 274,
+      "typeName": "gun",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1027,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 820000,
+      "itemSubTypeId": 276,
+      "typeName": "gun",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1027,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 820001,
+      "itemSubTypeId": 276,
+      "typeName": "gun",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1027,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 820002,
+      "itemSubTypeId": 276,
+      "typeName": "gun",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1027,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 820004,
+      "itemSubTypeId": 276,
+      "typeName": "gun",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1027,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 820005,
+      "itemSubTypeId": 276,
+      "typeName": "gun",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1027,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 820006,
+      "itemSubTypeId": 276,
+      "typeName": "gun",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1027,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 820007,
+      "itemSubTypeId": 276,
+      "typeName": "gun",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1027,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 820008,
+      "itemSubTypeId": 276,
+      "typeName": "gun",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1027,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 820011,
+      "itemSubTypeId": 276,
+      "typeName": "gun",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1027,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 820020,
+      "itemSubTypeId": 276,
+      "typeName": "gun",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1027,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 820021,
+      "itemSubTypeId": 276,
+      "typeName": "gun",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1027,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 820028,
+      "itemSubTypeId": 276,
+      "typeName": "gun",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1027,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 830000,
+      "itemSubTypeId": 275,
+      "typeName": "gun",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1027,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 830001,
+      "itemSubTypeId": 275,
+      "typeName": "gun",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1027,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 830002,
+      "itemSubTypeId": 275,
+      "typeName": "gun",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1027,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 830003,
+      "itemSubTypeId": 275,
+      "typeName": "gun",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1027,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 830004,
+      "itemSubTypeId": 275,
+      "typeName": "gun",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1027,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 830007,
+      "itemSubTypeId": 275,
+      "typeName": "gun",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1027,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 830008,
+      "itemSubTypeId": 275,
+      "typeName": "gun",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1027,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 830009,
+      "itemSubTypeId": 275,
+      "typeName": "gun",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1027,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 830010,
+      "itemSubTypeId": 275,
+      "typeName": "gun",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1027,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 830011,
+      "itemSubTypeId": 275,
+      "typeName": "gun",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1027,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 830012,
+      "itemSubTypeId": 275,
+      "typeName": "gun",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1027,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 830013,
+      "itemSubTypeId": 275,
+      "typeName": "gun",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1027,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 830015,
+      "itemSubTypeId": 275,
+      "typeName": "gun",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1027,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 830025,
+      "itemSubTypeId": 275,
+      "typeName": "gun",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1027,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 830026,
+      "itemSubTypeId": 275,
+      "typeName": "gun",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1027,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 830033,
+      "itemSubTypeId": 275,
+      "typeName": "gun",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1027,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 830038,
+      "itemSubTypeId": 275,
+      "typeName": "gun",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1027,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 840000,
+      "itemSubTypeId": 277,
+      "typeName": "gun",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1027,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 840001,
+      "itemSubTypeId": 277,
+      "typeName": "gun",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1027,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 840002,
+      "itemSubTypeId": 277,
+      "typeName": "gun",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1027,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 840004,
+      "itemSubTypeId": 277,
+      "typeName": "gun",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1027,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 840005,
+      "itemSubTypeId": 277,
+      "typeName": "gun",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1027,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 840006,
+      "itemSubTypeId": 277,
+      "typeName": "gun",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1027,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 840007,
+      "itemSubTypeId": 277,
+      "typeName": "gun",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1027,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 840008,
+      "itemSubTypeId": 277,
+      "typeName": "gun",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1027,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 840009,
+      "itemSubTypeId": 277,
+      "typeName": "gun",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1027,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 840010,
+      "itemSubTypeId": 277,
+      "typeName": "gun",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1027,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 840020,
+      "itemSubTypeId": 277,
+      "typeName": "gun",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1027,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 840021,
+      "itemSubTypeId": 277,
+      "typeName": "gun",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1027,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 840028,
+      "itemSubTypeId": 277,
+      "typeName": "gun",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1027,
+      "canEquipLeftWeapon": false
+    },
+    {
+      "id": 840032,
+      "itemSubTypeId": 277,
+      "typeName": "gun",
+      "allowsShield": false,
+      "allowsAmmo": true,
+      "ammoSubTypeId": 1027,
+      "canEquipLeftWeapon": false
+    }
+  ]
+}

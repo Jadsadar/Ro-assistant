@@ -1,0 +1,832 @@
+รายงานวิเคราะห์ Flow, ช่องว่างของระบบ และความถูกต้องของการเลือกไอเทม/การ์ด
+โปรเจกต์: RO Assistant
+วันที่ตรวจ: 27 กรกฎาคม 2026
+
+===============================================================================
+1. ขอบเขตและคำจำกัดความที่ใช้ในรายงาน
+===============================================================================
+
+ใน repository นี้มี Calculator อยู่ 3 บริบทที่ต้องแยกจากกันให้ชัดเจน
+
+1) "เว็บเก่า" ในรายงานนี้
+   หมายถึง source ในโฟลเดอร์ tong-calc-ro ซึ่งเป็น Angular calculator ต้นทาง
+   ปัจจุบัน catalog-manifest.json ระบุว่าอ้างอิง release 3.2.28
+   commit ff883cc45861a7e024fc349cc377d3298fd4dc1a
+
+2) หน้า /calculator
+   เป็นหน้า Calculator Foundation ของ RO Assistant
+   จุดแข็งคือมี flow จัด build, เลือก variant, random option, ราคา, save/load build
+   และกรองไอเทมตามอาชีพบางส่วนแล้ว
+   แต่ผล combat summary หลายช่องยังแสดง "รอสูตร" และยังไม่ได้ต่อ damage engine
+   แบบสมบูรณ์
+
+3) หน้า /calculator-v2
+   เป็นหน้า UI ใหม่ที่ต่อกับ deterministic damage engine จาก tong-calc-ro แล้ว
+   สามารถคำนวณ damage, DPS, ASPD, accuracy และ HP/SP ได้จริง
+   แต่ flow เลือกอุปกรณ์ยังไม่ครบและยังไม่เท่ากับเว็บเก่า
+
+ดังนั้นสถานะปัจจุบันคือมี "สองหน้าที่เก่งคนละด้าน"
+
+- /calculator จัดการ build และข้อมูลผู้ใช้ได้ละเอียดกว่า แต่ยังคำนวณไม่ครบ
+- /calculator-v2 คำนวณได้จริง แต่กฎเลือกอุปกรณ์และการบันทึก build ยังไม่ครบ
+
+เป้าหมายที่เหมาะสมคือรวมความสามารถทั้งสองหน้าให้เป็น Calculator เดียว
+ไม่ควรปล่อยให้ผู้ใช้ต้องเลือกระหว่าง "เลือกของได้ละเอียด" กับ "คำนวณได้จริง"
+
+
+===============================================================================
+2. โปรเจกต์นี้ทำอะไร
+===============================================================================
+
+RO Assistant เป็นเว็บช่วยวาง build Ragnarok Online แบบ local-first โดยมีแนวคิดหลัก
+ดังนี้
+
+- ใช้ข้อมูล item, card, enchant, monster, skill และสูตรจาก tong-calc-ro
+- คำนวณ damage ด้วย deterministic engine ไม่ให้ AI เดาตัวเลข
+- เก็บข้อมูลส่วนตัวของผู้ใช้ เช่น item variant, ราคา, tag และ saved build
+  ใน IndexedDB ของ browser
+- export/import ข้อมูลผู้ใช้เป็น JSON ได้
+- วางฐานสำหรับ Advisor ที่ค้นหา build ตามเป้าดาเมจหรืองบ
+- วางฐานสำหรับ Chat ที่อธิบายผลจาก Calculator/Advisor
+- build เป็น static site ได้ ไม่ต้องมี application server สำหรับฟังก์ชันหลัก
+
+ภาพรวมผลิตภัณฑ์ที่ตั้งใจให้เป็นในอนาคต
+
+ผู้ใช้สร้าง build
+  -> ระบบคำนวณผลจริง
+  -> ระบบเทียบ candidate item
+  -> ระบบหาของที่คุ้มตามงบหรือเป้าดาเมจ
+  -> Chat อธิบายว่าควรเปลี่ยนอะไรและเพราะอะไร
+
+
+===============================================================================
+3. Flow ของข้อมูลตอน Build
+===============================================================================
+
+3.1 แหล่งข้อมูลต้นทาง
+
+แหล่งข้อมูลหลักอยู่ใน tong-calc-ro เช่น
+
+- item.json
+- monster.json
+- hp_sp_table.json
+- class และ skill metadata
+- enchant table
+- extra/random option table
+- สูตร calculator
+
+3.2 Catalog pipeline
+
+เมื่อรัน catalog:build ระบบทำงานโดยย่อดังนี้
+
+tong-calc-ro data
+  -> scripts/build-catalog.ts
+  -> แปลงเป็น search index และ detail chunks
+  -> สร้าง public/data/catalog-manifest.json
+  -> สร้างไฟล์ content-hashed ใน public/data/
+
+ข้อมูลถูกแยกเป็น
+
+- search index ขนาดเล็กสำหรับ dropdown/search
+- item detail chunks สำหรับ description, script และ combat fields
+- cards
+- enchants
+- weapon
+- armor
+- headgear
+- accessory
+- shadow equipment
+- consumables
+- monsters
+- HP/SP table
+- skill metadata
+
+ข้อดีคือหน้าเว็บไม่ต้องโหลด description/script ของไอเทม 6,490 ชิ้นพร้อมกัน
+
+3.3 Damage engine pipeline
+
+source สูตรจาก tong-calc-ro
+  -> scripts/build-legacy-engine.cjs
+  -> src/generated/legacy-engine.mjs
+  -> browser lazy-load engine เมื่อเริ่มคำนวณ
+
+หน้าเว็บจึงคำนวณฝั่ง client โดยใช้สูตรต้นทาง ไม่ต้องส่ง build ไป server
+
+3.4 การ update ข้อมูล
+
+npm run catalog:update
+  -> sync release ของ tong-calc-ro
+  -> เลือก stable release
+  -> rebuild catalog
+  -> rebuild skill catalog
+  -> rebuild legacy engine
+
+manifest ปัจจุบันรายงานข้อมูล
+
+- 6,490 items
+- 328 monsters
+- source release 3.2.28
+
+
+===============================================================================
+4. Flow ตอนผู้ใช้ใช้งาน
+===============================================================================
+
+4.1 Flow หน้า Knowledge
+
+ผู้ใช้ค้นหา item จาก catalog
+  -> สร้าง item variant
+  -> ใส่ refine/grade/card/enchant/random option
+  -> ใส่ราคาและ tag
+  -> บันทึกลง IndexedDB
+  -> export/import JSON ได้
+
+ข้อมูล catalog กับข้อมูลส่วนตัวถูกแยกกัน
+การ update catalog จึงไม่ควรทับราคาและ build ของผู้ใช้
+
+4.2 Flow หน้า /calculator
+
+โหลด catalog + options + monsters + skills + local knowledge
+  -> เลือก class/level/stats/skill/monster
+  -> เลือกอุปกรณ์ตาม slot
+  -> เลือก card/enchant/random option
+  -> เลือก consumable
+  -> บันทึก draft ใน localStorage
+  -> save build ใน IndexedDB
+
+ข้อจำกัดสำคัญ:
+combat summary หลายค่าเป็น placeholder "รอสูตร"
+หน้านี้ยังไม่ได้เป็นจุดคำนวณ damage ที่สมบูรณ์
+
+4.3 Flow หน้า /calculator-v2
+
+โหลดพร้อมกัน
+
+- class/skill metadata
+- catalog search
+- item options
+- monsters
+- HP/SP table
+
+จากนั้น
+
+เลือก class
+  -> เลือก offensive skill เริ่มต้นของ class
+  -> กรอก base/job level และ stats
+  -> เลือก item/card/enchant
+  -> เลือก consumable
+  -> เลือก monster
+  -> damage-adapter รวบรวม item IDs
+  -> lazy-load item details เฉพาะของที่ถูกเลือก
+  -> ส่ง input เข้า legacy damage engine
+  -> แสดง damage, DPS, ASPD, hit และ HP/SP
+
+การคำนวณเกิดใหม่อัตโนมัติเมื่อ selection เปลี่ยน
+
+ข้อจำกัดสำคัญ:
+V2 ยังไม่มี save/load build, ไม่มี random option, ไม่มี ammo/pet/costume enchant
+และยังไม่บังคับกฎ compatibility หลายข้อของเว็บเก่า
+
+4.4 Flow Advisor และ Chat
+
+ปัจจุบัน /advisor และ /chat เป็นหน้าโครง/ข้อความอธิบายเท่านั้น
+ยังไม่มี optimizer, Web Worker, tool dispatcher หรือ chat runtime จริง
+
+
+===============================================================================
+5. คำตอบตรงคำถาม: การเลือกไอเทมหรือการ์ดยังผิดพลาดอยู่หรือไม่
+===============================================================================
+
+คำตอบ: ยังมีความผิดพลาดและความไม่ครบอยู่ โดยเฉพาะ Calculator V2
+
+ส่วน card position หลักทำถูกแล้ว แต่ item compatibility โดยรวมยังไม่ parity
+กับเว็บเก่า 100%
+
+
+===============================================================================
+6. สิ่งที่ถูกต้องแล้วเมื่อเทียบกับเว็บเก่า
+===============================================================================
+
+6.1 ตำแหน่งการ์ดหลักตรงกับเว็บเก่า
+
+- Weapon = compositionPos 0
+- Head = 769
+- Shield = 32
+- Armor = 16
+- Garment = 4
+- Boot = 64
+- Accessory ใช้ตำแหน่งกลาง 136
+- Accessory Left เพิ่มตำแหน่ง 128
+- Accessory Right เพิ่มตำแหน่ง 8
+
+6.2 การ์ด Accessory แบบระบุข้าง
+
+- การ์ด Left เลือกได้เฉพาะ Accessory Left
+- การ์ด Right เลือกได้เฉพาะ Accessory Right
+- การ์ด Accessory กลางเลือกได้ทั้งสองข้าง
+
+มี unit test ยืนยันกรณีนี้แล้ว
+
+6.3 จำนวนช่องการ์ด
+
+ระบบอ่าน item.slots และจำกัดจำนวนสูงสุดตาม slot
+
+- Weapon สูงสุด 4
+- อุปกรณ์ทั่วไปที่รองรับ สูงสุด 1
+- Lower headgear ไม่มีการ์ด
+- Shadow ไม่มีการ์ด
+
+สำหรับ catalog ปัจจุบัน ไม่พบกรณีชื่อ [N] ขัดกับ item.slots
+
+6.4 การเปลี่ยนไอเทมใน V2 ล้าง card/enchant เดิม
+
+ช่วยป้องกันไม่ให้ card/enchant ของไอเทมก่อนหน้าติดไปกับไอเทมใหม่
+
+6.5 ชุดข้อมูลการ์ดที่แสดงในตำแหน่งจริง
+
+แม้ V2 จะไม่ได้เขียนเงื่อนไข itemTypeId === 6 ไว้โดยตรง
+แต่จาก catalog ปัจจุบัน item ที่มี compositionPos ตรงกับตำแหน่ง card ทั้งหมด
+เป็น itemTypeId 6 จริง จึงยังไม่พบ enchant/misc หลุดเข้ารายการการ์ดในข้อมูล release นี้
+
+อย่างไรก็ตามควรเพิ่มเงื่อนไข itemTypeId === 6 เพื่อป้องกันข้อมูล release ใหม่
+
+
+===============================================================================
+7. ความผิดพลาด/ช่องว่างในการเลือกไอเทมและการ์ด
+===============================================================================
+
+7.1 [Critical] กฎอาวุธมือซ้ายกว้างกว่าเว็บเก่า
+
+เว็บเก่าเพิ่มอาวุธเข้า leftWeaponList เฉพาะ subtype
+
+- 256 Dagger
+- 257 One-hand Sword
+
+แต่กฎใหม่ resolveEquipmentSlots เพิ่ม subtype ต่อไปนี้ด้วย
+
+- 259 Spear
+- 261 Axe
+- 263 Mace
+- 265 Rod
+- 268 Fist
+- 271 Book
+
+ผลจาก catalog ปัจจุบัน
+
+- รายการมือซ้ายตามเว็บเก่า: 150 ชิ้น
+- รายการมือซ้ายในระบบใหม่: 478 ชิ้น
+- รายการที่เกินมา: 328 ชิ้น
+
+ตัวอย่างที่ V2 เปิดให้เลือกมือซ้ายทั้งที่เว็บเก่าไม่ใส่ในรายการ
+
+- Illusion War Axe [2]
+- Golden Wrench [2]
+- Pike [4]
+- Gungnir [2]
+- Imperial Spear [1]
+- Thanos Spear [1]
+
+สาเหตุเชิงโครงสร้าง:
+field equipSlots ถูกใช้แทนสองความหมายพร้อมกัน
+
+1) ไอเทมนี้ใช้เป็นอาวุธมือซ้ายได้หรือไม่
+2) อาวุธนี้เป็น one-hand จึงเปิดช่อง Shield ได้หรือไม่
+
+สองเงื่อนไขนี้ไม่เหมือนกัน จึงควรแยกเป็นคนละ capability เช่น
+
+- equipSlots
+- allowsShield
+- allowsLeftWeapon
+
+7.2 [Critical] V2 ไม่จำกัดอาชีพที่ใช้มือซ้าย
+
+เว็บเก่าเปิด left weapon เฉพาะ
+
+- Guillotine Cross
+- Shadow Cross
+- Oboro
+- Shiranui
+- Kagerou
+- Shinkiro
+
+V2 แสดง Left Weapon ให้ทุก class และไม่ได้ล้างค่าเมื่อเปลี่ยนไป class ที่ใช้ไม่ได้
+
+ผลคือผู้ใช้สามารถสร้าง build ที่เว็บเก่าไม่อนุญาต และ engine อาจได้รับ equipment
+ที่ไม่สอดคล้องกับ class
+
+7.3 [Critical] V2 สามารถใส่ Shield และ Left Weapon พร้อมกัน
+
+เว็บเก่าแสดงช่อง Left Weapon กับ Shield แบบ mutually exclusive
+
+- ถ้ามี Shield จะซ่อน Left Weapon
+- ถ้ามี Left Weapon จะซ่อน Shield
+- ถ้าอาวุธหลักใช้ Shield ไม่ได้ จะล้าง Shield
+- ถ้า class/weapon ไม่อนุญาตมือซ้าย จะล้าง Left Weapon
+
+V2 แสดงทั้งสอง slot ตลอดเวลา และส่งทั้งสองเข้า engine ได้พร้อมกัน
+
+นี่เป็น build state ที่ไม่ควรเกิดขึ้น
+
+7.4 [Critical] V2 ไม่กรองไอเทมตาม class
+
+เว็บเก่าใช้ usableClass และ unusableClass กรอง dropdown เมื่อ class เปลี่ยน
+หน้า /calculator มี itemMatchesClass แล้ว แต่ /calculator-v2 ไม่ได้ใช้
+
+จาก catalog ปัจจุบัน
+
+- item ที่มี equipSlots: 3,396 ชิ้น
+- ในจำนวนนี้มีข้อจำกัด usableClass/unusableClass: 3,101 ชิ้น
+
+ดังนั้นผลกระทบกว้างมาก ไม่ใช่ edge case
+
+เมื่อเปลี่ยน class V2 ยังเก็บอุปกรณ์เก่าที่ class ใหม่ใส่ไม่ได้ไว้ด้วย
+
+7.5 [High] V2 ไม่รองรับ Ammo
+
+เว็บเก่าเปิด/ปิด ammo ตามชนิดอาวุธหรือ class และกรองชนิดกระสุนตาม weapon
+V2 ไม่มี Ammo slot ใน EquipmentPanel
+
+ผลคือ build สายธนู, ปืน และ class ที่ต้องใช้ ammo ไม่สามารถประกอบ input ได้ครบ
+
+7.6 [High] V2 แสดง refine โดยอิง slot มากกว่าไอเทมจริง
+
+V2 ใช้ rule.allowsRefine จึงแสดง refine ให้ทุกไอเทมใน slot นั้น
+
+จุดต่างที่ชัดที่สุดคือ Accessory
+
+- source เก่ามี isRefinable === true เพียง 3 records จาก item ทั้งหมด
+- accessory ส่วนใหญ่ไม่มี isRefinable และเว็บเก่าตีความเป็น false
+- catalog builder ใหม่ fallback ให้เป็น refinable ตาม slot
+- catalog ใหม่จึง mark accessory ที่ equip ได้ 383 ชิ้นเป็น refinableทั้งหมด
+
+เว็บเก่ามี logic พิเศษว่า Accessory ที่ไม่ refinable ต้องซ่อน refine และ reset เป็น 0
+ระบบใหม่จึงเปิด refine ให้ accessory จำนวนมากเกินจริง
+
+ควรเก็บ "unknown/missing" แยกจาก true และใช้กฎ legacy ต่อ item type
+ไม่ควรเปลี่ยน missing เป็น true แบบเหมารวม
+
+7.7 [High] V2 ตัด Enchant ช่องที่ 4
+
+V2 render optionGroups.slice(0, 3)
+แต่เว็บเก่ารองรับ enchant 4 ช่องสำหรับ Weapon/Left Weapon
+
+catalog ปัจจุบันมี 26 ไอเทมที่มี enchant groups มากกว่า 3
+ตัวอย่างเช่น Glacier Sword และ Glacier Axe
+
+ผลคือ enchant group หนึ่งหายจาก UI และไม่ถูกส่งเข้า engine
+
+ควร render ตาม group.slot จริงทั้งหมด โดยใช้ slot rule เป็นตัวตรวจ
+ไม่ควรตัดด้วยจำนวน 3 แบบ hard-code
+
+7.8 [High] V2 ไม่มี Random Option
+
+schema และหน้า /calculator รองรับ random option แล้ว
+
+- Weapon 3 ช่อง
+- Shadow 1 ช่อง
+- อุปกรณ์อื่นตาม ExtraOptionTable
+
+แต่ V2 ไม่มี randomOptions ใน EquipmentSlotSelection และไม่มี UI เลือก
+damage-adapter จึงไม่ส่ง extraOptionScripts เข้า engine
+
+build ที่มีออฟสุ่มจะคำนวณต่ำ/ผิดจากของจริง
+
+7.9 [High] V2 ไม่ส่ง Active/Passive Skill selections เข้า engine
+
+V2 เก็บ skillSelections ใน state และ SkillPanel แสดง dropdown ได้
+แต่ createDamageCalculationInput ไม่แปลงค่าเป็น
+
+- activeSkillValues
+- passiveSkillValues
+
+skillLevel ก็ไม่ได้ถูกส่งเป็น field แยก โดยหวังพึ่ง skillValue
+
+ผลคือ skill/buff/passive บางรายการที่ผู้ใช้เลือกอาจไม่ถูกนำไปคำนวณ
+แม้ UI จะแสดงว่าเลือกแล้ว
+
+7.10 [Medium] V2 ไม่มี Pet และ Costume Enchant slots
+
+V2 มี Costume หลักและ Shadow แต่ไม่มี
+
+- ammo
+- pet
+- costumeEnchantUpper
+- costumeEnchantMiddle
+- costumeEnchantLower
+- costumeEnchantGarment
+- costumeEnchantGarment2
+- costumeEnchantGarment4
+
+หน้า /calculator มี slot เหล่านี้แล้ว
+
+7.11 [Medium] การล้างการ์ดใน V2 ทำให้ตำแหน่งถัดไปเลื่อน
+
+เมื่อ clear Card N, V2 ใช้ splice(index, 1)
+จึงเลื่อน Card N+1 มาด้านหน้า
+
+เว็บเก่าเก็บ card1/card2/card3/card4 เป็น field แยกและล้างเฉพาะช่อง
+
+ผลต่อ engine อาจไม่ต่างในหลายกรณีเพราะ adapter filter(Boolean)
+แต่พฤติกรรม UI ไม่ตรงและทำให้ผู้ใช้สับสน
+
+ควร set nextCards[index] = 0 หรือ undefined โดยไม่ splice
+
+7.12 [Medium] V2 ไม่มี validation ก่อนส่ง engine
+
+ควรตรวจอย่างน้อย
+
+- item ต้องอยู่ใน slot นั้นจริง
+- class ต้องใช้ item ได้
+- card ต้องเป็น itemType Card และ compositionPos ตรง
+- จำนวน card ไม่เกิน slots
+- enchant ต้องอยู่ใน group ของ item
+- grade ต้องใช้ได้กับ item
+- refine ต้องอยู่ในช่วงและ item ต้อง refinable
+- Shield/Left Weapon/Ammo ต้องสัมพันธ์กับ weapon/class
+
+ปัจจุบัน UI filter บางส่วน แต่ adapter เชื่อ state โดยตรง
+state ที่มาจาก saved build/import/bug จึงอาจ bypass UI ได้
+
+
+===============================================================================
+8. ช่องว่างอื่นของระบบ
+===============================================================================
+
+8.1 Calculator ถูกแยกเป็นสองหน้าที่ยังไม่รวมกัน
+
+/calculator
+
+- มี saved build
+- มี IndexedDB
+- มี class filter
+- มี random option
+- มี slot มากกว่า
+- ยังไม่มีผลคำนวณครบ
+
+/calculator-v2
+
+- มี engine จริง
+- มี combat result
+- ไม่มี persistence
+- compatibility ยังไม่ครบ
+
+ต้องตัดสินใจหน้า canonical แล้ว merge capability
+
+8.2 V2 ไม่มี save/load/import/export build
+
+refresh หน้าแล้ว state หาย
+ไม่สามารถนำ variant และ saved build จาก Knowledge มาใช้ครบ flow
+
+8.3 Knowledge Dashboard ยังไม่ครบ
+
+ตาม implementation status ยังขาด
+
+- item detail lazy-loading ใน dashboard
+- แก้ไข/ลบ price history
+- owned item management
+- import preview และ conflict report
+- browser integration tests
+
+8.4 Advisor ยังไม่ทำ
+
+ยังขาด
+
+- candidate index
+- Web Worker
+- progress/cancel
+- target damage optimizer
+- budget optimizer
+- explainable ranking
+- การจัดการ unknown price
+
+8.5 Chat ยังไม่ทำ
+
+ยังขาด
+
+- tool dispatcher
+- calculator/advisor tool contract
+- conversation state
+- evidence/citation จากข้อมูลภายใน
+- guardrail ห้าม AI สร้างตัวเลขเอง
+- MCP adapter
+
+8.6 Test coverage ยังไม่พอสำหรับ parity
+
+unit tests 26 รายการผ่านทั้งหมด แต่ coverage ปัจจุบันยังไม่ครอบคลุม
+
+- full dropdown parity ต่อ slot
+- class-item compatibility
+- weapon/shield/leftWeapon/ammo state transitions
+- UI card selection
+- 4 enchant groups
+- random option -> engine
+- active/passive skill -> engine
+- saved build -> UI -> engine round trip
+- browser end-to-end tests
+
+test ปัจจุบันของ leftWeapon ยืนยันกฎใหม่ว่าหอก/ขวาน/คทา/คทาเวท/หมัด/หนังสือ
+อยู่ใน leftWeapon แทนที่จะเทียบ output กับเว็บเก่า จึงผ่านแม้ behavior ไม่ parity
+
+8.7 เอกสารสถานะเก่ากว่าการเปลี่ยนแปลงล่าสุด
+
+IMPLEMENTATION_STATUS.md อัปเดตวันที่ 16 กรกฎาคม 2026
+แต่ worktree มีการเปลี่ยนแปลงที่ยังไม่ commit จำนวนมาก
+
+ควร generate/update status จากผล verify ล่าสุด และระบุ
+
+- สิ่งที่ complete จริง
+- สิ่งที่ prototype
+- สิ่งที่ผ่าน unit test แต่ยังไม่ผ่าน browser parity
+
+8.8 Dependency advisories
+
+เอกสารสถานะระบุ npm audit มี 1 moderate และ 1 high
+ควรตรวจใหม่และวางแผนอัปเดตโดยไม่เดา compatibility
+
+
+===============================================================================
+9. สิ่งที่ต้องพัฒนา เรียงตามลำดับความสำคัญ
+===============================================================================
+
+P0: ทำให้ Equipment Compatibility ถูกต้องก่อนเชื่อผล damage
+
+P0.1 แยก capability ของอาวุธ
+
+เพิ่ม field/selector ที่แยกกัน เช่น
+
+- canEquipMainHand
+- canEquipLeftWeapon
+- allowsShield
+- ammoType
+- twoHanded
+
+Acceptance criteria:
+
+- leftWeapon dropdown ตรงกับเว็บเก่า release 3.2.28
+- หอก/ขวาน/คทา/rod/fist/book ไม่หลุดเข้ามือซ้ายเพียงเพราะเป็น one-hand
+- Shield เปิดตาม weapon rule โดยไม่ใช้ equipSlots.leftWeapon เป็นตัวแทน
+
+P0.2 เพิ่ม class compatibility ใน V2
+
+- reuse itemMatchesClass เป็น shared pure function
+- filter dropdown ตาม class
+- sanitize equipment เมื่อ class เปลี่ยน
+- แสดง warning ก่อนล้าง item ที่ใช้ไม่ได้ ถ้าต้องการ UX ที่ปลอดภัย
+
+Acceptance criteria:
+
+- dropdown ของแต่ละ class ตรงกับเว็บเก่า
+- เปลี่ยน class แล้วไม่มี invalid item ค้าง
+- มี fixture อย่างน้อย 4th, 3rd, Expanded, Super Novice
+
+P0.3 ทำ state machine ของ Weapon/Shield/Left Weapon/Ammo
+
+Acceptance criteria:
+
+- ใส่ Shield และ Left Weapon พร้อมกันไม่ได้
+- two-hand weapon ล้าง Shield
+- class ที่ใช้ dual wield ไม่ได้ไม่มี Left Weapon
+- ammo แสดงเฉพาะ weapon/class ที่ต้องใช้
+- เปลี่ยนอาวุธแล้ว ammo ที่ subtype ไม่ตรงถูกล้าง
+
+P0.4 เพิ่ม validation layer ก่อน damage engine
+
+สร้าง validateCalculatorSelection() แบบ pure TypeScript
+คืน errors/warnings และไม่ส่ง invalid build เข้า engine
+
+P0.5 เพิ่ม parity fixtures
+
+สร้าง snapshot จากเว็บเก่าสำหรับ
+
+- รายการ item IDs ต่อ slot
+- รายการ card IDs ต่อ slot
+- class filtering
+- weapon relation
+- enchant groups
+- random option count
+
+
+P1: ทำให้ input ที่ส่ง engine ครบ
+
+P1.1 รองรับ random option ใน V2
+
+- เพิ่ม randomOptions ใน EquipmentSlotSelection
+- reuse RandomOptionCascade
+- แปลงเป็น extraOptionScripts
+- เพิ่ม adapter tests
+
+P1.2 ส่ง active/passive skill values
+
+- แยก offensive skill, active skill และ passive skill ใน state
+- map selection เป็นค่าที่ legacy engine ต้องการ
+- เพิ่ม golden tests สำหรับ buff/passive combinations
+
+P1.3 แสดง enchant ทุก group
+
+- ยกเลิก slice(0, 3)
+- render ตาม group.slot
+- ตรวจ group กับ EQUIPMENT_SLOT_RULES
+- test ไอเทม 4 enchant groups
+
+P1.4 แก้ refine semantics
+
+- ไม่ fallback missing isRefinable เป็น true แบบเหมารวม
+- port กฎ legacy ต่อ item type
+- accessory ที่ไม่ refinable ต้องไม่มี refine control
+- เปลี่ยนไอเทมแล้ว reset refine ที่ invalid
+
+P1.5 เพิ่ม slot ที่ขาด
+
+- ammo
+- pet
+- costume enchants ทุกตำแหน่ง
+
+
+P2: รวม Calculator ให้เหลือ flow เดียว
+
+แนวทางแนะนำ:
+ใช้ /calculator-v2 เป็น calculation core แล้วนำ feature จาก /calculator เข้ามา
+
+- saved build
+- IndexedDB variant references
+- localStorage draft
+- price/budget/target
+- random option
+- item preview
+- slot coverage
+- class filter
+
+เมื่อ parity ครบแล้ว
+
+- เปลี่ยน /calculator ให้ชี้หน้าใหม่
+- เก็บ route เก่าเป็น temporary legacy route ถ้าจำเป็น
+- เอา V2 label ออกจาก navigation
+
+Acceptance criteria:
+
+- มี Calculator canonical เพียงหน้าเดียว
+- save -> reload -> calculate ได้ค่าเดิม
+- import build -> validate -> calculate ได้
+
+
+P3: เพิ่ม Browser/E2E tests
+
+scenario ขั้นต่ำ
+
+1) เลือก class ที่ dual wield ได้ -> เลือก dagger มือซ้าย
+2) เปลี่ยน class -> มือซ้ายถูกล้าง
+3) เลือก Shield -> Left Weapon ใช้ไม่ได้
+4) เลือก Accessory Left -> เห็นการ์ด Left แต่ไม่เห็นการ์ด Right
+5) เลือก Accessory Right -> เห็นการ์ด Right แต่ไม่เห็นการ์ด Left
+6) เปลี่ยน item 4 slots เป็น 1 slot -> card 2-4 ถูกล้าง
+7) clear Card 2 -> Card 3 ไม่เลื่อนช่อง
+8) เลือก Glacier item -> เห็น enchant ครบ 4 groups
+9) เลือก random options -> damage เปลี่ยน
+10) เปลี่ยน active/passive skill -> damage เปลี่ยน
+11) save/reload build -> selection และ damage เท่าเดิม
+
+
+P4: ทำ Knowledge ให้ครบ
+
+- item detail lazy load
+- price history edit/delete
+- owned items
+- import preview/conflict report
+- variant migration เมื่อ catalog update
+- browser tests ของ IndexedDB
+
+
+P5: ทำ Advisor หลัง Calculator เชื่อถือได้
+
+ห้ามเริ่ม optimizer เต็มรูปแบบก่อน compatibility และ input parity เสร็จ
+เพราะ optimizer จะขยายผลของกฎที่ผิดไปยัง candidate จำนวนมาก
+
+ลำดับที่เหมาะสม
+
+- candidate pre-filter
+- exact calculation
+- Web Worker
+- progress/cancel
+- target damage
+- maximize damage under budget
+- explanation และ unknown-price handling
+
+
+P6: ทำ Chat เป็นชั้นอธิบาย
+
+- Chat เรียก Calculator/Advisor tools เท่านั้น
+- ห้ามสร้าง damage/price เอง
+- แสดง build input, engine version, catalog version และ warning
+- รองรับคำถามภาษาไทย
+
+
+===============================================================================
+10. แผนงานแบบ Sprint ที่เสนอ
+===============================================================================
+
+Sprint 1: Compatibility foundation
+
+- แยก allowsShield กับ allowsLeftWeapon
+- port class filter เข้า shared lib
+- ทำ Weapon/Shield/LeftWeapon/Ammo state rules
+- validation layer
+- parity snapshot ต่อ slot
+
+Sprint 2: Complete engine input
+
+- random options
+- active/passive skill adapter
+- enchant 4 groups
+- refine semantics
+- ammo/pet/costume enchants
+- golden tests เพิ่ม
+
+Sprint 3: Calculator consolidation
+
+- ย้าย save/load/variant/price จาก /calculator เข้า V2
+- round-trip tests
+- browser E2E
+- ทำ route canonical
+
+Sprint 4: Knowledge completion
+
+- owned item
+- price history management
+- import conflict preview
+- catalog migration tests
+
+Sprint 5: Advisor MVP
+
+- candidate ranking
+- Web Worker
+- target/budget mode
+- explanation
+
+Sprint 6: Chat MVP
+
+- tool dispatcher
+- Calculator/Advisor integration
+- evidence/warnings
+
+
+===============================================================================
+11. การตรวจสอบที่ทำในรอบนี้
+===============================================================================
+
+ตรวจ source โดยตรงจาก
+
+- src/components/calculator-v2/
+- src/components/calculator/equipment-build-panel.tsx
+- src/lib/equipment/
+- src/lib/calculator/
+- scripts/build-catalog.ts
+- requirements/DATA_SCHEMA.md
+- public/data/catalog-manifest.json
+- tong-calc-ro source release ที่ checkout อยู่
+
+ผลคำสั่งตรวจ
+
+- npm test: ผ่าน 26/26 tests
+- npm run typecheck: ผ่าน
+- npm run lint: ผ่าน
+
+หมายเหตุ:
+
+- การรัน test ครั้งแรกใน sandbox ล้มด้วย spawn EPERM ซึ่งเป็นข้อจำกัด environment
+  ไม่ใช่ test failure
+- เมื่อรันในสิทธิ์ที่อนุญาต ชุดทดสอบผ่านทั้งหมด
+- รอบนี้ยังไม่ได้ทำ browser E2E เพราะ repository ยังไม่มี browser integration suite
+- ไม่ได้แก้ source code ของระบบ มีเพียงเพิ่มรายงานไฟล์นี้
+
+
+===============================================================================
+12. สรุปสุดท้าย
+===============================================================================
+
+โปรเจกต์มี foundation ที่ดีแล้ว
+
+- catalog pipeline ใช้งานได้
+- data แยกเป็น chunk
+- local-first persistence มีฐานแล้ว
+- engine จากเว็บเก่าถูก bundle และคำนวณได้จริง
+- card position หลักและ accessory side-specific card ถูกต้อง
+- unit test, typecheck และ lint ผ่าน
+
+แต่ยังไม่ควรประกาศว่า Calculator V2 parity กับเว็บเก่า
+
+ปัญหาที่ต้องแก้ก่อนเป็นอันดับแรกคือ
+
+1) อาวุธมือซ้ายเกินมา 328 ชิ้น
+2) ทุก class เลือกมือซ้ายได้
+3) ใส่ Shield และ Left Weapon พร้อมกันได้
+4) V2 ไม่กรองไอเทมตาม class ทั้งที่ 3,101 equipable items มี class restrictions
+5) ไม่มี Ammo และ Random Option
+6) Enchant ช่องที่ 4 หายใน 26 ไอเทม
+7) refine ของ Accessory ถูกเปิดกว้างเกินเว็บเก่า
+8) active/passive skill selection ยังไม่ถูกส่งเข้า engine
+9) V2 ยัง save/load build ไม่ได้
+
+ข้อสรุปเชิงผลิตภัณฑ์:
+ตอนนี้ระบบ "คำนวณได้" แต่ยังไม่รับประกันว่า build input ทุกแบบถูกกติกา
+ควรทำ compatibility + validation + parity tests ให้เสร็จ
+แล้วรวม /calculator กับ /calculator-v2 ก่อนเริ่ม Advisor และ Chat เต็มรูปแบบ

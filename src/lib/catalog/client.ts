@@ -2,18 +2,18 @@ import type {
   CatalogItemDetail,
   CatalogItemOptionsIndex,
   CatalogClassSkills,
+  CatalogHpSpTable,
   CatalogManifest,
   CatalogMonster,
   CatalogSearchItem,
 } from "@/lib/catalog/types";
-import { resolveEquipmentSlots } from "@/lib/equipment/catalog-rules";
-import { EQUIPMENT_SLOT_RULES } from "@/lib/equipment/types";
 
 let manifestPromise: Promise<CatalogManifest> | null = null;
 let searchPromise: Promise<CatalogSearchItem[]> | null = null;
 let itemOptionsPromise: Promise<CatalogItemOptionsIndex> | null = null;
 let monstersPromise: Promise<CatalogMonster[]> | null = null;
 let skillsPromise: Promise<CatalogClassSkills[]> | null = null;
+let hpSpTablePromise: Promise<CatalogHpSpTable> | null = null;
 const itemDetailChunkPromises = new Map<string, Promise<CatalogItemDetail[]>>();
 
 function publicAssetUrl(path: string): string {
@@ -38,29 +38,18 @@ export function loadCatalogManifest(): Promise<CatalogManifest> {
 export async function loadCatalogSearch(): Promise<CatalogSearchItem[]> {
   searchPromise ??= loadCatalogManifest()
     .then((manifest) => fetchJson<CatalogSearchItem[]>(manifest.search.url))
+    // The catalog build already resolved equipSlots, canGrade and isRefinable from
+    // the legacy source. Re-deriving them here from the display label produced a
+    // second, less accurate answer, so this only fills in absent fields.
     .then((items) =>
-      items.map((item) => {
-        const hasSubType = Number.isFinite(item.itemSubTypeId);
-        const equipSlots = hasSubType
-          ? resolveEquipmentSlots({
-              itemTypeId: item.itemTypeId,
-              itemSubTypeId: item.itemSubTypeId,
-              displaySlot: item.slot,
-            })
-          : (item.equipSlots ?? []);
-        return {
-          ...item,
-          itemSubTypeId: item.itemSubTypeId ?? 0,
-          equipSlots,
-          compositionPos: item.compositionPos ?? null,
-          canGrade: item.canGrade === true,
-          isRefinable:
-            item.isRefinable === true ||
-            equipSlots.some(
-              (slot) => EQUIPMENT_SLOT_RULES[slot].allowsRefine,
-            ),
-        };
-      }),
+      items.map((item) => ({
+        ...item,
+        itemSubTypeId: item.itemSubTypeId ?? 0,
+        equipSlots: item.equipSlots ?? [],
+        compositionPos: item.compositionPos ?? null,
+        canGrade: item.canGrade === true,
+        isRefinable: item.isRefinable === true,
+      })),
     );
   return searchPromise;
 }
@@ -90,6 +79,13 @@ export function loadCatalogSkills(): Promise<CatalogClassSkills[]> {
   return skillsPromise;
 }
 
+export function loadCatalogHpSpTable(): Promise<CatalogHpSpTable> {
+  hpSpTablePromise ??= loadCatalogManifest().then((manifest) =>
+    fetchJson<CatalogHpSpTable>(manifest.hpSpTable.url),
+  );
+  return hpSpTablePromise;
+}
+
 export async function loadCatalogItemDetail(
   item: CatalogSearchItem,
 ): Promise<CatalogItemDetail | null> {
@@ -114,5 +110,6 @@ export function clearCatalogMemoryCache(): void {
   itemOptionsPromise = null;
   monstersPromise = null;
   skillsPromise = null;
+  hpSpTablePromise = null;
   itemDetailChunkPromises.clear();
 }

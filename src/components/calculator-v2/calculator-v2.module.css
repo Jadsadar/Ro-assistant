@@ -1,0 +1,778 @@
+.shell {
+  --v2-bg: #080a0d;
+  --v2-surface: #121417;
+  --v2-surface-2: #1a1d21;
+  --v2-surface-3: #22262b;
+  --v2-border: #30363d;
+  --v2-border-strong: #52616b;
+  --v2-primary: #00e5ff;
+  --v2-primary-soft: rgb(0 229 255 / 14%);
+  --v2-text: #f1f5f7;
+  --v2-muted: #9aa8ae;
+  --v2-faint: #607078;
+  --v2-danger: #ffb4ab;
+  --v2-radius-lg: 14px;
+  --v2-radius-md: 10px;
+  --v2-radius-sm: 7px;
+
+  min-height: calc(100vh - 140px);
+  margin: -1.5rem clamp(-2rem, -2vw, -1rem) 0 clamp(-4rem, -4vw, -1.25rem);
+  padding: 10px;
+  color: var(--v2-text);
+  background:
+    linear-gradient(90deg, rgb(255 255 255 / 3%) 1px, transparent 1px),
+    linear-gradient(180deg, rgb(255 255 255 / 3%) 1px, transparent 1px),
+    var(--v2-bg);
+  background-size: 48px 48px;
+  font-family: "Noto Sans Thai", "Leelawadee UI", Inter, system-ui, sans-serif;
+}
+
+.heroBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 12px;
+  padding: 12px 16px;
+  border: 1px solid var(--v2-border);
+  border-radius: var(--v2-radius-lg);
+  background: rgb(18 20 23 / 92%);
+}
+
+.heroBar h1 {
+  margin: 0;
+  color: var(--v2-primary);
+  font-family: "JetBrains Mono", Consolas, monospace;
+  font-size: clamp(1.35rem, 3vw, 2.2rem);
+  line-height: 1;
+  letter-spacing: 0;
+}
+
+.kicker,
+.panelHeader h2,
+.field > span,
+.compactField > span,
+.statColumn h3,
+.equipmentGroup h3,
+.slotHeading span,
+.damageReadout span,
+.monsterStats dt,
+.summaryGrid dt {
+  font-family: "JetBrains Mono", Consolas, monospace;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.kicker {
+  margin: 0 0 6px;
+  color: var(--v2-muted);
+  font-size: 0.68rem;
+}
+
+.statusRail {
+  display: grid;
+  gap: 4px;
+  min-width: min(360px, 45vw);
+  text-align: right;
+  color: var(--v2-muted);
+  font-family: "JetBrains Mono", Consolas, monospace;
+  font-size: 0.75rem;
+}
+
+.statusRail strong {
+  color: var(--v2-primary);
+  font-size: 0.95rem;
+}
+
+.dashboard {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.78fr) minmax(520px, 1.55fr) minmax(300px, 0.82fr);
+  gap: 12px;
+  align-items: start;
+}
+
+.sideStack {
+  display: grid;
+  gap: 12px;
+}
+
+.panel {
+  min-width: 0;
+  border: 1px solid var(--v2-border);
+  border-radius: var(--v2-radius-lg);
+  background: rgb(18 20 23 / 94%);
+}
+
+.panelHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 36px;
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--v2-border);
+  border-radius: calc(var(--v2-radius-lg) - 1px) calc(var(--v2-radius-lg) - 1px) 0 0;
+  background: var(--v2-surface-3);
+}
+
+.panelHeader h2 {
+  margin: 0;
+  color: var(--v2-primary);
+  font-size: 0.76rem;
+}
+
+.panelHeaderActions {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.collapseButton {
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border: 1px solid rgb(0 229 255 / 28%);
+  border-radius: var(--v2-radius-sm);
+  padding: 0;
+  color: var(--v2-primary);
+  background: rgb(0 0 0 / 22%);
+}
+
+.collapseButton:hover,
+.collapseButton:focus-visible {
+  border-color: var(--v2-primary);
+  background: var(--v2-primary-soft);
+  outline: none;
+}
+
+.collapseArrowUp,
+.collapseArrowDown {
+  width: 8px;
+  height: 8px;
+  border-top: 2px solid currentColor;
+  border-left: 2px solid currentColor;
+}
+
+.collapseArrowUp {
+  margin-top: 4px;
+  transform: rotate(45deg);
+}
+
+.collapseArrowDown {
+  margin-bottom: 4px;
+  transform: rotate(225deg);
+}
+
+.panelBadge {
+  border: 1px solid rgb(0 229 255 / 34%);
+  border-radius: var(--v2-radius-sm);
+  padding: 3px 6px;
+  color: var(--v2-primary);
+  background: var(--v2-primary-soft);
+  font-family: "JetBrains Mono", Consolas, monospace;
+  font-size: 0.62rem;
+  text-transform: uppercase;
+}
+
+.panelBody,
+.equipmentBody {
+  display: grid;
+  gap: 10px;
+  padding: 10px;
+}
+
+.field,
+.compactField {
+  display: grid;
+  gap: 5px;
+  min-width: 0;
+}
+
+.field > span,
+.compactField > span {
+  color: var(--v2-muted);
+  font-size: 0.62rem;
+}
+
+.field input,
+.field select,
+.compactField input,
+.compactField select,
+.combo input {
+  min-width: 0;
+  width: 100%;
+  height: 32px;
+  border: 1px solid var(--v2-border);
+  border-radius: var(--v2-radius-sm);
+  padding: 0 8px;
+  color: var(--v2-text);
+  background: #0d1013;
+  outline: none;
+}
+
+.field input:focus,
+.field select:focus,
+.compactField input:focus,
+.compactField select:focus,
+.combo input:focus {
+  border-color: var(--v2-primary);
+  box-shadow: 0 0 0 2px rgb(0 229 255 / 18%);
+}
+
+.field input:disabled,
+.field select:disabled,
+.compactField input:disabled,
+.compactField select:disabled,
+.combo input:disabled {
+  cursor: not-allowed;
+  color: var(--v2-faint);
+  border-color: rgb(255 255 255 / 8%);
+  background: rgb(255 255 255 / 3%);
+}
+
+.combo {
+  position: relative;
+  min-width: 0;
+}
+
+.combo input {
+  padding-right: 28px;
+}
+
+.comboClear {
+  position: absolute;
+  top: 50%;
+  right: 6px;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 18px;
+  height: 18px;
+  border: 1px solid rgb(255 255 255 / 12%);
+  border-radius: 999px;
+  padding: 0;
+  color: var(--v2-muted);
+  background: rgb(0 0 0 / 36%);
+  font-family: "JetBrains Mono", Consolas, monospace;
+  font-size: 0.7rem;
+  line-height: 1;
+  transform: translateY(-50%);
+}
+
+.comboClear:hover {
+  border-color: var(--v2-primary);
+  color: var(--v2-primary);
+  background: var(--v2-primary-soft);
+}
+
+.comboMenu {
+  position: absolute;
+  right: 0;
+  left: 0;
+  top: calc(100% + 3px);
+  z-index: 40;
+  display: grid;
+  max-height: 240px;
+  overflow: auto;
+  border: 1px solid var(--v2-primary);
+  border-radius: var(--v2-radius-md);
+  background: #080a0d;
+  box-shadow: 0 12px 28px rgb(0 0 0 / 42%), 0 0 18px rgb(0 229 255 / 16%);
+}
+
+.comboMenu button,
+.comboEmpty {
+  min-width: 0;
+  border: 0;
+  border-bottom: 1px solid rgb(255 255 255 / 7%);
+  padding: 7px 8px;
+  color: var(--v2-text);
+  background: transparent;
+  text-align: left;
+}
+
+.comboMenu button {
+  display: grid;
+  gap: 3px;
+}
+
+.comboMenu button:hover,
+.comboActive {
+  background: var(--v2-primary-soft);
+}
+
+.comboMenu button span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.comboMenu button small,
+.comboEmpty {
+  color: var(--v2-muted);
+  font-family: "JetBrains Mono", Consolas, monospace;
+  font-size: 0.66rem;
+}
+
+.levelGrid,
+.slotControls {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  padding-top: 8px;
+  border-top: 1px solid var(--v2-border);
+}
+
+.statsPanelGrid {
+  padding-top: 0;
+  border-top: 0;
+}
+
+.statColumn {
+  display: grid;
+  gap: 6px;
+}
+
+.statColumn h3,
+.equipmentGroup h3 {
+  margin: 0;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--v2-border);
+  color: var(--v2-muted);
+  font-size: 0.64rem;
+}
+
+.statRow {
+  display: grid;
+  grid-template-columns: 38px minmax(54px, 1fr) 38px;
+  gap: 6px;
+  align-items: center;
+  color: var(--v2-text);
+  font-family: "JetBrains Mono", Consolas, monospace;
+  font-size: 0.84rem;
+}
+
+.statRow select,
+.statRow .combo input {
+  height: 26px;
+  border: 0;
+  border-bottom: 1px solid var(--v2-border-strong);
+  color: var(--v2-text);
+  background: transparent;
+  text-align: right;
+}
+
+.statRow strong {
+  color: var(--v2-primary);
+  text-align: right;
+  font-size: 0.78rem;
+}
+
+.equipmentGroup {
+  display: grid;
+  gap: 8px;
+}
+
+.slotGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.slotCard {
+  display: grid;
+  gap: 8px;
+  min-width: 0;
+  padding: 8px;
+  border: 1px solid var(--v2-border);
+  border-radius: var(--v2-radius-md);
+  background: #0d1013;
+}
+
+.slotCard:focus-within {
+  border-color: var(--v2-primary);
+  box-shadow: 0 0 12px rgb(0 229 255 / 12%);
+}
+
+.slotHeading {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  align-items: center;
+}
+
+.slotHeading span {
+  color: var(--v2-primary);
+  font-size: 0.62rem;
+}
+
+.slotHeading strong {
+  overflow: hidden;
+  color: var(--v2-faint);
+  font-size: 0.72rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.cardGrid,
+.optionGrid {
+  display: grid;
+  gap: 6px;
+  padding-top: 6px;
+  border-top: 1px solid rgb(255 255 255 / 7%);
+}
+
+.monsterStats,
+.summaryGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  margin: 0;
+}
+
+.monsterStats div,
+.summaryGrid div {
+  min-width: 0;
+  padding: 8px;
+  border: 1px solid rgb(255 255 255 / 8%);
+  border-radius: var(--v2-radius-md);
+  background: rgb(255 255 255 / 3%);
+}
+
+.monsterStats dt,
+.summaryGrid dt {
+  color: var(--v2-muted);
+  font-size: 0.58rem;
+}
+
+.monsterStats dd,
+.summaryGrid dd {
+  overflow: hidden;
+  margin: 5px 0 0;
+  color: var(--v2-text);
+  font-family: "JetBrains Mono", Consolas, monospace;
+  font-size: 0.78rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.damageReadout {
+  display: grid;
+  gap: 8px;
+  padding: 14px;
+  border: 1px solid rgb(0 229 255 / 35%);
+  border-radius: var(--v2-radius-lg);
+  background: var(--v2-primary-soft);
+}
+
+.damageReadout span {
+  color: var(--v2-muted);
+  font-size: 0.62rem;
+}
+
+.damageReadout small {
+  color: var(--v2-muted);
+  font-family: "JetBrains Mono", Consolas, monospace;
+  font-size: 0.64rem;
+}
+
+.damageReadout strong {
+  color: var(--v2-primary);
+  font-family: "JetBrains Mono", Consolas, monospace;
+  font-size: 1.35rem;
+}
+
+.errorBanner {
+  margin-bottom: 12px;
+  padding: 10px 12px;
+  border: 1px solid rgb(255 180 171 / 45%);
+  border-radius: var(--v2-radius-md);
+  color: var(--v2-danger);
+  background: rgb(255 180 171 / 8%);
+}
+
+.calculationError,
+.calculationWarning,
+.engineLabel {
+  margin: 8px 0 0;
+  font-family: "JetBrains Mono", Consolas, monospace;
+  font-size: 0.62rem;
+  line-height: 1.5;
+}
+
+.calculationError {
+  color: var(--v2-danger);
+}
+
+.calculationWarning {
+  color: #ffd166;
+}
+
+.engineLabel {
+  color: var(--v2-muted);
+}
+
+.buffToolbar {
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.buffToolbar input,
+.buffToolbar button {
+  min-width: 0;
+  height: 30px;
+  border: 1px solid var(--v2-border);
+  border-radius: var(--v2-radius-sm);
+  padding: 0 8px;
+  color: var(--v2-text);
+  background: #0d1013;
+}
+
+.buffToolbar input:focus,
+.buffToolbar button:hover {
+  border-color: var(--v2-primary);
+  outline: none;
+}
+
+.buffToolbar button {
+  color: var(--v2-primary);
+  font-family: "JetBrains Mono", Consolas, monospace;
+  font-size: 0.66rem;
+  text-transform: uppercase;
+}
+
+.buffGroups {
+  display: grid;
+  gap: 10px;
+}
+
+.buffGroup {
+  display: grid;
+  gap: 6px;
+}
+
+.buffGroup h3 {
+  margin: 0;
+  color: var(--v2-muted);
+  font-family: "JetBrains Mono", Consolas, monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.buffGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 4px;
+}
+
+.buffGrid button {
+  position: relative;
+  display: grid;
+  grid-template-columns: 22px minmax(0, 1fr);
+  align-items: center;
+  min-width: 0;
+  min-height: 32px;
+  border: 1px solid var(--v2-border);
+  border-radius: var(--v2-radius-md);
+  padding: 4px 28px 4px 5px;
+  color: var(--v2-muted);
+  background: #0d1013;
+  text-align: left;
+  font-size: 0.62rem;
+}
+
+.buffGrid button:hover,
+.buffGrid .buffActive {
+  border-color: var(--v2-primary);
+  color: var(--v2-text);
+  background: var(--v2-primary-soft);
+}
+
+.buffGrid button span:not(.buffIcon) {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.buffIcon {
+  display: grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  border: 1px solid rgb(255 255 255 / 10%);
+  border-radius: 5px;
+  background:
+    linear-gradient(135deg, rgb(255 255 255 / 9%), transparent 58%),
+    #171b20;
+}
+
+.buffGrid button strong {
+  position: absolute;
+  top: 50%;
+  right: 6px;
+  color: var(--v2-primary);
+  font-family: "JetBrains Mono", Consolas, monospace;
+  font-size: 0.56rem;
+  transform: translateY(-50%);
+}
+
+.skillMatrixList {
+  display: grid;
+  gap: 6px;
+  max-height: 360px;
+  overflow: auto;
+}
+
+.skillMatrixList > div {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 112px;
+  gap: 6px;
+  align-items: center;
+  border: 1px solid var(--v2-border);
+  border-radius: var(--v2-radius-md);
+  padding: 6px;
+  background: #0d1013;
+}
+
+.skillMatrixList > div:hover,
+.skillMatrixActive {
+  border-color: var(--v2-primary);
+  background: var(--v2-primary-soft);
+}
+
+.skillMatrixList button {
+  position: relative;
+  min-width: 0;
+  border: 0;
+  padding: 0;
+  color: var(--v2-text);
+  background: transparent;
+  text-align: left;
+}
+
+.skillMatrixList button span {
+  display: block;
+  overflow: hidden;
+  padding-right: 48px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.skillMatrixList button strong {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  color: var(--v2-primary);
+  font-family: "JetBrains Mono", Consolas, monospace;
+  font-size: 0.54rem;
+  transform: translateY(-50%);
+}
+
+.skillMatrixList select {
+  min-width: 0;
+  width: 100%;
+  height: 30px;
+  border: 1px solid var(--v2-border);
+  border-radius: var(--v2-radius-sm);
+  color: var(--v2-text);
+  background: #080a0d;
+}
+
+@media (max-width: 1180px) {
+  .dashboard {
+    grid-template-columns: 1fr;
+  }
+
+  .slotGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 720px) {
+  .shell {
+    margin-inline: -1rem;
+    padding: 10px;
+  }
+
+  .heroBar,
+  .statsGrid,
+  .slotGrid,
+  .monsterStats,
+  .summaryGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .heroBar {
+    display: grid;
+  }
+
+  .statusRail {
+    min-width: 0;
+    text-align: left;
+  }
+}
+
+.noticeBanner {
+  margin-bottom: 12px;
+  padding: 10px 12px;
+  border: 1px solid rgb(255 214 153 / 45%);
+  border-radius: var(--v2-radius-md);
+  color: var(--v2-warning, #d9a441);
+  background: rgb(255 214 153 / 8%);
+  font-size: 0.75rem;
+}
+
+.skillLevelGroup {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid var(--v2-border, rgb(255 255 255 / 10%));
+}
+
+.skillLevelGroup h3 {
+  margin: 0 0 8px;
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+
+.skillLevelList {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 8px;
+}
+
+.randomOptionGrid {
+  display: grid;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.randomOptionGrid fieldset {
+  padding: 8px;
+  border: 1px solid var(--v2-border, rgb(255 255 255 / 10%));
+  border-radius: var(--v2-radius-md);
+}
+
+.randomOptionGrid legend {
+  padding: 0 4px;
+  font-size: 0.62rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+
+.randomOptionGrid select {
+  width: 100%;
+  margin-top: 4px;
+}

@@ -1,0 +1,770 @@
+===============================================================================
+แผนลำดับการแก้ไขงาน RO Assistant
+เป้าหมาย: ทำให้เว็บใหม่มีข้อมูลและฟังก์ชันเทียบเท่าเว็บเก่า (tong-calc-ro 3.2.28)
+         โดย UI เป็นแบบใหม่ และมีระบบ Chat เพิ่ม
+เขียนวันที่: 20 สิงหาคม 2026
+อ้างอิงการวิเคราะห์: PROJECT_FLOW_AND_GAP_ANALYSIS_TH.txt (27 ก.ค. 2026)
+สถานะ ณ วันเขียน: ทุกข้อในรายงานเดิมยังไม่ถูกแก้ (commit ล่าสุด 3d52bb4)
+===============================================================================
+
+
+-------------------------------------------------------------------------------
+วิธีใช้เอกสารนี้
+-------------------------------------------------------------------------------
+
+- งานเรียงตามลำดับที่ต้อง "ทำก่อน-หลัง" จริง ไม่ใช่เรียงตามความยาก
+- ห้ามข้ามไป STEP ถัดไปก่อนที่ Acceptance criteria ของ STEP ปัจจุบันจะผ่าน
+- เหตุผลของลำดับ: ถ้ากฎการเลือกของยังผิด ผลดาเมจทุกค่าที่ต่อยอดจากมันจะผิดตาม
+  และ Advisor จะขยายความผิดนั้นไปยัง candidate หลายพันตัว
+- แต่ละ STEP มี: ปัญหา / ไฟล์ที่ต้องแก้ / สิ่งที่ต้องทำ / Acceptance criteria / test
+
+หมายเหตุสำคัญเรื่องการตัดสินใจสถาปัตยกรรม (ต้องตัดสินก่อนเริ่ม STEP 1):
+  ให้ยึด /calculator-v2 เป็น "หน้าหลักในอนาคต" เพราะมี damage engine จริงแล้ว
+  แล้วค่อยดึงความสามารถจาก /calculator (save/load, random option, slot ครบ,
+  class filter) เข้ามาทีละส่วนใน STEP 7
+  ห้ามพัฒนา 2 หน้าคู่ขนานต่อไป เพราะจะต้องแก้กฎเดียวกันสองที่
+
+
+===============================================================================
+เฟส 0 : เตรียมฐานอ้างอิง (ต้องทำก่อนแตะโค้ดจริง)
+===============================================================================
+
+-------------------------------------------------------------------------------
+STEP 0.1 - สร้าง Parity Fixture จากเว็บเก่า
+-------------------------------------------------------------------------------
+
+ปัญหา:
+  test ปัจจุบัน 26 ตัวผ่านหมด แต่ test ของ leftWeapon เขียนยืนยัน "กฎใหม่"
+  ไม่ได้เทียบกับเว็บเก่า จึงผ่านทั้งที่ behavior ผิด
+  ถ้าไม่มีฐานอ้างอิง เราจะไม่มีทางรู้ว่าแก้แล้ว "ตรง" หรือยัง
+
+ไฟล์ที่ต้องสร้าง:
+  scripts/build-parity-fixtures.ts
+  tests/fixtures/parity/*.json
+
+สิ่งที่ต้องทำ:
+  เขียน script อ่าน tong-calc-ro/item.json แล้ว export snapshot ต่อไปนี้เป็น JSON
+
+  1) weapon-list.json         - item IDs ที่เข้า weaponList ของเว็บเก่า
+  2) left-weapon-list.json    - item IDs ที่เข้า leftWeaponList (itemSubTypeId 256, 257 เท่านั้น)
+  3) ammo-list.json           - item IDs ที่เข้า ammoList (itemTypeId = AMMO)
+  4) slot-item-lists.json     - item IDs ต่อ slot ทุก slot
+  5) card-lists.json          - card IDs ต่อ compositionPos
+  6) class-filter.json        - ผลการกรอง usableClass/unusableClass ต่อ class ตัวอย่าง
+                                อย่างน้อย 4th job, 3rd job, Expanded, Super Novice
+  7) refinable.json           - item IDs ที่ isRefinable === true จริงใน source
+  8) enchant-groups.json      - item IDs พร้อมจำนวน enchant group จริง
+
+  กฎอ้างอิงที่ยืนยันจาก source เว็บเก่าแล้ว (ใช้เป็น spec ของ fixture):
+
+    - leftWeaponList
+      tong-calc-ro/src/app/layout/pages/ro-calculator/ro-calculator.component.ts:1840
+      -> if (itemSubTypeId === 256 || itemSubTypeId === 257)
+
+    - AllowLeftWeaponMapper
+      tong-calc-ro/src/app/constants/allow-left-weapon-mapper.ts
+      -> GuillotineCross, ShadowCross, Oboro, Shiranui, Kagerou, Shinkiro เท่านั้น
+
+    - AllowShieldTable
+      tong-calc-ro/src/app/domain/weapon.ts:118
+      -> sword, whip, instrument, fist, dagger, mace, rod, book, spear, axe
+      -> ถ้ายังไม่เลือกอาวุธ (typeName ว่าง) คืน true (weapon.ts:204)
+
+    - AllowAmmoMapper
+      tong-calc-ro/src/app/constants/allow-ammo-mapper.ts
+      -> bow, gun, whip, instrument, shuriken
+
+    - WeaponAmmoMapper / ClassAmmoMapper
+      tong-calc-ro/src/app/constants/weapon-ammo-mapper.ts
+
+    - isRefinable
+      tong-calc-ro/src/app/layout/pages/ro-calculator/equipment/equipment.component.ts:171
+      -> this.getItem(this.itemId).isRefinable ?? false
+      -> ค่า missing ตีความเป็น false ไม่ใช่ true
+
+Acceptance criteria:
+  - รัน script แล้วได้ไฟล์ fixture ครบ 8 ไฟล์
+  - fixture commit เข้า repo และมี header ระบุ release/commit ของ source
+  - จำนวนที่ได้ตรงกับตัวเลขในรายงาน เช่น leftWeaponList = 150 ชิ้น
+
+ทำไมต้องทำก่อน:
+  ทุก STEP หลังจากนี้ใช้ fixture นี้เป็นตัววัดว่า "ตรงเว็บเก่าหรือยัง"
+
+
+-------------------------------------------------------------------------------
+STEP 0.2 - เขียน test ที่ fail ก่อน (Red test)
+-------------------------------------------------------------------------------
+
+ไฟล์ที่ต้องสร้าง:
+  tests/parity-equipment-list.test.ts
+
+สิ่งที่ต้องทำ:
+  เขียน test เทียบผลของระบบใหม่กับ fixture จาก STEP 0.1
+  test เหล่านี้ต้อง FAIL ในตอนนี้ ซึ่งถูกต้องแล้ว
+
+  - leftWeapon list ต้องตรง fixture   (ตอนนี้จะ fail: 478 vs 150)
+  - shield allow rule ต้องตรง fixture
+  - ammo list ต้องตรง fixture         (ตอนนี้ V2 ไม่มี ammo เลย)
+  - class filter ต้องตรง fixture
+  - refinable ต้องตรง fixture
+
+  แก้ test เดิมของ leftWeapon ที่ยืนยันกฎผิดให้เลิกใช้ หรือเปลี่ยนไปเทียบ fixture
+
+Acceptance criteria:
+  - มี test ที่ fail อย่างชัดเจนพร้อม diff ที่อ่านออกว่าเกินมา/ขาดไปกี่ชิ้น
+
+
+===============================================================================
+เฟส 1 : แก้กฎอุปกรณ์ให้ตรงเว็บเก่า (P0 - สำคัญที่สุด)
+===============================================================================
+
+-------------------------------------------------------------------------------
+STEP 1 - แยก capability ของอาวุธออกจากกัน
+-------------------------------------------------------------------------------
+
+ปัญหา (Critical):
+  ไฟล์ src/lib/equipment/catalog-rules.ts:62-71 มี ONE_HAND_WEAPON_SUB_TYPES
+  ชุดเดียว แล้วเอาไปใช้ตอบ 2 คำถามพร้อมกัน
+    1) ไอเทมนี้ใส่มือซ้ายได้ไหม
+    2) ไอเทมนี้เป็นอาวุธมือเดียวจึงถือโล่ได้ไหม
+  สองคำถามนี้คำตอบไม่เหมือนกัน
+
+  ผลที่เกิดขึ้นจริง 2 ทาง:
+
+    ทางที่ 1 (กว้างเกิน) - มือซ้ายเปิด 478 ชิ้น แทนที่จะเป็น 150 ชิ้น
+      หอก(259) ขวาน(261) คทา(263) rod(265) หมัด(268) หนังสือ(271) หลุดเข้ามา
+      ตัวอย่าง: Illusion War Axe [2], Golden Wrench [2], Pike [4],
+                Gungnir [2], Imperial Spear [1], Thanos Spear [1]
+
+    ทางที่ 2 (แคบเกิน - รายงานเดิมยังไม่ได้ระบุ) - เว็บเก่าอนุญาตให้ถือโล่กับ
+      whip(270) และ instrument(269) ด้วย แต่ชุดปัจจุบันไม่มีสองตัวนี้
+      สาย Troubadour/Trouvere/Wanderer จึงถือโล่ไม่ได้ทั้งที่เว็บเก่าให้ถือ
+
+ไฟล์ที่ต้องแก้:
+  src/lib/equipment/catalog-rules.ts
+  src/lib/equipment/types.ts
+  src/lib/catalog/types.ts
+  scripts/build-catalog.ts
+
+สิ่งที่ต้องทำ:
+
+  1) แทน ONE_HAND_WEAPON_SUB_TYPES ด้วย set แยกกัน 2 ชุด
+
+     LEFT_WEAPON_SUB_TYPES = { 256 dagger, 257 oneHandSword }
+       (เท่านี้เท่านั้น อ้างอิง ro-calculator.component.ts:1840)
+
+     ALLOWS_SHIELD_SUB_TYPES = { 256 dagger, 257 sword, 259 spear, 261 axe,
+                                 263 mace, 265 rod, 268 fist, 269 instrument,
+                                 270 whip, 271 book }
+       (อ้างอิง AllowShieldTable ใน domain/weapon.ts:118)
+
+  2) เพิ่ม capability field ระดับไอเทมใน catalog schema
+     - canEquipMainHand   : boolean
+     - canEquipLeftWeapon : boolean
+     - allowsShield       : boolean
+     - twoHanded          : boolean
+     - ammoType           : number | null  (subTypeId ของกระสุนที่อาวุธนี้ต้องใช้)
+
+  3) resolveEquipmentSlots() ต้องคืน ["weapon"] อย่างเดียวสำหรับอาวุธทุกชนิด
+     ส่วนการเปิดช่องมือซ้าย/โล่ ให้ย้ายไปตัดสินที่ capability ไม่ใช่ที่ equipSlots
+
+  4) rebuild catalog หลังแก้ schema (npm run catalog:build)
+
+Acceptance criteria:
+  - leftWeapon dropdown มี 150 ชิ้น ตรง fixture
+  - หอก/ขวาน/คทา/rod/fist/book ไม่อยู่ในรายการมือซ้าย
+  - whip และ instrument ถือโล่ได้
+  - bow, katar, gun, shuriken, อาวุธสองมือทุกชนิด ถือโล่ไม่ได้
+  - ยังไม่เลือกอาวุธ -> โล่เลือกได้ (ตาม weapon.ts:204 return true)
+  - test STEP 0.2 ข้อ leftWeapon และ shield เปลี่ยนเป็น PASS
+
+
+-------------------------------------------------------------------------------
+STEP 2 - เพิ่ม class compatibility filter เข้า V2
+-------------------------------------------------------------------------------
+
+ปัญหา (Critical):
+  ฟังก์ชัน itemMatchesClass มีอยู่แล้ว 2 ที่ แต่ไม่มีที่ V2
+    src/components/calculator/equipment-build-panel.tsx:497
+    src/components/knowledge/knowledge-dashboard.tsx:126
+  V2 ไม่กรองเลย กระทบไอเทม 3,101 จาก 3,396 ชิ้นที่มีข้อจำกัด class
+  และเมื่อเปลี่ยน class แล้ว อุปกรณ์เก่าที่ class ใหม่ใส่ไม่ได้ยังค้างอยู่
+
+ไฟล์ที่ต้องสร้าง/แก้:
+  สร้าง: src/lib/equipment/class-compatibility.ts
+  แก้:   src/components/calculator/equipment-build-panel.tsx (ลบสำเนา ใช้ตัวกลาง)
+  แก้:   src/components/knowledge/knowledge-dashboard.tsx   (ลบสำเนา ใช้ตัวกลาง)
+  แก้:   src/components/calculator-v2/equipment-panel.tsx   (เรียกใช้)
+  แก้:   src/components/calculator-v2/calculator-v2-shell.tsx (sanitize ตอนเปลี่ยน class)
+
+สิ่งที่ต้องทำ:
+  1) ย้าย itemMatchesClass เป็น pure function กลาง ห้ามมีสำเนาซ้ำอีก
+     เก็บ logic เดิม: unusableClass ชนะ usableClass, usableClass ว่าง = ใส่ได้ทุก class
+  2) V2 filter dropdown ทุก slot ตาม classId ปัจจุบัน
+  3) เมื่อเปลี่ยน class ให้รัน sanitizeEquipmentForClass()
+     - ล้างไอเทมที่ class ใหม่ใส่ไม่ได้
+     - แสดง toast/warning บอกว่ามีของกี่ชิ้นถูกถอดออก ไม่ใช่ล้างเงียบ ๆ
+
+Acceptance criteria:
+  - dropdown ของแต่ละ class ตรง fixture class-filter.json
+  - เปลี่ยน class แล้วไม่มี invalid item ค้างใน state
+  - test class filter จาก STEP 0.2 เปลี่ยนเป็น PASS
+  - มี fixture ครอบคลุมอย่างน้อย 4th job, 3rd job, Expanded, Super Novice
+
+
+-------------------------------------------------------------------------------
+STEP 3 - ทำ State Machine ของ Weapon / Shield / Left Weapon / Ammo
+-------------------------------------------------------------------------------
+
+ปัญหา (Critical):
+  - V2 แสดง Left Weapon ให้ทุก class ทั้งที่เว็บเก่าเปิดแค่ 6 class
+  - V2 ใส่ Shield กับ Left Weapon พร้อมกันได้ ซึ่งเป็น build state ที่เป็นไปไม่ได้
+  - V2 ไม่มี Ammo slot เลย สายธนู/ปืน/คุนไอ/ลูกปืนใหญ่ ประกอบ input ไม่ครบ
+
+  กฎจริงจากเว็บเก่า (ro-calculator.component.ts:376-398):
+    hiddenMap.ammu   = !isAllowAmmo()
+    hiddenMap.shield = !isAllowShield()
+    ถ้า ammo ถูกซ่อน และมี ammo อยู่   -> ล้าง ammo
+    ถ้า shield ถูกซ่อน และมี shield อยู่ -> ล้าง shield
+    showLeftWeapon = isAllowLeftWeaponByClass && !hiddenMap.shield
+    ถ้ามี leftWeapon แต่ showLeftWeapon = false -> ล้าง leftWeapon
+    ใน template (บรรทัด 594): leftWeapon ถูกซ่อนเมื่อ !weapon || !showLeftWeapon || !!shield
+
+  จุดที่ต้องระวัง: เว็บเก่าผูก showLeftWeapon กับ !hiddenMap.shield
+  แปลว่า "อาวุธที่ถือโล่ได้เท่านั้นจึงจะใส่มือซ้ายได้" ต้อง port ตามนี้
+  ไม่ใช่ใช้แค่ class เป็นตัวตัดสิน
+
+ไฟล์ที่ต้องสร้าง/แก้:
+  สร้าง: src/lib/equipment/weapon-state.ts
+  แก้:   src/components/calculator-v2/equipment-panel.tsx
+  แก้:   src/components/calculator-v2/calculator-v2-shell.tsx
+  แก้:   src/lib/equipment/types.ts (ถ้าต้องเพิ่ม slot definition ของ ammo)
+
+สิ่งที่ต้องทำ:
+
+  1) เขียน pure function
+     resolveWeaponState({ classId, weaponItem }) => {
+       allowsShield     : boolean
+       allowsLeftWeapon : boolean
+       allowsAmmo       : boolean
+       ammoSubTypeId    : number | null
+     }
+
+  2) ตาราง constant ที่ต้อง port มาให้ครบ
+     - ALLOW_LEFT_WEAPON_CLASSES = GuillotineCross, ShadowCross, Oboro,
+                                   Shiranui, Kagerou, Shinkiro
+     - ALLOW_AMMO_WEAPON_TYPES   = bow, gun, whip, instrument, shuriken
+     - WEAPON_AMMO_MAP  = bow->Arrow, whip->Arrow, instrument->Arrow,
+                          gun->Bullet, shuriken->Kunai
+     - CLASS_AMMO_MAP   = Oboro/Shinkiro/Kagerou/Shiranui -> Kunai,
+                          Mechanic/Meister/Genetic/Biolo  -> Cannonball
+
+  3) เพิ่ม Ammo slot ใน EquipmentPanel และกรองชนิดกระสุนตาม ammoSubTypeId
+  4) ทำ mutual exclusion: มี shield -> ซ่อน leftWeapon, มี leftWeapon -> ซ่อน shield
+  5) เปลี่ยนอาวุธหลักแล้ว ต้องล้าง shield/leftWeapon/ammo ที่ไม่เข้ากันอัตโนมัติ
+
+Acceptance criteria:
+  - ใส่ Shield และ Left Weapon พร้อมกันไม่ได้ในทุกทาง (ทั้ง UI และ state)
+  - เปลี่ยนเป็นอาวุธสองมือ -> Shield ถูกล้างทันที
+  - class ที่ไม่อยู่ในลิสต์ 6 class -> ไม่เห็นช่อง Left Weapon เลย
+  - Ammo แสดงเฉพาะเมื่อ weapon type หรือ class ต้องใช้
+  - เปลี่ยนอาวุธจากธนูเป็นปืน -> ลูกธนูที่ค้างถูกล้าง
+  - test ammo จาก STEP 0.2 เปลี่ยนเป็น PASS
+
+
+-------------------------------------------------------------------------------
+STEP 4 - แก้ semantics ของ refine
+-------------------------------------------------------------------------------
+
+ปัญหา (High):
+  scripts/build-catalog.ts:345-349 และ 361-365 เขียนว่า
+    isRefinable: item.isRefinable ?? equipSlots.some(slot => rule.allowsRefine)
+  คือถ้า source ไม่มีค่า จะ fallback เป็น true ตาม slot
+  แต่เว็บเก่าอ่านว่า  isRefinable ?? false  (equipment.component.ts:171)
+
+  ผล: source เก่ามี isRefinable === true เพียง 3 records
+       แต่ catalog ใหม่ mark accessory ที่ equip ได้ 383 ชิ้นเป็น refinable ทั้งหมด
+       และ V2 ยังใช้ rule.allowsRefine ระดับ slot ซ้ำอีกชั้น
+
+  ผลข้างเคียงที่ต้องตรวจด้วย:
+    resolveCanGrade() ที่ catalog-rules.ts:139-160 รับ isRefinable เข้าไป
+    ตัดสิน grade ด้วย (บรรทัด 147: if (item.isRefinable === false) return false)
+    การแก้ fallback จะกระทบรายการ gradable ต้องตรวจว่าไม่เปลี่ยนโดยไม่ตั้งใจ
+
+ไฟล์ที่ต้องแก้:
+  scripts/build-catalog.ts
+  src/lib/equipment/catalog-rules.ts
+  src/components/calculator-v2/equipment-panel.tsx
+
+สิ่งที่ต้องทำ:
+  1) เก็บค่า 3 สถานะแยกกัน: true / false / unknown (missing)
+     ห้ามยุบ unknown เป็น true
+  2) port กฎ legacy ต่อ item type สำหรับกรณี unknown
+  3) V2 ตัดสิน refine จาก "ไอเทมจริง" ไม่ใช่จาก slot rule
+  4) accessory ที่ไม่ refinable ต้องไม่มี refine control และ reset เป็น 0
+  5) เปลี่ยนไอเทมแล้ว refine ที่ invalid ต้อง reset
+  6) rebuild catalog แล้วเทียบจำนวน refinable/gradable ก่อน-หลัง
+
+Acceptance criteria:
+  - รายการ refinable ตรง fixture refinable.json
+  - accessory ส่วนใหญ่ไม่มีปุ่ม refine
+  - รายการ gradable ไม่เปลี่ยนแบบไม่ได้ตั้งใจ (มี test เทียบก่อน-หลัง)
+
+
+-------------------------------------------------------------------------------
+STEP 5 - เพิ่ม Validation Layer ก่อนส่งเข้า engine
+-------------------------------------------------------------------------------
+
+ปัญหา (Medium แต่ป้องกันปัญหาระยะยาว):
+  ปัจจุบัน UI filter บางส่วน แต่ damage-adapter.ts เชื่อ state โดยตรง
+  state ที่มาจาก saved build / import JSON / bug จึง bypass UI filter ได้
+
+ไฟล์ที่ต้องสร้าง/แก้:
+  สร้าง: src/lib/calculator/validate-selection.ts
+  แก้:   src/components/calculator-v2/damage-adapter.ts
+  แก้:   src/components/calculator-v2/combat-summary-panel.tsx (แสดง warning)
+
+สิ่งที่ต้องทำ:
+  เขียน validateCalculatorSelection() แบบ pure TypeScript คืน { errors, warnings }
+  ตรวจอย่างน้อย
+    - item ต้องอยู่ใน slot นั้นจริง
+    - class ต้องใช้ item ได้ (ใช้ฟังก์ชันจาก STEP 2)
+    - card ต้องเป็น itemTypeId === 6 และ compositionPos ตรงกับ slot
+      (เพิ่มเงื่อนไข itemTypeId === 6 ด้วย ปัจจุบันไม่ได้เช็ค พึ่ง compositionPos
+       อย่างเดียว ซึ่งบังเอิญถูกใน release นี้แต่ไม่ปลอดภัยกับ release ใหม่)
+    - จำนวน card ไม่เกิน item.slots
+    - enchant ต้องอยู่ใน group ของ item นั้นจริง
+    - grade ต้องใช้ได้กับ item
+    - refine อยู่ในช่วงและ item ต้อง refinable (STEP 4)
+    - Shield / Left Weapon / Ammo ต้องสอดคล้องกับ weapon และ class (STEP 3)
+
+  ถ้ามี error ห้ามส่งเข้า engine และให้แสดงเหตุผลบน UI
+
+Acceptance criteria:
+  - โหลด build ที่จงใจทำให้ผิด แล้วระบบแสดง error ไม่ใช่คำนวณเงียบ ๆ
+  - มี unit test ครบทุกเงื่อนไขข้างต้น
+
+
+===============================================================================
+เฟส 2 : ทำให้ input ที่ส่งเข้า engine ครบ (P1)
+===============================================================================
+
+หมายเหตุ: engine รองรับ field เหล่านี้อยู่แล้ว
+  src/lib/calculator/damage-engine.ts:32-35
+    activeSkillValues?, passiveSkillValues?, extraOptionScripts?
+  แต่ createDamageCalculationInput() ที่ damage-adapter.ts:169-181 ไม่ได้ส่งเลย
+  งานเฟสนี้จึงเป็นการ "ต่อสายที่ขาด" ไม่ใช่การเขียน engine ใหม่
+
+-------------------------------------------------------------------------------
+STEP 6.1 - ส่ง Active / Passive Skill เข้า engine
+-------------------------------------------------------------------------------
+
+ปัญหา (High):
+  types.ts:31-32 เก็บ activeSkillKey และ skillSelections ไว้แล้ว
+  SkillPanel แสดง dropdown ได้ ผู้ใช้เลือกได้ แต่ค่าไม่ถูกแปลงส่งเข้า engine
+  skillLevel (types.ts:30) ก็ไม่ได้ถูกส่งเป็น field แยก โดยหวังพึ่ง skillValue
+
+  ผลคือ UI แสดงว่าเลือกบัฟแล้ว แต่ดาเมจไม่เปลี่ยน ซึ่งผู้ใช้จะเข้าใจผิดทันที
+
+ไฟล์ที่ต้องแก้:
+  src/components/calculator-v2/types.ts
+  src/components/calculator-v2/damage-adapter.ts
+  src/components/calculator-v2/skill-panel.tsx
+
+สิ่งที่ต้องทำ:
+  1) แยก state ให้ชัด 3 กลุ่ม: offensive skill / active skill / passive skill
+  2) map skillSelections -> activeSkillValues และ passiveSkillValues
+  3) ส่ง skillLevel เข้า input ให้ถูกต้อง
+  4) เพิ่ม golden test สำหรับ buff/passive combination
+
+Acceptance criteria:
+  - เปลี่ยน active skill แล้วดาเมจเปลี่ยนจริง
+  - เปลี่ยน passive skill แล้วดาเมจเปลี่ยนจริง
+  - golden test เทียบผลกับเว็บเก่าผ่าน
+
+
+-------------------------------------------------------------------------------
+STEP 6.2 - รองรับ Random Option ใน V2
+-------------------------------------------------------------------------------
+
+ปัญหา (High):
+  EquipmentSlotSelection (types.ts:40-46) ไม่มี field randomOptions เลย
+  adapter จึงไม่ส่ง extraOptionScripts เข้า engine
+  build ที่มีออฟสุ่มจะคำนวณต่ำกว่าความจริง
+
+  ของที่มีอยู่แล้วและควร reuse ไม่ใช่เขียนใหม่:
+    src/components/equipment/random-option-cascade.tsx
+    src/lib/equipment/random-options.ts (316 บรรทัด)
+    resolveRandomOptionCount() ที่ catalog-rules.ts:129
+      -> weapon 3 ช่อง, shadow 1 ช่อง, อื่น ๆ ตาม ExtraOptionTable
+
+ไฟล์ที่ต้องแก้:
+  src/components/calculator-v2/types.ts
+  src/components/calculator-v2/equipment-panel.tsx
+  src/components/calculator-v2/damage-adapter.ts
+
+สิ่งที่ต้องทำ:
+  1) เพิ่ม randomOptions ใน EquipmentSlotSelection
+  2) เอา RandomOptionCascade มาใช้ใน V2 EquipmentPanel
+  3) แปลง randomOptions -> extraOptionScripts ใน adapter
+  4) เพิ่ม adapter test
+
+Acceptance criteria:
+  - เลือก random option แล้วดาเมจเปลี่ยน
+  - จำนวนช่องต่อ slot ตรงกฎ (weapon 3, shadow 1, อื่นตามตาราง)
+
+
+-------------------------------------------------------------------------------
+STEP 6.3 - แสดง Enchant ให้ครบทุก group
+-------------------------------------------------------------------------------
+
+ปัญหา (High):
+  equipment-panel.tsx:234 เขียน optionGroups.slice(0, 3)
+  แต่เว็บเก่ารองรับ enchant 4 ช่องสำหรับ Weapon และ Left Weapon
+  (ยืนยันจาก preset-model.ts:40-43 leftWeaponEnchant0-3)
+  catalog ปัจจุบันมี 26 ไอเทมที่มี enchant group เกิน 3 เช่น Glacier Sword,
+  Glacier Axe -> enchant group หนึ่งหายจาก UI และไม่ถูกส่งเข้า engine
+
+ไฟล์ที่ต้องแก้:
+  src/components/calculator-v2/equipment-panel.tsx
+
+สิ่งที่ต้องทำ:
+  1) ลบ slice(0, 3) ออก
+  2) render ตาม group.slot จริงทั้งหมด
+  3) ตรวจ group กับ EQUIPMENT_SLOT_RULES แทนการ hard-code จำนวน
+
+Acceptance criteria:
+  - เลือก Glacier Sword แล้วเห็น enchant ครบ 4 group
+  - enchant group ที่ 4 ถูกส่งเข้า engine จริง (ตรวจใน adapter test)
+  - test ครอบคลุมไอเทมทั้ง 26 ชิ้นที่มี group เกิน 3
+
+
+-------------------------------------------------------------------------------
+STEP 6.4 - เพิ่ม slot ที่ยังขาดใน V2
+-------------------------------------------------------------------------------
+
+ปัญหา (Medium):
+  EQUIPMENT_SLOTS ใน src/lib/equipment/types.ts:7-32 นิยามครบ 30 slot แล้ว
+  และหน้า /calculator รองรับครบ แต่ V2 render แค่ main / costume / shadow
+  (equipment-panel.tsx:91) ยังขาด
+    - ammo (ทำไปแล้วใน STEP 3)
+    - pet
+    - costumeEnchantUpper / Middle / Lower
+    - costumeEnchantGarment / Garment2 / Garment4
+
+ไฟล์ที่ต้องแก้:
+  src/components/calculator-v2/equipment-panel.tsx
+
+สิ่งที่ต้องทำ:
+  เพิ่ม slot definition ที่ขาดทั้งหมด และจัดกลุ่มให้ UI ไม่รก
+  แนะนำให้ costume enchant เป็นกลุ่มพับเก็บได้ (collapsible)
+
+Acceptance criteria:
+  - V2 มี slot ครบ 30 ตัวเท่ากับ EQUIPMENT_SLOTS
+  - ทุก slot ที่เลือกของแล้วส่งเข้า engine จริง
+
+
+-------------------------------------------------------------------------------
+STEP 6.5 - แก้พฤติกรรมการล้างการ์ด
+-------------------------------------------------------------------------------
+
+ปัญหา (Medium):
+  V2 ใช้ splice(index, 1) ตอน clear card ทำให้การ์ดช่องถัดไปเลื่อนขึ้นมาแทน
+  เว็บเก่าเก็บ card1/card2/card3/card4 เป็น field แยก และล้างเฉพาะช่องนั้น
+
+ไฟล์ที่ต้องแก้:
+  src/components/calculator-v2/equipment-panel.tsx
+
+สิ่งที่ต้องทำ:
+  เปลี่ยนเป็น nextCards[index] = 0 (หรือ undefined) โดยไม่ splice
+  ให้ adapter คง filter(Boolean) ไว้เหมือนเดิม (damage-adapter.ts:115)
+
+Acceptance criteria:
+  - clear Card 2 แล้ว Card 3 ยังอยู่ช่อง 3 ไม่เลื่อนขึ้น
+  - เปลี่ยนไอเทมจาก 4 ช่องเป็น 1 ช่อง -> card 2-4 ถูกล้าง
+
+
+===============================================================================
+เฟส 3 : รวม Calculator ให้เหลือหน้าเดียว (P2)
+===============================================================================
+
+-------------------------------------------------------------------------------
+STEP 7 - ย้ายความสามารถจาก /calculator เข้า V2
+-------------------------------------------------------------------------------
+
+ปัญหา:
+  ตอนนี้ผู้ใช้ต้องเลือกระหว่าง "เลือกของได้ละเอียด" กับ "คำนวณได้จริง"
+  /calculator     : มี saved build, IndexedDB, class filter, random option,
+                    slot ครบ, price/variant  แต่ combat summary ยัง "รอสูตร"
+  /calculator-v2  : มี engine จริง แต่ refresh แล้ว state หายหมด
+
+  หลัง STEP 1-6 เสร็จ ช่องว่างฝั่ง V2 จะเหลือแค่เรื่อง persistence
+
+ไฟล์ที่ต้องแก้:
+  src/components/calculator-v2/calculator-v2-shell.tsx
+  src/lib/knowledge/repository.ts (ใช้ของเดิม ไม่ต้องเขียนใหม่)
+  src/components/calculator/equipment-build-panel.tsx (ทยอยถอด)
+
+สิ่งที่ต้องทำ:
+  1) ต่อ saveBuild / deleteBuild / loadKnowledgeSnapshot เข้า V2
+  2) ทำ localStorage draft auto-save เหมือน /calculator
+  3) ต่อ item variant reference และราคาจาก Knowledge
+  4) เพิ่ม item preview / thumbnail
+  5) เขียน round-trip test: save -> reload -> calculate ต้องได้ค่าเดิมเป๊ะ
+
+Acceptance criteria:
+  - save build แล้ว refresh หน้า selection และ damage เท่าเดิมทุกค่า
+  - import build จาก JSON -> ผ่าน validation (STEP 5) -> คำนวณได้
+  - ทุกฟีเจอร์ของ /calculator มีใน V2 ครบ
+
+
+-------------------------------------------------------------------------------
+STEP 8 - ตัด route เก่าและทำ V2 เป็น canonical
+-------------------------------------------------------------------------------
+
+ไฟล์ที่ต้องแก้:
+  src/components/app-shell.tsx (บรรทัด 6-7)
+  src/app/calculator/page.tsx
+  src/app/calculator-v2/page.tsx
+
+สิ่งที่ต้องทำ:
+  1) ย้ายโค้ด V2 ไปเป็น /calculator
+  2) เอารายการ "V2" ออกจาก nav
+  3) เก็บ /calculator-v2 เป็น redirect ชั่วคราวถ้าต้องการ
+
+Acceptance criteria:
+  - เหลือ Calculator หน้าเดียวใน navigation
+  - ไม่มีโค้ดกฎอุปกรณ์ซ้ำสองที่อีก
+
+
+===============================================================================
+เฟส 4 : เติม UI/ข้อมูลที่เว็บเก่ามีแต่เว็บใหม่ยังไม่มีเลย (P3)
+===============================================================================
+
+-------------------------------------------------------------------------------
+STEP 9 - เพิ่ม Summary Panel ที่ขาด
+-------------------------------------------------------------------------------
+
+ปัญหา:
+  combat-summary-panel.tsx มีแค่ Damage Preview, Class, Skill, Target,
+  Equipped, Skill DPS, Basic Attack
+  แต่เว็บเก่ามี panel เหล่านี้ (จาก ro-calculator.component.html):
+    - Battle Summary
+    - Equipments Summary
+    - Penetration Summary
+    - Skill bonus / Multiplier Summary
+    - Item Descriptions
+    - Consumables
+
+ไฟล์ที่ต้องสร้าง:
+  src/components/calculator-v2/battle-summary-panel.tsx
+  src/components/calculator-v2/penetration-summary-panel.tsx
+  src/components/calculator-v2/skill-bonus-summary-panel.tsx
+  src/components/calculator-v2/equipment-summary-panel.tsx
+  src/components/calculator-v2/item-description-panel.tsx
+
+สิ่งที่ต้องทำ:
+  ดึงค่าที่ engine คำนวณได้อยู่แล้วมาแสดงให้ครบ
+  ถ้า engine ยังไม่ export ค่าไหน ให้เพิ่มใน DamageCalculationResult
+  ห้ามคำนวณซ้ำในฝั่ง UI เพราะจะกลายเป็นสูตรที่สองที่ต้องดูแล
+
+Acceptance criteria:
+  - ทุกตัวเลขในเว็บเก่ามีที่แสดงในเว็บใหม่
+  - ตัวเลขตรงกับเว็บเก่าใน build ตัวอย่างอย่างน้อย 5 build
+
+
+-------------------------------------------------------------------------------
+STEP 10 - เพิ่มหน้า/เครื่องมือที่เว็บเก่ามี
+-------------------------------------------------------------------------------
+
+รายการที่ขาด (จาก tong-calc-ro/src/app/layout/pages/):
+  1) Elemental Table       - ตารางธาตุ (ro-calculator/elemental-table)
+  2) Monster Data View     - ดูข้อมูลมอนสเตอร์ (ro-calculator/monster-data-view)
+  3) Item Search           - ค้นไอเทมจาก effect (ro-calculator/item-search)
+  4) Misc Detail           - (ro-calculator/misc-detail)
+  5) Preset Table          - ตารางเทียบ preset (ro-calculator/preset-table)
+  6) Preset Summary        - item ranking (pages/preset-summary)
+  7) Shared Presets        - แชร์ build ให้คนอื่น (pages/shared-preset)
+  8) Auth / User Profile   - (pages/auth, pages/user-profile)
+
+ข้อควรตัดสินใจ:
+  ข้อ 7 และ 8 ต้องมี backend แต่เว็บใหม่ตั้งใจเป็น static + local-first
+  ทางเลือก:
+    ก) ข้ามไปก่อน ใช้ export/import JSON แทนการแชร์
+    ข) แชร์ผ่าน URL encode ของ build (ไม่ต้องมี server)  <- แนะนำ
+    ค) ทำ backend จริง (ขัดกับหลักการ local-first ปัจจุบัน)
+  แนะนำ ข) เพราะได้ฟีเจอร์แชร์โดยไม่เสียความเป็น static site
+
+ลำดับที่แนะนำภายใน STEP นี้: 3 -> 1 -> 2 -> 6 -> 5 -> 4 -> 7 -> 8
+  (Item Search มีมูลค่าต่อผู้ใช้สูงสุดและใช้ catalog ที่มีอยู่แล้ว)
+
+
+===============================================================================
+เฟส 5 : Browser / E2E Tests (P3)
+===============================================================================
+
+-------------------------------------------------------------------------------
+STEP 11 - เขียน E2E scenario
+-------------------------------------------------------------------------------
+
+ปัญหา:
+  unit test 26 ตัวไม่ครอบคลุม UI interaction เลย
+  bug หลายข้อในเฟส 1 เป็น bug ที่ unit test จับไม่ได้
+
+scenario ขั้นต่ำที่ต้องมี:
+   1) เลือก class ที่ dual wield ได้ -> เลือก dagger มือซ้ายได้
+   2) เปลี่ยนไป class อื่น -> มือซ้ายถูกล้างอัตโนมัติ
+   3) เลือก Shield -> ช่อง Left Weapon หายไป
+   4) เลือก Left Weapon -> ช่อง Shield หายไป
+   5) เลือกอาวุธสองมือ -> Shield ถูกล้าง
+   6) เลือก Accessory Left -> เห็นการ์ด Left ไม่เห็นการ์ด Right
+   7) เลือก Accessory Right -> เห็นการ์ด Right ไม่เห็นการ์ด Left
+   8) เปลี่ยน item จาก 4 ช่องเป็น 1 ช่อง -> card 2-4 ถูกล้าง
+   9) clear Card 2 -> Card 3 ไม่เลื่อนช่อง
+  10) เลือก Glacier item -> เห็น enchant ครบ 4 group
+  11) เลือก random option -> damage เปลี่ยน
+  12) เปลี่ยน active/passive skill -> damage เปลี่ยน
+  13) เลือกธนู -> เห็นช่อง ammo, เปลี่ยนเป็นดาบ -> ammo หายและถูกล้าง
+  14) save build -> reload -> selection และ damage เท่าเดิม
+  15) เลือก accessory ที่ไม่ refinable -> ไม่เห็นปุ่ม refine
+
+
+===============================================================================
+เฟส 6 : Knowledge Dashboard ให้ครบ (P4)
+===============================================================================
+
+-------------------------------------------------------------------------------
+STEP 12 - ปิดงานที่ค้างใน IMPLEMENTATION_STATUS Phase 3
+-------------------------------------------------------------------------------
+
+รายการที่ยังไม่ทำ:
+  - item detail lazy loading ใน dashboard
+  - แก้ไข/ลบ price history
+  - owned item management
+  - import preview พร้อม conflict report
+  - browser integration tests ของ IndexedDB
+  - variant migration เมื่อ catalog update
+
+ไฟล์หลัก:
+  src/components/knowledge/knowledge-dashboard.tsx
+  src/lib/knowledge/repository.ts
+  src/lib/knowledge/import-export.ts
+
+ข้อควรระวัง:
+  variant migration สำคัญมาก เพราะ STEP 1 และ STEP 4 เปลี่ยน catalog schema
+  ต้องมั่นใจว่า variant/build ที่ผู้ใช้บันทึกไว้ก่อนหน้าไม่พังหลัง rebuild
+  แนะนำให้เขียน migration test ตั้งแต่ตอนทำ STEP 1 ไม่ใช่รอถึง STEP 12
+
+
+===============================================================================
+เฟส 7 : Advisor (P5)
+===============================================================================
+
+-------------------------------------------------------------------------------
+STEP 13 - Advisor MVP
+-------------------------------------------------------------------------------
+
+ห้ามเริ่มก่อน STEP 1-6 เสร็จ
+เหตุผล: optimizer จะขยายผลของกฎที่ผิดไปยัง candidate หลายพันตัว
+        ถ้ากฎมือซ้ายผิด optimizer จะแนะนำ build ที่เล่นจริงไม่ได้
+
+ปัจจุบัน src/app/advisor/page.tsx (33 บรรทัด) เป็นข้อความอธิบายล้วน
+
+ลำดับงานภายใน STEP:
+  1) candidate pre-filter (ใช้กฎจากเฟส 1 กรองก่อน)
+  2) exact calculation ต่อ candidate
+  3) ย้ายงานหนักไป Web Worker
+  4) progress bar + cancel
+  5) target damage mode: หาราคาต่ำสุดที่ทำดาเมจถึงเป้า
+  6) budget mode: ดาเมจสูงสุดภายในงบ
+  7) explainable ranking: แสดง gain, cost, condition, set dependency, วันที่ราคา
+  8) unknown price handling: ห้ามนับราคาที่ไม่รู้เป็น 0
+
+
+===============================================================================
+เฟส 8 : Chat (P6) - ฟีเจอร์ใหม่ที่เว็บเก่าไม่มี
+===============================================================================
+
+-------------------------------------------------------------------------------
+STEP 14 - Chat runtime
+-------------------------------------------------------------------------------
+
+ปัจจุบัน src/app/chat/page.tsx (24 บรรทัด) เป็นข้อความอธิบายล้วน
+
+หลักการที่ห้ามละเมิด:
+  Chat เป็นชั้นแปลงภาษาธรรมชาติเป็น tool call เท่านั้น
+  ห้าม AI สร้างตัวเลข damage หรือราคาเอง ทุกตัวเลขต้องมาจาก Calculator/Advisor
+
+ลำดับงานภายใน STEP:
+  1) นิยาม tool contract ของ Calculator และ Advisor
+     - calculateDamage(buildInput)          -> DamageCalculationResult
+     - findUpgrades(buildInput, budget)     -> ranked list
+     - lookupItem(query)                    -> catalog entry
+     - lookupMonster(query)                 -> monster entry
+  2) tool dispatcher
+  3) conversation state (เก็บ build ปัจจุบันเป็น context)
+  4) evidence/citation จากข้อมูลภายใน แสดง engine version + catalog version
+  5) guardrail: ถ้า tool ไม่คืนค่า ให้ตอบว่าไม่ทราบ ห้ามเดา
+  6) รองรับคำถามภาษาไทย
+  7) MCP adapter (ทำหลังสุด)
+
+ตัวอย่าง flow ที่ต้องทำได้ (จาก chat/page.tsx ปัจจุบัน):
+  "Shadow Cross เล่น Cross Impact งบ 200m ควรเปลี่ยนอะไรก่อน"
+  -> อ่าน build ปัจจุบัน -> เรียก budget optimizer -> อธิบายผล
+  -> แสดงราคาที่ทราบ ราคาที่เก่า และราคาที่ยังขาด
+
+
+===============================================================================
+งานประกอบที่ทำคู่ขนานได้ตลอด
+===============================================================================
+
+A) อัปเดต IMPLEMENTATION_STATUS.md
+   ปัจจุบันลงวันที่ 16 ก.ค. 2026 แต่ worktree มีการเปลี่ยนแปลงที่ยังไม่ commit
+   จำนวนมาก ควรระบุแยกให้ชัดว่า
+     - อะไร complete จริง
+     - อะไรเป็น prototype
+     - อะไรผ่าน unit test แต่ยังไม่ผ่าน browser parity
+
+B) commit งานที่ค้างใน worktree
+   ตอนนี้มีไฟล์ modified/untracked จำนวนมากรวมทั้ง src/generated/,
+   src/app/calculator-v2/, tests/ ที่ยังไม่ commit
+   ควร commit เป็นก้อนที่อ่านรู้เรื่องก่อนเริ่ม STEP 1 เพื่อให้ revert ได้
+
+C) npm audit
+   สถานะเดิมรายงาน 1 moderate + 1 high ควรตรวจใหม่และวางแผนอัปเดต
+   ห้ามเดา compatibility ให้รัน test ชุดเต็มหลังอัปเดตทุกครั้ง
+
+D) ทุกครั้งที่รัน catalog:update (sync release ใหม่ของ tong-calc-ro)
+   ต้อง regenerate parity fixture (STEP 0.1) และรัน parity test ใหม่ทั้งชุด
+
+
+===============================================================================
+สรุปลำดับแบบสั้น
+===============================================================================
+
+  0.1  สร้าง parity fixture จากเว็บเก่า
+  0.2  เขียน red test
+  1    แยก canEquipLeftWeapon / allowsShield / twoHanded / ammoType
+  2    class compatibility filter เข้า V2 + sanitize ตอนเปลี่ยน class
+  3    state machine weapon/shield/leftWeapon/ammo + เพิ่ม ammo slot
+  4    แก้ refine semantics (เลิก fallback missing -> true)
+  5    validation layer ก่อน engine
+  6.1  ส่ง active/passive skill เข้า engine
+  6.2  random option ใน V2
+  6.3  enchant ครบทุก group (ลบ slice(0,3))
+  6.4  เพิ่ม pet + costume enchant slots
+  6.5  แก้การล้างการ์ดไม่ให้เลื่อนช่อง
+  7    ย้าย save/load/variant/price เข้า V2
+  8    ทำ V2 เป็น canonical route
+  9    เพิ่ม summary panels ที่ขาด
+  10   เพิ่มหน้า item search / elemental table / monster view / preset
+  11   E2E tests 15 scenario
+  12   ปิดงาน Knowledge Dashboard
+  13   Advisor MVP
+  14   Chat runtime
+
+เส้นตายเชิงตรรกะที่ห้ามผิดลำดับ:
+  - 0.1 ต้องมาก่อนทุกอย่าง
+  - 1, 2, 3 ต้องเสร็จก่อน 5 (validation ต้องรู้กฎก่อน)
+  - 1-6 ต้องเสร็จก่อน 13 (Advisor)
+  - 13 ควรเสร็จก่อน 14 ในส่วน budget optimizer ที่ Chat จะเรียกใช้
